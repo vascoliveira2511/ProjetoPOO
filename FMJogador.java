@@ -1,3 +1,5 @@
+import java.lang.StringBuilder;
+
 public class FMJogador {
 
     //Tipo de jogador
@@ -232,8 +234,66 @@ public class FMJogador {
         return this.equipa;
     }
     
+    /**
+     * Metodo que retorna o overall do jogador.
+     * @param double
+     * @return o
+     */
+    public double overall(){
+        double o = 0;
+        if (this.posicao == 1){
+            o = ((this.velocidade + this.resistencia+ this.destreza + this.impulsao+ this.jogoCabeca+ this.remate + this.capacidadePasse + this.elastecidade) / 8);
+        }
+        else {
+            o = ((this.velocidade + this.resistencia+ this.destreza + this.impulsao+ this.jogoCabeca+ this.remate + this.capacidadePasse) / 7);
+        }
+        return o;
 
+    }
     
+    /**
+     * Metodo que retorna a String com informação do jogador
+     * @param String
+     * @return str.toString()
+     */
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append ("Posicao: " + this.posicao + "\n");
+        str.append ("Velocidade: " + this.velocidade + "\n");
+        str.append ("Resistencia: " + this.resistencia + "\n");
+        str.append ("Destreza: " + this.destreza + "\n");
+        str.append ("Impulsao: " + this.impulsao + "\n");
+        str.append ("Jogo de Cabeça: " + this.jogoCabeca + "\n");
+        str.append ("Remate: " + this.remate + "\n");
+        str.append ("Capacidade de Passe: " + this.capacidadePasse + "\n");
+        if (this.posicao == 1) str.append ("Elastecidade: " + this.elastecidade + "\n");
+        return str.toString();
+    }
+    
+    /**
+     * Metodo que retorna o clone
+     * @param Jogador
+     * @return new Jogador(this);
+     */
+    public Jogador clone(){
+        return new Jogador(this);
+    }
+    
+    /**
+     * Metodo equals
+     * @param boolean
+     * @return 
+     */
+    public boolean equals(Object o) {
+        if (this == o) 
+            return true;
+        if ((o == null) || (this.getClass() != o.getClass() )) 
+            return false;
+        Jogador j = (Jogador) o;
+        return (this.velocidade == j.getVelocidade() && this.resistencia == j.getResistencia() && 
+                this.impulsao == j.getImpulsao() && this.jogoCabeca == j.getJogoCabeca() &&
+                this.remate == j.getRemate() && this.capacidadePasse == j.getCapacidadePasse());
+    }
 
 
 }
