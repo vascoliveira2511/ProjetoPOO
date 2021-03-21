@@ -1,22 +1,63 @@
 import java.lang.StringBuilder;
 
+/**
+ * Classe Jogador
+ *
+ * @author @Skynet-Model101
+ * @author @DiogoPereiraMatos
+ * @author @MiguelFernandes13
+ */
 public class Jogador {
-    // Tipo de jogador
+    /**
+     * Tipo de jogador
+     *
+     * @apiNote 1 - guarda-redes , 2 - defesas, 3 - medios, 4 - avancados, 5 -
+     *          laterais.
+     */
     private int tipoJogador; // 1 - guarda-redes , 2 - defesas, 3 - medios, 4 - avancados, 5 - laterais.
 
-    // Caracteristicas base
+    /**
+     * Velocidade de um Jogador
+     */
     private int velocidade;
+    /**
+     * Resistencia de um Jogador
+     */
     private int resistencia;
+    /**
+     * Destreza de um Jogador
+     */
     private int destreza;
+    /**
+     * Impulso de um Jogador
+     */
     private int impulsao;
+    /**
+     * Jogo de cabeca de um Jogador
+     */
     private int jogoDeCabeca;
+    /**
+     * Cpacidade de remate de um Jogador
+     */
     private int remate;
+    /**
+     * Cpacidade de passe de um Jogador
+     */
     private int capacidadeDePasse;
 
-    // Caracteristica especifica guarda-redes.
+    /**
+     * Elasticidade de um jogador
+     *
+     * @apiNote Esta carectaristica e exculsiva ao guarda-redes e tera o valor de -1
+     *          em qualquer outro jogador
+     */
     private int elasticidade; // será -1 se não é um guarda-redes
 
-    // Equipas
+    /**
+     * Equipa de um jogador
+     *
+     * @apiNote 1 - visitantes, 2 - visitados.
+     */
     private int equipa; // 1 - visitantes, 2 - visitados.
 
     /**
@@ -36,16 +77,16 @@ public class Jogador {
     /**
      * Metodo de classe que cria uma instancia de jogador com valores fornecidos.
      *
-     * @param int tipoJogador
-     * @param int velocidade
-     * @param int resistencia
-     * @param int destreza
-     * @param int impulsao
-     * @param int jogoDeCabeca
-     * @param int remate
-     * @param int capacidadeDePasse
-     * @param int elasticidade
-     * @param int equipa
+     * @param tipoJogador
+     * @param velocidade
+     * @param resistencia
+     * @param destreza
+     * @param impulsao
+     * @param jogoDeCabeca
+     * @param remate
+     * @param capacidadeDePasse
+     * @param elasticidade
+     * @param equipa
      * @return void
      */
     public Jogador(int tipoJogador, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca,
@@ -68,7 +109,7 @@ public class Jogador {
     /**
      * Metodo de classe que cria uma instancia de jogador a partir de um jogador
      * recebido.
-     * 
+     *
      * @param jogador
      * @return void
      */
@@ -88,7 +129,7 @@ public class Jogador {
     /**
      * Metodo que modifica o tipo de jogador .
      *
-     * @param int tipoJogador
+     * @param tipoJogador
      * @return void
      */
     public void setTipoJogador(int tipoJogador) {
@@ -98,7 +139,7 @@ public class Jogador {
     /**
      * Metodo que modifica a velocidade do jogador.
      *
-     * @param int velocidade
+     * @param velocidade
      * @return void
      */
     public void setVelocidade(int velocidade) {
@@ -118,7 +159,7 @@ public class Jogador {
     /**
      * Metodo que modifica a destreza do jogador.
      *
-     * @param int destreza
+     * @param destreza
      * @return void
      */
     public void setDestreza(int destreza) {
@@ -128,7 +169,7 @@ public class Jogador {
     /**
      * Metodo que modifica o impulso do jogador.
      *
-     * @param int impulso
+     * @param impulso
      * @return void
      */
     public void setImpulsao(int impulso) {
@@ -138,7 +179,7 @@ public class Jogador {
     /**
      * Metodo que retorna o jogo de cabeca do jogador.
      *
-     * @param int jogoDeCabeca
+     * @param jogoDeCabeca
      * @return void
      */
     public void setJogoDeCabeca(int jogoDeCabeca) {
@@ -148,7 +189,7 @@ public class Jogador {
     /**
      * Metodo que modifica o remate do jogador.
      *
-     * @param int remate
+     * @param remate
      * @return void
      */
     public void setRemate(int remate) {
@@ -158,7 +199,7 @@ public class Jogador {
     /**
      * Metodo que modifica a capacidade de passe do jogador
      *
-     * @param int capacidadeDePasse
+     * @param capacidadeDePasse
      * @return void
      */
     public void setCapacidadeDePasse(int capacidadeDePasse) {
@@ -169,7 +210,7 @@ public class Jogador {
      * Metodo que modifica a elasticidade do jogador, sse o jogador e um
      * guarda-redes(tipoJogador == 1).
      *
-     * @param int this.elasticidade
+     * @param elasticidade
      * @return void
      */
     public void setElasticidade(int elasticidade) {
@@ -182,7 +223,7 @@ public class Jogador {
     /**
      * Metodo que modifica a que equipa pertence o jogador.
      *
-     * @param int equipa
+     * @param equipa
      * @return void
      */
     public void setEquipa(int equipa) {
@@ -193,7 +234,7 @@ public class Jogador {
      * Metodo que retorna o tipo de jogador .
      *
      * @param void
-     * @return this.tipoJogador
+     * @return tipoJogador
      */
     public int getTipoJogador() {
         return this.tipoJogador;
@@ -203,7 +244,7 @@ public class Jogador {
      * Metodo que retorna a velocidade do jogador.
      *
      * @param void
-     * @return this.velocidade
+     * @return velocidade
      */
     public int getVelocidade() {
         return this.velocidade;
@@ -223,7 +264,7 @@ public class Jogador {
      * Metodo que retorna a destreza do jogador.
      *
      * @param void
-     * @return this.destreza
+     * @return destreza
      */
     public int getDestreza() {
         return this.destreza;
@@ -233,7 +274,7 @@ public class Jogador {
      * Metodo que retorna o impulso do jogador.
      *
      * @param void
-     * @return this.impulso
+     * @return impulso
      */
     public int getImpulsao() {
         return this.impulsao;
@@ -243,7 +284,7 @@ public class Jogador {
      * Metodo que retorna o jogo de cabeca do jogador.
      *
      * @param void
-     * @return this.jogoDeCabeca
+     * @return jogoDeCabeca
      */
     public int getJogoDeCabeca() {
         return this.jogoDeCabeca;
@@ -253,7 +294,7 @@ public class Jogador {
      * Metodo que retorna o remate do jogador.
      *
      * @param void
-     * @return this.remate
+     * @return remate
      */
     public int getRemate() {
         return this.remate;
@@ -263,7 +304,7 @@ public class Jogador {
      * Metodo que retorna a capacidade de passe do jogador
      *
      * @param void
-     * @return this.capacidadeDePasse
+     * @return capacidadeDePasse
      */
     public int getCapacidadeDePasse() {
         return this.capacidadeDePasse;
@@ -273,7 +314,7 @@ public class Jogador {
      * Metodo que retorna a elasticidade do jogador.
      *
      * @param void
-     * @return this.resistencia
+     * @return resistencia
      */
     public int getElasticidade() {
         return this.elasticidade;
@@ -283,7 +324,7 @@ public class Jogador {
      * Metodo que retorna a que equipa pertence o jogador.
      *
      * @param void
-     * @return this.equipa
+     * @return equipa
      */
     public int getEquipa() {
         return this.equipa;
@@ -309,7 +350,7 @@ public class Jogador {
     }
 
     /**
-     * Metodo que retorna a String com informação do jogador
+     * Metodo que retorna a String com informação do jogador.
      *
      * @param void
      * @return String
@@ -330,7 +371,7 @@ public class Jogador {
     }
 
     /**
-     * Metodo que retorna o clone
+     * Metodo que retorna o clone.
      *
      * @param void
      * @return Jogador
@@ -340,10 +381,10 @@ public class Jogador {
     }
 
     /**
-     * Metodo equals
+     * Metodo equals.
      *
-     * @param Object o
-     * @return boolean
+     * @param o
+     * @return true se iguais, false se nao
      */
     public boolean equals(Object o) {
         if (this == o)
