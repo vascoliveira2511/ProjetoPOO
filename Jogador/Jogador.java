@@ -46,14 +46,6 @@ public class Jogador {
     private int capacidadeDePasse;
 
     /**
-     * Elasticidade de um jogador
-     *
-     * @apiNote Esta carectaristica e exculsiva ao guarda-redes e tera o valor de -1
-     *          em qualquer outro jogador
-     */
-    private int elasticidade; // será -1 se não é um guarda-redes
-
-    /**
      * Equipa de um jogador
      *
      * @apiNote 1 - visitantes, 2 - visitados.
@@ -71,7 +63,7 @@ public class Jogador {
                 (int) Math.random() * (100 - 1 + 1) + 1, (int) Math.random() * (100 - 1 + 1) + 1,
                 (int) Math.random() * (100 - 1 + 1) + 1, (int) Math.random() * (100 - 1 + 1) + 1,
                 (int) Math.random() * (100 - 1 + 1) + 1, (int) Math.random() * (100 - 1 + 1) + 1,
-                (int) Math.random() * (100 - 1 + 1) + 1, (int) Math.random() * (3 - 1 + 1) + 1);
+                (int) Math.random() * (100 - 1 + 1) + 1);
     }
 
     /**
@@ -85,12 +77,11 @@ public class Jogador {
      * @param jogoDeCabeca
      * @param remate
      * @param capacidadeDePasse
-     * @param elasticidade
      * @param equipa
      * @return void
      */
     public Jogador(int tipoJogador, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca,
-            int remate, int capacidadeDePasse, int elasticidade, int equipa) {
+            int remate, int capacidadeDePasse, int equipa) {
         this.tipoJogador = tipoJogador;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
@@ -99,10 +90,6 @@ public class Jogador {
         this.jogoDeCabeca = jogoDeCabeca;
         this.remate = remate;
         this.capacidadeDePasse = capacidadeDePasse;
-        if (tipoJogador == 1)
-            this.elasticidade = elasticidade;
-        else
-            this.elasticidade = -1;
         this.equipa = equipa;
     }
 
@@ -122,7 +109,6 @@ public class Jogador {
         this.jogoDeCabeca = jogador.getJogoDeCabeca();
         this.remate = jogador.getRemate();
         this.capacidadeDePasse = jogador.getCapacidadeDePasse();
-        this.elasticidade = jogador.getElasticidade();
         this.equipa = jogador.getEquipa();
     }
 
@@ -204,20 +190,6 @@ public class Jogador {
      */
     public void setCapacidadeDePasse(int capacidadeDePasse) {
         this.capacidadeDePasse = capacidadeDePasse;
-    }
-
-    /**
-     * Metodo que modifica a elasticidade do jogador, sse o jogador e um
-     * guarda-redes(tipoJogador == 1).
-     *
-     * @param elasticidade
-     * @return void
-     */
-    public void setElasticidade(int elasticidade) {
-        if (getTipoJogador() == 1)
-            this.elasticidade = elasticidade;
-        else
-            this.elasticidade = -1;
     }
 
     /**
@@ -311,16 +283,6 @@ public class Jogador {
     }
 
     /**
-     * Metodo que retorna a elasticidade do jogador.
-     *
-     * @param void
-     * @return resistencia
-     */
-    public int getElasticidade() {
-        return this.elasticidade;
-    }
-
-    /**
      * Metodo que retorna a que equipa pertence o jogador.
      *
      * @param void
@@ -338,13 +300,8 @@ public class Jogador {
      */
     public double overall() {
         double o = 0;
-        if (this.tipoJogador == 1) {
-            o = ((this.velocidade + this.resistencia + this.destreza + this.impulsao + this.jogoDeCabeca + this.remate
-                    + this.capacidadeDePasse + this.elasticidade) / 8);
-        } else {
-            o = ((this.velocidade + this.resistencia + this.destreza + this.impulsao + this.jogoDeCabeca + this.remate
-                    + this.capacidadeDePasse) / 7);
-        }
+        o = ((this.velocidade + this.resistencia + this.destreza + this.impulsao + this.jogoDeCabeca + this.remate
+                + this.capacidadeDePasse) / 7);
         return o;
 
     }
@@ -365,8 +322,6 @@ public class Jogador {
         str.append("Jogo de Cabeça: " + this.jogoDeCabeca + "\n");
         str.append("Remate: " + this.remate + "\n");
         str.append("Capacidade de Passe: " + this.capacidadeDePasse + "\n");
-        if (this.tipoJogador == 1)
-            str.append("Elastecidade: " + this.elasticidade + "\n");
         return str.toString();
     }
 
@@ -394,7 +349,6 @@ public class Jogador {
         Jogador j = (Jogador) o;
         return (this.velocidade == j.getVelocidade() && this.resistencia == j.getResistencia()
                 && this.impulsao == j.getImpulsao() && this.jogoDeCabeca == j.getJogoDeCabeca()
-                && this.remate == j.getRemate() && this.capacidadeDePasse == j.getCapacidadeDePasse())
-                && this.elasticidade == j.getElasticidade();
+                && this.remate == j.getRemate() && this.capacidadeDePasse == j.getCapacidadeDePasse());
     }
 }
