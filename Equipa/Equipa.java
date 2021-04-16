@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @see jogador.java
  */
 public class Equipa {
+
     /**
      * Numero de titulares na equipa.
      */
