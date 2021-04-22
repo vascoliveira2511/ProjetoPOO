@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Medio
+comment0.text=\n\ Write\ a\ description\ of\ class\ Medios\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Medio()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Medios\n
+comment2.params=m
+comment2.target=Medio(Medio)
+comment3.params=
+comment3.target=double\ overall()
+comment4.params=
+comment4.target=Medio\ clone()
+comment5.params=o
+comment5.target=boolean\ equals(java.lang.Object)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7
