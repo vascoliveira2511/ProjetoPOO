@@ -55,7 +55,6 @@ public class Jogador {
     /**
      * Metodo de classe que cria uma instancia de jogador com valores aleatorios.
      *
-     * @param void
      * @return void
      */
     public Jogador() {
