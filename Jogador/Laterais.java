@@ -39,4 +39,11 @@ public class Laterais extends Jogador {
     public Laterais(Laterais laterais) {
         super(laterais);
     }
+
+    /**
+     * Metodo que clona um lateral.
+     */
+    public Laterais clone() {
+        return new Laterais(this);
+    }
 }

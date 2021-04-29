@@ -70,4 +70,11 @@ public class GuardaRedes extends Jogador {
         return this.elasticidade;
     }
 
+    /**
+     * Metodo que clona um guarda-redes.
+     */
+    public GuardaRedes clone() {
+        return new GuardaRedes(this);
+    }
+
 }

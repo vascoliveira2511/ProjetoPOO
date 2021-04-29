@@ -7,7 +7,7 @@ import java.lang.StringBuilder;
  * @author @DiogoPereiraMatos
  * @author @MiguelFernandes13
  */
-public class Jogador {
+public abstract class Jogador {
     /**
      * Tipo de jogador
      *
@@ -330,9 +330,7 @@ public class Jogador {
      * @param void
      * @return Jogador
      */
-    public Jogador clone() {
-        return new Jogador(this);
-    }
+    public abstract Jogador clone();
 
     /**
      * Metodo equals.

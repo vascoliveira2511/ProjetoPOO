@@ -37,4 +37,11 @@ public class Medios extends Jogador {
     public Medios(Medios medios) {
         super(medios);
     }
+
+    /**
+     * Metodo que clona um medio.
+     */
+    public Medios clone() {
+        return new Medios(this);
+    }
 }
