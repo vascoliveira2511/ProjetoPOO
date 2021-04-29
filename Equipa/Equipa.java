@@ -28,7 +28,7 @@ public class Equipa {
     /**
      * ArrayList de jogadores, neste caso suplentes.
      */
-    private ArrayList<Jogador> suplentes; // Array List de jogadores, neste caso suplentes.
+    private ArrayList<Jogador> suplentes;
 
     /**
      * Metodo que cria uma instancia de equipa com valores pre-defenidos.
