@@ -7,6 +7,7 @@
  */
 public class Lateral extends Jogador
 {
+    private int cruzamentos;
 
     /**
      * Constructor for objects of class Laterais
@@ -14,20 +15,31 @@ public class Lateral extends Jogador
     public Lateral()
     {
         super();
+        this.cruzamentos = (int) Math.random() * 100;
+    }
+    
+    public int getCruzamentos(){
+        return this.cruzamentos;
+    }
+    
+    public void setCruzamentos(int cruzamentos){
+        this.cruzamentos = cruzamentos;
     }
 
     public Lateral(Lateral l){
         super(l);
+        this.cruzamentos = (int) Math.random() * 100;
     }
 
     public double overall() {
-        return ((super.getVelocidade() * 0.30  + 
+        return  (super.getVelocidade() * 0.20  + 
                  super.getResistencia() * 0.15   + 
                  super.getDestreza() *0.1    + 
                  super.getImpulsao() * 0.0025    + 
                  super.getJogoDeCabeca() * 0.025 + 
                  super.getRemate() * 0.1      +
-                 super.getCapacidadeDePasse() * 0.30));
+                 super.getCapacidadeDePasse() * 0.20 +
+                 this.cruzamentos * 0.20);
     }
     
     public Lateral  clone(){
@@ -40,7 +52,7 @@ public class Lateral extends Jogador
         if ((o == null) || (this.getClass() != o.getClass()))
             return false;
         Lateral l = (Lateral) o;
-        return super.equals(l);
+        return super.equals(l) && this.cruzamentos == l.getCruzamentos();
     }
     
     public String toString(){
