@@ -1,10 +1,3 @@
-
-/**
- * Write a description of class Defesas here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Defesa extends Jogador {
     /**
      * Constructor for objects of class Defesas
@@ -13,20 +6,48 @@ public class Defesa extends Jogador {
         super();
     }
 
+    /**
+     * 
+     * @param velocidade
+     * @param resistencia
+     * @param destreza
+     * @param impulsao
+     * @param jogoDeCabeca
+     * @param remate
+     * @param capacidadeDePasse
+     */
+    public Defesa(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+            int capacidadeDePasse) {
+        super(velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+    }
+
+    /**
+     * 
+     * @param d
+     */
     public Defesa(Defesa d) {
         super(d);
     }
 
+    /**
+     * 
+     */
     public double overall() {
         return ((super.getVelocidade() * 0.1 + super.getResistencia() * 0.1 + super.getDestreza() * 0.30
                 + super.getImpulsao() * 0.15 + super.getJogoDeCabeca() * 0.15 + super.getRemate() * 0.05
                 + super.getCapacidadeDePasse() * 0.15));
     }
 
+    /**
+     * 
+     */
     public Defesa clone() {
         return new Defesa(this);
     }
 
+    /**
+     * 
+     */
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -36,6 +57,9 @@ public class Defesa extends Jogador {
         return super.equals(d);
     }
 
+    /**
+     * 
+     */
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Defesa: \n" + super.toString());

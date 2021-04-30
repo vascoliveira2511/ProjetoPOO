@@ -1,7 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "Equipa",
-        "Jogador",
-        "Teste"
+        "Teste",
+        "src"
     ]
 }

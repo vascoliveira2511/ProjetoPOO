@@ -24,12 +24,12 @@ public class Equipa {
     private int nSuplentes;
 
     /**
-     * ArrayList de jogadores, neste caso titulares.
+     * List de jogadores, neste caso titulares.
      */
     private List<Jogador> titulares;
 
     /**
-     * ArrayList de jogadores, neste caso suplentes.
+     * List de jogadores, neste caso suplentes.
      */
     private List<Jogador> suplentes; // Array List de jogadores, neste caso suplentes.
 
