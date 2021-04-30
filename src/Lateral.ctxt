@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Lateral
+comment0.text=\n\ Write\ a\ description\ of\ class\ Laterais\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Lateral()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Laterais\n
+comment2.params=
+comment2.target=int\ getCruzamentos()
+comment3.params=cruzamentos
+comment3.target=void\ setCruzamentos(int)
+comment4.params=l
+comment4.target=Lateral(Lateral)
+comment5.params=
+comment5.target=double\ overall()
+comment6.params=
+comment6.target=Lateral\ clone()
+comment7.params=o
+comment7.target=boolean\ equals(java.lang.Object)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

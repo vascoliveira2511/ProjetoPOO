@@ -7,14 +7,6 @@
  */
 public abstract class Jogador
 {
-     /**
-     * Tipo de jogador
-     *
-     * @apiNote 1 - guarda-redes , 2 - defesas, 3 - medios, 4 - avancados, 5 -
-     *          laterais.
-     */
-    //private int tipoJogador;
-
     /**
      * Velocidade de um Jogador
      */
