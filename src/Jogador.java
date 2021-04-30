@@ -5,7 +5,7 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public class Jogador
+public abstract class Jogador
 {
      /**
      * Tipo de jogador
@@ -249,15 +249,7 @@ public class Jogador
      * @param void
      * @return double
      */
-    public double overall() {
-        return ((this.velocidade   + 
-                 this.resistencia  + 
-                 this.destreza     + 
-                 this.impulsao     + 
-                 this.jogoDeCabeca + 
-                 this.remate       +
-                 this.capacidadeDePasse) / 7);
-    }
+    public abstract double overall();
 
     /**
      * Metodo que retorna a String com informação do jogador.
@@ -283,9 +275,7 @@ public class Jogador
      * @param void
      * @return Jogador
      */
-    public Jogador clone() {
-        return new Jogador(this);
-    }
+    public abstract Jogador clone();
 
     /**
      * Metodo equals.
