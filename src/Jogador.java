@@ -5,8 +5,7 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public abstract class Jogador
-{
+public abstract class Jogador {
     /**
      * Velocidade de um Jogador
      */
@@ -43,13 +42,8 @@ public abstract class Jogador
      * @return void
      */
     public Jogador() {
-        this(   (int) Math.random() * 100,
-                (int) Math.random() * 100, 
-                (int) Math.random() * 100,
-                (int) Math.random() * 100,
-                (int) Math.random() * 100,
-                (int) Math.random() * 100,
-                (int) Math.random() * 100);
+        this((int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100,
+                (int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100);
     }
 
     /**
@@ -64,8 +58,8 @@ public abstract class Jogador
      * @param capacidadeDePasse
      * @return void
      */
-    public Jogador(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca,
-            int remate, int capacidadeDePasse) {
+    public Jogador(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+            int capacidadeDePasse) {
         this.velocidade = velocidade;
         this.resistencia = resistencia;
         this.destreza = destreza;
@@ -91,7 +85,6 @@ public abstract class Jogador
         this.remate = jogador.getRemate();
         this.capacidadeDePasse = jogador.getCapacidadeDePasse();
     }
-
 
     /**
      * Metodo que modifica a velocidade do jogador.
@@ -163,7 +156,6 @@ public abstract class Jogador
         this.capacidadeDePasse = capacidadeDePasse;
     }
 
-
     /**
      * Metodo que retorna a velocidade do jogador.
      *
@@ -233,7 +225,6 @@ public abstract class Jogador
     public int getCapacidadeDePasse() {
         return this.capacidadeDePasse;
     }
-
 
     /**
      * Metodo que retorna o overall do jogador.

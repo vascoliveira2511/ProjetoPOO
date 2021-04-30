@@ -57,8 +57,8 @@ public class Equipa {
     public Equipa(int nTitulares, int nSuplentes, ArrayList<Jogador> titulares, ArrayList<Jogador> suplentes) {
         this.nTitulares = nTitulares;
         this.nSuplentes = nSuplentes;
-        this.titulares = titulares.stream().map(Jogador :: clone).collect(Collectors.toList());
-        this.suplentes = suplentes.stream().map(Jogador :: clone).collect(Collectors.toList());
+        this.titulares = titulares.stream().map(Jogador::clone).collect(Collectors.toList());
+        this.suplentes = suplentes.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
     /**
@@ -115,7 +115,7 @@ public class Equipa {
      * @return titulares
      */
     public List<Jogador> getTitulares() {
-        return this.titulares.stream().map(Jogador :: clone).collect(Collectors.toList());
+        return this.titulares.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
     /**
@@ -137,7 +137,7 @@ public class Equipa {
      * @return suplentes
      */
     public List<Jogador> getSuplentes() {
-        return this.suplentes.stream().map(Jogador :: clone).collect(Collectors.toList());
+        return this.suplentes.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
     /**
