@@ -1,5 +1,5 @@
 
-public class Medio extends Jogador {
+public class Medio extends Jogador implements Central {
 
     private int recuperarBolas;
 

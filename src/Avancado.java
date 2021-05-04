@@ -1,4 +1,4 @@
-public class Avancado extends Jogador {
+public class Avancado extends Jogador implements Central, Lateral {
 
     /**
      * 
@@ -65,5 +65,17 @@ public class Avancado extends Jogador {
         StringBuilder str = new StringBuilder();
         str.append("Avancado: \n" + super.toString());
         return str.toString();
+    }
+
+    @Override
+    public double overallLateral() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public double overallCentral() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

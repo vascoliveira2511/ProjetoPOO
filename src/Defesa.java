@@ -1,4 +1,4 @@
-public class Defesa extends Jogador {
+public class Defesa extends Jogador implements Central, Lateral {
 
     public Defesa() {
         super();
