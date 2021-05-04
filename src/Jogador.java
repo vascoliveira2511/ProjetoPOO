@@ -1,3 +1,4 @@
+import java.util.List;
 
 /**
  * Abstract class Jogador - write a description of the class here
@@ -34,6 +35,8 @@ public abstract class Jogador {
      * Cpacidade de passe de um Jogador
      */
     private int capacidadeDePasse;
+    
+    private List<String> histEquipas;
 
     /**
      * Metodo de classe que cria uma instancia de jogador com valores aleatorios.
@@ -224,6 +227,10 @@ public abstract class Jogador {
      */
     public int getCapacidadeDePasse() {
         return this.capacidadeDePasse;
+    }
+    
+    public void addEquipa(String nome){
+        this.histEquipas.add(nome);
     }
 
     /**

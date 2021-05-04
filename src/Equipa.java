@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  */
 public class Equipa {
 
+    private String clube;
     /**
      * Numero de titulares na equipa.
      */
@@ -24,14 +25,9 @@ public class Equipa {
     private int nSuplentes;
 
     /**
-     * List de jogadores, neste caso titulares.
+     * List de jogadores
      */
-    private List<Jogador> titulares;
-
-    /**
-     * List de jogadores, neste caso suplentes.
-     */
-    private List<Jogador> suplentes; // Array List de jogadores, neste caso suplentes.
+    private List<Jogador> jogadores;
 
     /**
      * Metodo que cria uma instancia de equipa com valores pre-defenidos.
@@ -42,8 +38,8 @@ public class Equipa {
     public Equipa() {
         this.nTitulares = 0;
         this.nSuplentes = 0;
-        this.titulares = new ArrayList<>();
-        this.suplentes = new ArrayList<>();
+        this.jogadores = new ArrayList<>();
+
     }
 
     /**
@@ -54,12 +50,12 @@ public class Equipa {
      * @param titulares
      * @param suplentes
      */
-    public Equipa(int nTitulares, int nSuplentes, ArrayList<Jogador> titulares, ArrayList<Jogador> suplentes) {
+    public Equipa(int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.nTitulares = nTitulares;
         this.nSuplentes = nSuplentes;
-        this.titulares = titulares.stream().map(Jogador::clone).collect(Collectors.toList());
-        this.suplentes = suplentes.stream().map(Jogador::clone).collect(Collectors.toList());
+        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
+    
 
     /**
      * Metodo que cria uma instancia de equipa a partir de outra equipa recebida.
@@ -69,8 +65,7 @@ public class Equipa {
     public Equipa(Equipa e) {
         this.nTitulares = e.getnTitulares();
         this.nSuplentes = e.getnSuplentes();
-        this.titulares = e.getTitulares();
-        this.suplentes = e.getSuplentes();
+        this.jogadores = e.getJogadores();
     }
 
     /**
@@ -114,8 +109,8 @@ public class Equipa {
      *
      * @return titulares
      */
-    public List<Jogador> getTitulares() {
-        return this.titulares.stream().map(Jogador::clone).collect(Collectors.toList());
+    public List<Jogador> getJogadores() {
+        return this.jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
     /**
@@ -124,35 +119,24 @@ public class Equipa {
      * @param titulares
      * @param nTitulares
      */
-    public void setTitulares(ArrayList<Jogador> titulares, int nTitulares) {
-        this.nTitulares = nTitulares;
-        this.titulares = new ArrayList<Jogador>(nTitulares);
-        for (Jogador t : titulares)
-            this.titulares.add(t);
+    public void setJogadores(ArrayList<Jogador> titulares) {
+        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
-
-    /**
-     * Metodo que devolve a lista de suplentes da equipa.
-     *
-     * @return suplentes
-     */
-    public List<Jogador> getSuplentes() {
-        return this.suplentes.stream().map(Jogador::clone).collect(Collectors.toList());
+    
+    public void addJogador(Jogador j){
+        j.addEquipa(this.clube);
+        this.jogadores.add(j.clone());
     }
-
-    /**
-     * Metodo que altera os valores do ArrayList de jogadores suplentes.
-     *
-     * @param suplentes
-     * @param nSuplentes
-     */
-    public void setSuplentes(ArrayList<Jogador> suplentes, int nSuplentes) {
-        this.nSuplentes = nSuplentes;
-        this.suplentes = new ArrayList<Jogador>(nSuplentes);
-        for (Jogador s : suplentes)
-            this.suplentes.add(s);
+    
+    public void removeJogador(Jogador j){
+        this.jogadores.remove(j);
     }
-
+    
+    public List<Jogador> titulares(){
+        List<Jogador> equipaT = new ArrayList(this.nTitulares);
+        //ESCOLHE OS MELHORES JOGADORES E A TATICA QUE FACORECE MAIS A EQUIPA
+        return equipaT;
+    }
     /**
      * Metodo que calcula o overall da equipa.
      *
@@ -160,11 +144,13 @@ public class Equipa {
      */
     public double overallEquipa() {
         double overall = 0;
-        for (Jogador t : this.titulares)
+        for (Jogador t : this.jogadores)
             overall += t.overall();
-        for (Jogador s : this.suplentes)
-            overall += s.overall();
-        return (overall / (this.nTitulares + this.nSuplentes));
+        return (overall / (this.jogadores.size()));
+    }
+    
+    public Equipa clone(){
+        return new Equipa(this);
     }
 
 }
