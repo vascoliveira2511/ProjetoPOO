@@ -1,5 +1,8 @@
 public class Avancado extends Jogador implements Central, Lateral {
 
+    
+    private int cruzamentos;
+    private int finalizacao;
     /**
      * 
      */
@@ -38,7 +41,7 @@ public class Avancado extends Jogador implements Central, Lateral {
                 + super.getImpulsao() * 0.1 + super.getJogoDeCabeca() * 0.20 + super.getRemate() * 0.25
                 + super.getCapacidadeDePasse() * 0.05));
     }
-
+    
     /**
      * 
      */
@@ -69,13 +72,11 @@ public class Avancado extends Jogador implements Central, Lateral {
 
     @Override
     public double overallLateral() {
-        // TODO Auto-generated method stub
-        return 0;
+        return (this.overall() * 0.8 + this.cruzamentos * 0.2);
     }
 
     @Override
     public double overallCentral() {
-        // TODO Auto-generated method stub
-        return 0;
+        return (this.overall() * 0.8 + this.finalizacao * 0.2);
     }
 }
