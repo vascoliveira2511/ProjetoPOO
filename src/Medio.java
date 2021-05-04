@@ -89,4 +89,10 @@ public class Medio extends Jogador implements Central {
         str.append("Medio: \n" + super.toString());
         return str.toString();
     }
+
+    @Override
+    public double overallCentral() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

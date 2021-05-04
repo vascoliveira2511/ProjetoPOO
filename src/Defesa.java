@@ -63,4 +63,16 @@ public class Defesa extends Jogador implements Central, Lateral {
         str.append("Defesa: \n" + super.toString());
         return str.toString();
     }
+
+    @Override
+    public double overallLateral() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public double overallCentral() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }
