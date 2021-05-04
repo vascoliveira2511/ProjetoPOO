@@ -152,4 +152,14 @@ public class Equipa {
         return new Equipa(this);
     }
 
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || o.getClass() != this.getClass())
+            return false;
+        Equipa e = (Equipa) o;
+        return this.clube == e.clube && this.jogadores.equals(e.getJogadores()) && this.nSuplentes == e.getnSuplentes()
+                && this.nTitulares == e.getnTitulares();
+    }
+
 }
