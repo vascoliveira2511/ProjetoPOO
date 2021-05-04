@@ -35,7 +35,7 @@ public abstract class Jogador {
      * Cpacidade de passe de um Jogador
      */
     private int capacidadeDePasse;
-    
+
     private List<String> histEquipas;
 
     /**
@@ -228,8 +228,8 @@ public abstract class Jogador {
     public int getCapacidadeDePasse() {
         return this.capacidadeDePasse;
     }
-    
-    public void addEquipa(String nome){
+
+    public void addEquipa(String nome) {
         this.histEquipas.add(nome);
     }
 

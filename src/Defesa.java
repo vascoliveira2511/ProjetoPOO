@@ -1,7 +1,5 @@
 public class Defesa extends Jogador {
-    /**
-     * Constructor for objects of class Defesas
-     */
+
     public Defesa() {
         super();
     }

@@ -55,7 +55,6 @@ public class Equipa {
         this.nSuplentes = nSuplentes;
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
-    
 
     /**
      * Metodo que cria uma instancia de equipa a partir de outra equipa recebida.
@@ -122,21 +121,21 @@ public class Equipa {
     public void setJogadores(ArrayList<Jogador> titulares) {
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
-    
-    public void addJogador(Jogador j){
+
+    public void addJogador(Jogador j) {
         j.addEquipa(this.clube);
         this.jogadores.add(j.clone());
     }
-    
-    public void removeJogador(Jogador j){
+
+    public void removeJogador(Jogador j) {
         this.jogadores.remove(j);
     }
-    
-    public List<Jogador> titulares(){
-        List<Jogador> equipaT = new ArrayList(this.nTitulares);
-        //ESCOLHE OS MELHORES JOGADORES E A TATICA QUE FACORECE MAIS A EQUIPA
+
+    public List<Jogador> titulares() {
+        List<Jogador> equipaT = new ArrayList<>(this.nTitulares);
         return equipaT;
     }
+
     /**
      * Metodo que calcula o overall da equipa.
      *
@@ -148,8 +147,8 @@ public class Equipa {
             overall += t.overall();
         return (overall / (this.jogadores.size()));
     }
-    
-    public Equipa clone(){
+
+    public Equipa clone() {
         return new Equipa(this);
     }
 
