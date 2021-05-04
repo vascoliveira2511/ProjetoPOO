@@ -61,7 +61,7 @@ public class Medio extends Jogador implements Central {
                 + super.getImpulsao() * 0.05 + super.getJogoDeCabeca() * 0.05 + super.getRemate() * 0.15
                 + super.getCapacidadeDePasse() * 0.20 + this.recuperarBolas * 0.15);
     }
-    
+
     /**
      * 
      */
@@ -90,8 +90,7 @@ public class Medio extends Jogador implements Central {
         return str.toString();
     }
 
-    @Override
-    public double overallCentral(){
+    public double overallCentral() {
         return this.overall();
     }
 }

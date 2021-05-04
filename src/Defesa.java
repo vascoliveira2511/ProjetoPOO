@@ -1,9 +1,8 @@
 public class Defesa extends Jogador implements Central, Lateral {
-    
+
     private int desarme;
     private int cobertura;
     private int criatividade;
-    
 
     public Defesa() {
         super();
@@ -40,7 +39,6 @@ public class Defesa extends Jogador implements Central, Lateral {
                 + super.getImpulsao() * 0.15 + super.getJogoDeCabeca() * 0.15 + super.getRemate() * 0.05
                 + super.getCapacidadeDePasse() * 0.15));
     }
-    
 
     /**
      * 
@@ -70,12 +68,10 @@ public class Defesa extends Jogador implements Central, Lateral {
         return str.toString();
     }
 
-    @Override
     public double overallLateral() {
-        return (this.overall() * 0.8 + this.cobertura * 0.1 + this.desarme * 0.1);    
+        return (this.overall() * 0.8 + this.cobertura * 0.1 + this.desarme * 0.1);
     }
 
-    @Override
     public double overallCentral() {
         return (this.overall() * 0.8 + this.criatividade * 0.2);
     }
