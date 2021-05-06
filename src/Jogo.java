@@ -1,74 +1,109 @@
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Jogo {
-    private LocalDateTime data;
-    private Equipa visitados;
-    private int golosVisitados;
-    private Equipa visitantes;
-    private int golosVisitantes;
-    private int nSubstituicoes;
+    private String equipaCasa;
+    private String equipaFora;
+    private int golosCasa;
+    private int golosFora;
+    private LocalDate date;
+    private List<Integer> jogadoresCasa;
+    private List<Integer> jogadoresFora;
+    Map<Integer, Integer> substituicoesCasa;
+    Map<Integer, Integer> substituicoesFora;
 
-    public Jogo(Equipa visitados, Equipa visitantes) {
-        this.visitados = visitados.clone();
-        this.visitantes = visitantes.clone();
+     public Jogo (String ec, String ef, int gc, int gf, LocalDate d,  List<Integer> jc, Map<Integer, Integer> sc,  List<Integer> jf, Map<Integer, Integer> sf){
+        this.equipaCasa = ec;
+        this.equipaFora = ef;
+        this.golosCasa = gc;
+        this.golosFora = gf;
+        this.date = d;
+        this.jogadoresCasa = new ArrayList<>(jc);
+        this.jogadoresFora = new ArrayList<>(jf);
+        this.substituicoesCasa = new HashMap<>(sc);
+        this.substituicoesFora = new HashMap<>(sf);
     }
+
 
     public Jogo(Jogo jogo) {
-        setData(jogo.getData());
-        setEquipaVisitados(jogo.getEquipaVisitados());
-        setEquipaVisitantes(jogo.getEquipaVisitantes());
-        setGolosVisitados(jogo.getGolosVisitados());
-        setGolosVisitantes(jogo.getGolosVisitantes());
-        setNSubstituicoes(jogo.getNSubstituicoes());
+        this.equipaCasa = jogo.getEquipaCasa();
+        this.equipaFora = jogo.getEquipaFora();
+        this.golosCasa = jogo.getGolosCasa();
+        this.golosFora = jogo.getGolosFora();
+        this.date = jogo.getData();
+        this.jogadoresCasa = jogo.getJogadoresCasa();
+        this.jogadoresFora = jogo.getJogadoresFora();
+        this.substituicoesCasa = jogo.getSubstituicoesCasa();
+        this.substituicoesFora = jogo.getSubstituicoesFora();
+
+    }
+    
+    public static Jogo parse(String input){
+        String[] campos = input.split(",");
+        String[] data = campos[4].split("-");
+        List<Integer> jc = new ArrayList<>();
+        List<Integer> jf = new ArrayList<>();
+        Map<Integer, Integer> subsC = new HashMap<>();
+        Map<Integer, Integer> subsF = new HashMap<>();
+        for (int i = 5; i < 16; i++){
+            jc.add(Integer.parseInt(campos[i]));
+        }
+        for (int i = 16; i < 19; i++){
+            String[] sub = campos[i].split("->");
+            subsC.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
+        }
+        for (int i = 19; i < 30; i++){
+            jf.add(Integer.parseInt(campos[i]));
+        }
+        for (int i = 30; i < 33; i++){
+            String[] sub = campos[i].split("->");
+            subsF.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
+        }
+        return new Jogo(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]),
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                        jc, subsC, jf, subsF);
     }
 
-    public LocalDateTime getData() {
-        return this.data;
+    public String getEquipaCasa() {
+        return this.equipaCasa;
     }
 
-    public Equipa getEquipaVisitados() {
-        return this.visitados;
+    public String getEquipaFora() {
+        return this.equipaFora;
     }
 
-    public Equipa getEquipaVisitantes() {
-        return this.visitantes;
+    public int getGolosCasa() {
+        return this.golosCasa;
     }
 
-    public int getGolosVisitados() {
-        return this.golosVisitados;
+    public int getGolosFora() {
+        return this.golosFora;
     }
 
-    public int getGolosVisitantes() {
-        return this.golosVisitantes;
+    public LocalDate getData() {
+        return this.date;
     }
 
-    public int getNSubstituicoes() {
-        return this.nSubstituicoes;
+    public List<Integer> getJogadoresCasa() {
+        return this.jogadoresCasa;
     }
-
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    
+    public List<Integer> getJogadoresFora() {
+        return this.jogadoresCasa;
     }
-
-    public void setEquipaVisitados(Equipa visitados) {
-        this.visitados = visitados;
+    
+    public Map<Integer, Integer> getSubstituicoesCasa(){
+        return this.substituicoesCasa;
     }
-
-    public void setEquipaVisitantes(Equipa visitantes) {
-        this.visitantes = visitantes;
+    
+    public Map<Integer, Integer> getSubstituicoesFora(){
+        return this.substituicoesFora;
     }
-
-    public void setGolosVisitados(int golosVisitados) {
-        this.golosVisitados = golosVisitados;
-    }
-
-    public void setGolosVisitantes(int golosVisitantes) {
-        this.golosVisitantes = golosVisitantes;
-    }
-
-    public void setNSubstituicoes(int nSubstituicoes) {
-        this.nSubstituicoes = nSubstituicoes;
-    }
+    
 
     public Jogo clone() {
         return new Jogo(this);
@@ -80,11 +115,9 @@ public class Jogo {
         if (o == null || o.getClass() != this.getClass())
             return false;
         Jogo j = (Jogo) o;
-        return this.data == j.getData() && this.visitados.equals(j.getEquipaVisitados())
-                && this.visitantes.equals(j.getEquipaVisitantes()) && this.golosVisitados == j.getGolosVisitados()
-                && this.golosVisitantes == j.getGolosVisitantes() && this.nSubstituicoes == j.getNSubstituicoes();
+        return true;
     }
-
+/*
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Data: " + this.data.toString() + "\n");
@@ -95,5 +128,5 @@ public class Jogo {
         str.append("Numero de substituições" + this.nSubstituicoes);
         return str.toString();
     }
-
+*/
 }

@@ -7,6 +7,8 @@ import java.util.List;
  * @version (version number or date here)
  */
 public abstract class Jogador {
+    private String nome;
+    private int numero;
     /**
      * Velocidade de um Jogador
      */
@@ -39,17 +41,6 @@ public abstract class Jogador {
     private List<String> histEquipas;
 
     /**
-     * Metodo de classe que cria uma instancia de jogador com valores aleatorios.
-     *
-     * @param void
-     * @return void
-     */
-    public Jogador() {
-        this((int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100,
-                (int) Math.random() * 100, (int) Math.random() * 100, (int) Math.random() * 100);
-    }
-
-    /**
      * Metodo de classe que cria uma instancia de jogador com valores fornecidos.
      *
      * @param velocidade
@@ -61,8 +52,12 @@ public abstract class Jogador {
      * @param capacidadeDePasse
      * @return void
      */
-    public Jogador(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+    
+    
+    public Jogador(String nome, int numero,int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
             int capacidadeDePasse) {
+        this.nome = nome;
+        this.numero = numero;
         this.velocidade = velocidade;
         this.resistencia = resistencia;
         this.destreza = destreza;
@@ -87,6 +82,22 @@ public abstract class Jogador {
         this.jogoDeCabeca = jogador.getJogoDeCabeca();
         this.remate = jogador.getRemate();
         this.capacidadeDePasse = jogador.getCapacidadeDePasse();
+    }
+    
+    public String getNomeJogador(){
+        return this.nome;
+    }
+    
+    public void setNomeJogador(String nome){
+        this.nome = nome;
+    }
+    
+    public int getNumeroJogador(){
+        return this.numero;
+    }
+    
+    public void setNumeroJogador(int numero){
+        this.numero= numero;
     }
 
     /**

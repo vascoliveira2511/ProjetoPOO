@@ -3,13 +3,7 @@ public class Medio extends Jogador implements Central {
 
     private int recuperarBolas;
 
-    /**
-     * 
-     */
-    public Medio() {
-        super();
-        this.recuperarBolas = (int) Math.random() * 100;
-    }
+    
 
     /**
      * 
@@ -22,11 +16,31 @@ public class Medio extends Jogador implements Central {
      * @param capacidadeDePasse
      * @param recuperarBolas
      */
-    public Medio(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+    public Medio(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
             int capacidadeDePasse, int recuperarBolas) {
-        super(velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
         this.recuperarBolas = recuperarBolas;
     }
+    
+    public Medio(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+            int capacidadeDePasse) {
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        this.recuperarBolas = (int) Math.random() * 100;
+    }
+    
+    public static Medio parse(String input){
+        String[] campos = input.split(",");
+        return new Medio(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]),
+                Integer.parseInt(campos[9]));
+    }
+
 
     /**
      * 

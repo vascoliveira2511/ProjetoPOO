@@ -1,12 +1,4 @@
-public class Defesa extends Jogador implements Central, Lateral {
-
-    private int desarme;
-    private int cobertura;
-    private int criatividade;
-
-    public Defesa() {
-        super();
-    }
+public class Defesa extends Jogador implements Central {
 
     /**
      * 
@@ -18,9 +10,9 @@ public class Defesa extends Jogador implements Central, Lateral {
      * @param remate
      * @param capacidadeDePasse
      */
-    public Defesa(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+    public Defesa(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
             int capacidadeDePasse) {
-        super(velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
     }
 
     /**
@@ -29,6 +21,18 @@ public class Defesa extends Jogador implements Central, Lateral {
      */
     public Defesa(Defesa d) {
         super(d);
+    }
+    
+    public static Defesa parse(String input){
+        String[] campos = input.split(",");
+        return new Defesa(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]));
     }
 
     /**
@@ -68,11 +72,7 @@ public class Defesa extends Jogador implements Central, Lateral {
         return str.toString();
     }
 
-    public double overallLateral() {
-        return (this.overall() * 0.8 + this.cobertura * 0.1 + this.desarme * 0.1);
-    }
-
     public double overallCentral() {
-        return (this.overall() * 0.8 + this.criatividade * 0.2);
+        return this.overall();
     }
 }

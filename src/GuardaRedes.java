@@ -8,14 +8,6 @@ public class GuardaRedes extends Jogador {
 
     /**
      * 
-     */
-    public GuardaRedes() {
-        super();
-        this.elastecidade = (int) Math.random() * 100;
-    }
-
-    /**
-     * 
      * @param velocidade
      * @param resistencia
      * @param destreza
@@ -25,11 +17,18 @@ public class GuardaRedes extends Jogador {
      * @param capacidadeDePasse
      * @param elastecidade
      */
-    public GuardaRedes(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+    public GuardaRedes(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
             int capacidadeDePasse, int elastecidade) {
-        super(velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
         this.elastecidade = elastecidade;
     }
+    
+    public GuardaRedes(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+            int capacidadeDePasse) {
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        this.elastecidade = (int) Math.random() * 100;
+    }
+
 
     /**
      * 
@@ -38,6 +37,19 @@ public class GuardaRedes extends Jogador {
     public GuardaRedes(GuardaRedes gr) {
         super(gr);
         this.elastecidade = gr.getElastecidade();
+    }
+    
+    public static GuardaRedes parse(String input){
+        String[] campos = input.split(",");
+        return new GuardaRedes(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]),
+                Integer.parseInt(campos[9]));
     }
 
     /**

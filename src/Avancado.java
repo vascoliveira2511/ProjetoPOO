@@ -1,14 +1,4 @@
-public class Avancado extends Jogador implements Central, Lateral {
-
-    private int cruzamentos;
-    private int finalizacao;
-
-    /**
-     * 
-     */
-    public Avancado() {
-        super();
-    }
+public class Avancado extends Jogador implements Central {
 
     /**
      * 
@@ -20,9 +10,9 @@ public class Avancado extends Jogador implements Central, Lateral {
      * @param remate
      * @param capacidadeDePasse
      */
-    public Avancado(int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
+    public Avancado(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
             int capacidadeDePasse) {
-        super(velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
+        super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
     }
 
     /**
@@ -31,6 +21,18 @@ public class Avancado extends Jogador implements Central, Lateral {
      */
     public Avancado(Avancado a) {
         super(a);
+    }
+    
+    public static Avancado parse(String input){
+        String[] campos = input.split(",");
+        return new Avancado(campos[0], Integer.parseInt(campos[1]),
+                Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]),
+                Integer.parseInt(campos[4]),
+                Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]),
+                Integer.parseInt(campos[7]),
+                Integer.parseInt(campos[8]));
     }
 
     /**
@@ -70,11 +72,7 @@ public class Avancado extends Jogador implements Central, Lateral {
         return str.toString();
     }
 
-    public double overallLateral() {
-        return (this.overall() * 0.8 + this.cruzamentos * 0.2);
-    }
-
     public double overallCentral() {
-        return (this.overall() * 0.8 + this.finalizacao * 0.2);
+        return this.overall();
     }
 }
