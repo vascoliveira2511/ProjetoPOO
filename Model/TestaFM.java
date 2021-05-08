@@ -1,9 +1,20 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TestaFM {
     public static void main(String args[]) {
-        ArrayList<Jogador> jogadores1 = new ArrayList<>();
-        Parser.lerFicheiro("logs.txt");
-        Equipa e1 = new Equipa("Visitados", jogadores1);
+        Map<String, Equipa> equipas = new HashMap<>(); // nome, equipa
+        Map<Integer, Jogador> jogadores = new HashMap<>(); // numero, jogador
+        List<Jogo> jogos = new ArrayList<>();
+        try {
+            Parser.parse(equipas, jogadores, jogos);
+        } catch (LinhaIncorretaException e) {
+            e.printStackTrace();
+        }
+        System.out.println(equipas.toString());
+        System.out.println(jogadores.toString());
+        System.out.println(jogos.toString());
     }
 }

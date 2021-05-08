@@ -38,6 +38,9 @@ public abstract class Jogador {
      */
     private int capacidadeDePasse;
 
+    /**
+     * 
+     */
     private List<String> histEquipas;
 
     /**
