@@ -60,6 +60,13 @@ public class Parser {
                         throw new LinhaIncorretaException(); // we need to insert the player into the team
                     ultima.addJogador(j.clone()); // if no team was parsed previously, file is not well-formed
                     break;
+                case "Central":
+                    j = Central.parse(linhaPartida[1]);
+                    jogadores.put(j.getNumeroJogador(), j);
+                    if (ultima == null)
+                        throw new LinhaIncorretaException(); // we need to insert the player into the team
+                    ultima.addJogador(j.clone()); // if no team was parsed previously, file is not well-formed
+                    break;
                 case "Jogo":
                     Jogo jo = Jogo.parse(linhaPartida[1]);
                     jogos.add(jo);
