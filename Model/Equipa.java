@@ -157,15 +157,27 @@ public class Equipa {
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
+    /**
+     * 
+     * @param j
+     */
     public void addJogador(Jogador j) {
-        j.addEquipa(this.clube);
+        // j.addEquipa(this.clube);
         this.jogadores.add(j.clone());
     }
 
+    /**
+     * 
+     * @param j
+     */
     public void removeJogador(Jogador j) {
         this.jogadores.remove(j);
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<Jogador> titulares() {
         List<Jogador> equipaT = new ArrayList<>(this.nTitulares);
         return equipaT;

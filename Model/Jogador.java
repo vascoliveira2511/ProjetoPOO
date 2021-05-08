@@ -1,4 +1,3 @@
-import java.util.List;
 
 /**
  * Abstract class Jogador - write a description of the class here
@@ -41,7 +40,7 @@ public abstract class Jogador {
     /**
      * 
      */
-    private List<String> histEquipas;
+    // private List<String> histEquipas;
 
     /**
      * Metodo de classe que cria uma instancia de jogador com valores fornecidos.
@@ -242,9 +241,9 @@ public abstract class Jogador {
         return this.capacidadeDePasse;
     }
 
-    public void addEquipa(String nome) {
-        this.histEquipas.add(nome);
-    }
+    /*
+     * public void addEquipa(String nome) { this.histEquipas.add(nome); }
+     */
 
     /**
      * Metodo que retorna o overall do jogador.
