@@ -1,4 +1,4 @@
-public class Defesa extends Jogador implements Central {
+public class Defesa extends Jogador {
 
     /**
      * 
@@ -10,8 +10,8 @@ public class Defesa extends Jogador implements Central {
      * @param remate
      * @param capacidadeDePasse
      */
-    public Defesa(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
-            int capacidadeDePasse) {
+    public Defesa(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao,
+            int jogoDeCabeca, int remate, int capacidadeDePasse) {
         super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
     }
 
@@ -22,17 +22,12 @@ public class Defesa extends Jogador implements Central {
     public Defesa(Defesa d) {
         super(d);
     }
-    
-    public static Defesa parse(String input){
+
+    public static Defesa parse(String input) {
         String[] campos = input.split(",");
-        return new Defesa(campos[0], Integer.parseInt(campos[1]),
-                Integer.parseInt(campos[2]),
-                Integer.parseInt(campos[3]),
-                Integer.parseInt(campos[4]),
-                Integer.parseInt(campos[5]),
-                Integer.parseInt(campos[6]),
-                Integer.parseInt(campos[7]),
-                Integer.parseInt(campos[8]));
+        return new Defesa(campos[0], Integer.parseInt(campos[1]), Integer.parseInt(campos[2]),
+                Integer.parseInt(campos[3]), Integer.parseInt(campos[4]), Integer.parseInt(campos[5]),
+                Integer.parseInt(campos[6]), Integer.parseInt(campos[7]), Integer.parseInt(campos[8]));
     }
 
     /**

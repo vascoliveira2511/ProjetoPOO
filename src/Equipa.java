@@ -37,26 +37,26 @@ public class Equipa {
      * @param titulares
      * @param suplentes
      */
-    public Equipa(String clube,int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
+    public Equipa(String clube, int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = nTitulares;
         this.nSuplentes = nSuplentes;
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
-    
+
     public Equipa(String nomeE) {
         this.clube = nomeE;
         this.jogadores = new ArrayList<>();
     }
-    
+
     public Equipa(String clube, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = 11;
         this.nSuplentes = 3;
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
-    
-    public static Equipa parse(String input){
+
+    public static Equipa parse(String input) {
         String[] campos = input.split(",");
         return new Equipa(campos[0]);
     }
@@ -72,14 +72,14 @@ public class Equipa {
         this.jogadores = e.getJogadores();
     }
 
-    
-    public String getClube(){
+    public String getClube() {
         return this.clube;
     }
-    
-    public void setClube(String clube){
+
+    public void setClube(String clube) {
         this.clube = clube;
     }
+
     /**
      * Metodo que debolve o numero de titulares na equipa.
      *

@@ -52,10 +52,9 @@ public abstract class Jogador {
      * @param capacidadeDePasse
      * @return void
      */
-    
-    
-    public Jogador(String nome, int numero,int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca, int remate,
-            int capacidadeDePasse) {
+
+    public Jogador(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao,
+            int jogoDeCabeca, int remate, int capacidadeDePasse) {
         this.nome = nome;
         this.numero = numero;
         this.velocidade = velocidade;
@@ -83,21 +82,21 @@ public abstract class Jogador {
         this.remate = jogador.getRemate();
         this.capacidadeDePasse = jogador.getCapacidadeDePasse();
     }
-    
-    public String getNomeJogador(){
+
+    public String getNomeJogador() {
         return this.nome;
     }
-    
-    public void setNomeJogador(String nome){
+
+    public void setNomeJogador(String nome) {
         this.nome = nome;
     }
-    
-    public int getNumeroJogador(){
+
+    public int getNumeroJogador() {
         return this.numero;
     }
-    
-    public void setNumeroJogador(int numero){
-        this.numero= numero;
+
+    public void setNumeroJogador(int numero) {
+        this.numero = numero;
     }
 
     /**
