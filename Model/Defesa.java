@@ -63,7 +63,7 @@ public class Defesa extends Jogador {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Defesa: \n" + super.toString());
+        str.append("Defesa: " + super.toString());
         return str.toString();
     }
 

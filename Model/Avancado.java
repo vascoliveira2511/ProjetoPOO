@@ -63,7 +63,7 @@ public class Avancado extends Jogador {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Avancado: \n" + super.toString());
+        str.append("Avancado: " + super.toString());
         return str.toString();
     }
 

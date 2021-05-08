@@ -13,8 +13,9 @@ public class TestaFM {
         } catch (LinhaIncorretaException e) {
             e.printStackTrace();
         }
-        System.out.println(equipas.toString());
-        System.out.println(jogadores.toString());
-        System.out.println(jogos.toString());
+        Equipa e1 = new Equipa(equipas.get("Mahler Athletic"));
+        Equipa e2 = new Equipa(equipas.get("Sporting Club Chopin"));
+        System.out.println("Equipa 1: \n" + e1.toString() + "\n" + "Equipa 2: \n" + e2.toString() + "\n" + "Resultado "
+                + Jogo.quemGanha(e1, e2));
     }
 }

@@ -1,3 +1,4 @@
+//import java.util.List;
 
 /**
  * Abstract class Jogador - write a description of the class here
@@ -6,8 +7,17 @@
  * @version (version number or date here)
  */
 public abstract class Jogador {
+
+    /**
+     * 
+     */
     private String nome;
+
+    /**
+     * 
+     */
     private int numero;
+
     /**
      * Velocidade de um Jogador
      */
@@ -261,13 +271,16 @@ public abstract class Jogador {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Velocidade: " + this.velocidade + "\n");
-        str.append("Resistencia: " + this.resistencia + "\n");
-        str.append("Destreza: " + this.destreza + "\n");
-        str.append("Impulsao: " + this.impulsao + "\n");
-        str.append("Jogo de Cabeça: " + this.jogoDeCabeca + "\n");
-        str.append("Remate: " + this.remate + "\n");
-        str.append("Capacidade de Passe: " + this.capacidadeDePasse + "\n");
+        str.append("Nome: " + this.nome);
+        str.append(" Numero: " + this.numero);
+        /*
+         * str.append("Velocidade: " + this.velocidade + "\n");
+         * str.append("Resistencia: " + this.resistencia + "\n");
+         * str.append("Destreza: " + this.destreza + "\n"); str.append("Impulsao: " +
+         * this.impulsao + "\n"); str.append("Jogo de Cabeça: " + this.jogoDeCabeca +
+         * "\n"); str.append("Remate: " + this.remate + "\n");
+         * str.append("Capacidade de Passe: " + this.capacidadeDePasse + "\n");
+         */
         return str.toString();
     }
 

@@ -92,7 +92,7 @@ public class Medio extends Jogador {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Medio: \n" + super.toString());
+        str.append("Medio: " + super.toString());
         return str.toString();
     }
 

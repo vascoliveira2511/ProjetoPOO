@@ -95,8 +95,7 @@ public class GuardaRedes extends Jogador {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Guada redes: \n" + super.toString());
-        str.append("Elastecidade: " + this.elastecidade + "\n");
+        str.append("Guarda redes: " + super.toString());
         return str.toString();
     }
 }

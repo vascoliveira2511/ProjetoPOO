@@ -136,16 +136,16 @@ public class Equipa {
     }
 
     public void addJogador(Jogador j) {
-        j.addEquipa(this.clube);
+        // j.addEquipa(this.clube);
         this.jogadores.add(j.clone());
     }
 
     public void removeJogador(Jogador j) {
         this.jogadores.remove(j);
     }
-    
-    public List<Jogador> melhoresPosicao (String posicao, int num){
-        return this.jogadores.stream().map(Jogador :: clone).sorted(new JogadorComparator()).collect(Collectors.toList());
+
+    public List<Jogador> melhoresPosicao(String posicao, int num) {
+        return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
     }
 
     /**
@@ -172,6 +172,15 @@ public class Equipa {
         Equipa e = (Equipa) o;
         return this.clube == e.clube && this.jogadores.equals(e.getJogadores()) && this.nSuplentes == e.getnSuplentes()
                 && this.nTitulares == e.getnTitulares();
+    }
+
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Clube: " + this.clube + "\n");
+        str.append("Numero suplentes: " + this.nSuplentes + "\n");
+        str.append("Numero Titulares: " + this.nTitulares + "\n");
+        str.append("Jogadores: " + this.jogadores.toString() + "\n");
+        return str.toString();
     }
 
 }

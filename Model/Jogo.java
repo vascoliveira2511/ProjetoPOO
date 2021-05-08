@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.lang.Math;
 
-
 public class Jogo {
     private String equipaCasa;
     private String equipaFora;
@@ -112,26 +111,26 @@ public class Jogo {
     public Map<Integer, Integer> getSubstituicoesFora() {
         return this.substituicoesFora;
     }
-    
-    private void Probs(double overall1, double overall2){
-        double dif = (overall1/100) - (overall2/100);
-        double ganhar = Math.exp(dif)/(1+ Math.exp(dif));
-        double perder = 1 - ganhar;
-        double empatar = ganhar * perder;
-        ganhar -=empatar;
-        perder -=empatar;
-    }
-    
-    public String quemGanha (Equipa e1, Equipa e2){
+    /*
+     * private void probs(double overall1, double overall2) { double dif = (overall1
+     * / 100) - (overall2 / 100); double ganhar = Math.exp(dif) / (1 +
+     * Math.exp(dif)); double perder = 1 - ganhar; double empatar = ganhar * perder;
+     * ganhar -= empatar; perder -= empatar; }
+     */
+
+    public static String quemGanha(Equipa e1, Equipa e2) {
         String r;
-        double dif = (e1.overallEquipa()/100) - (e2.overallEquipa()/100);
-        double ganhar = Math.exp(dif)/(1+ Math.exp(dif));
-        double empatar = ganhar * (1-ganhar);
-        ganhar -=empatar;
+        double dif = (e1.overallEquipa() / 100) - (e2.overallEquipa() / 100);
+        double ganhar = Math.exp(dif) / (1 + Math.exp(dif));
+        double empatar = ganhar * (1 - ganhar);
+        ganhar -= empatar;
         double aleatorio = Math.random();
-        if ( aleatorio <= ganhar) r = e1.getClube();
-        else if ( aleatorio <= ganhar + empatar) r = "Empate";
-        else r = e2.getClube();
+        if (aleatorio <= ganhar)
+            r = e1.getClube();
+        else if (aleatorio <= ganhar + empatar)
+            r = "Empate";
+        else
+            r = e2.getClube();
         return r;
     }
 
