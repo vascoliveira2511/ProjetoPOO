@@ -1,0 +1,115 @@
+
+Caros Alunos,
+nesta mensagem são disponibilizados alguns dados para carregarem informação para o trabalho prático.
+Iremos gerar mais informação, mas este ficheiro permite-vos testar o processo de carregamento dos dados.
+
+Esta mensagem tem três items:
+
+1. Uma descrição do conteúdo e organização das linhas do ficheiro.
+Colocamos apenas a informação que nos parece básica e que se retira do enunciado.
+Cada um dos grupos poderá (deverá?) ter, na sua proposta, mais informação para as entidades. Nesses casos devem assumir valores por omissão para as variáveis de instância para as quais não fornecemos informação.
+
+
+2. Um pequeno exemplo de ficheiro, com informação de jogadores, equipas e jogos efetuados, com informações relevantes (porém, provavelmente, incompletas) para cada uma destas entidades. 
+
+
+3. Um pedaço de código que podem utilizar e que lê as linhas do ficheiro e seguida faz o parsing das mesmas, e em função do tipo de informação presente chama um método que cria um objecto. A forma como o objecto é criado e a informação dos atributos do mesmo fica ao vosso critério alterar. 
+O método que faz o parse do ficheiro deverá ser invocado no programa principal.
+Por exemplo da seguinte forma:
+
+public class OMeuTrabalho {
+
+    public static void main(String[] args){
+        
+        ...
+        Parser p = new Parser();
+        p.parse();
+        ...
+        
+    }
+    
+}
+
+1. 
+
+===============================================================================
+Preambulo /Legenda
+===============================================================================
+
+--Equipas
+
+Equipa:<NomeEquipa>
+
+--Jogadores (pertencentes à ultima equipa listada antes deles )
+--Os valores de Velocidade, Resistência, Destreza, Impulsão, Cabeça, Remate, Passe, Elasticidade, Cruzamento e Recuperação são valores entre 0 a 100. 
+Guarda-Redes:<Nome>,<NumeroCamisola>,<Velocidade>,<Resistência>,<Destreza>,<Impulsão>,<Cabeça>,<Remate>,<Passe>,<Elasticidade>
+Defesa:<Nome>,<NumeroCamisola>,<Velocidade>,<Resistência>,<Destreza>,<Impulsão>,<Cabeça>,<Remate>,<Passe>
+Lateral:<Nome>,<NumeroCamisola>,<Velocidade>,<Resistência>,<Destreza>,<Impulsão>,<Cabeça>,<Remate>,<Passe>,<Cruzamento>
+Medio:<Nome>,<NumeroCamisola>,<Velocidade>,<Resistência>,<Destreza>,<Impulsão>,<Cabeça>,<Remate>,<Passe>,<Recuperacao>
+Avancado:<Nome>,<NumeroCamisola>,<Velocidade>,<Resistência>,<Destreza>,<Impulsão>,<Cabeça>,<Remate>,<Passe>
+
+--Jogos
+--Os jogadores titulares de cada equipa são representados pelos seus números de camisola. 
+--As substituições são representadas pelo formato "X->Y", em que X é o jogador que sai e Y é o jogador que entra. 
+Jogo:<EquipaCasa>,<EquipaFora>,<ScoreCasa>,<ScoreFora>,<Data>,<JogadoresCasa>,<SubstituicoesCasa>,<JogadoresFora>,<SubstituicoesFora>
+
+
+
+2. 
+
+===============================================================================
+Dados de LOGS:
+===============================================================================
+
+(Disponível em ficheiro separado)
+
+
+
+3. 
+
+===============================================================================
+Exemplo de código
+===============================================================================
+
+//De notar que este excerto de código está incompleto a vários níveis e como tal poderá e deverá ser melhorado. 
+public class Parser {
+
+    (...)
+
+    public void parse(){
+        List<String> linhas = lerFicheiro("dados.csv");
+        String[] linhaPartida;
+        for (String linha : linhas) {
+            linhaPartida = linha.split(":", 2);
+            switch(linhaPartida[0]){
+                case "Guarda-Redes":
+                    GuardaRedes j = parseGuardaRedes(linhaPartida[1]);
+                    System.out.println(j.toString());
+                    break;
+                (...)
+                default:
+                    System.out.println("Linha inválida.");
+                    break;
+            }
+        }
+        System.out.println("done!");
+    }
+
+    public List<String> lerFicheiro(String nomeFich) {
+        List<String> lines;
+        try { lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8); }
+        catch(IOException exc) { lines = new ArrayList<>(); }
+        return lines;
+    }
+
+
+    public GuardaRedes parseGuardaRedes(String input){
+        String[] campos = input.split(",");
+        String nome = campos[0];
+        Int numCamisola = Integer.parseInt(campos[1]);
+        Int velocidade = Integer.parseInt(campos[2]);
+        (...)
+        return new GuardaRedes(...);
+    }
+
+}

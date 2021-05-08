@@ -44,11 +44,20 @@ public class Equipa {
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
+    /**
+     * 
+     * @param nomeE
+     */
     public Equipa(String nomeE) {
         this.clube = nomeE;
         this.jogadores = new ArrayList<>();
     }
 
+    /**
+     * 
+     * @param clube
+     * @param jogadores
+     */
     public Equipa(String clube, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = 11;
@@ -56,6 +65,11 @@ public class Equipa {
         this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
     }
 
+    /**
+     * 
+     * @param input
+     * @return
+     */
     public static Equipa parse(String input) {
         String[] campos = input.split(",");
         return new Equipa(campos[0]);
@@ -72,10 +86,18 @@ public class Equipa {
         this.jogadores = e.getJogadores();
     }
 
+    /**
+     * 
+     * @return
+     */
     public String getClube() {
         return this.clube;
     }
 
+    /**
+     * 
+     * @param clube
+     */
     public void setClube(String clube) {
         this.clube = clube;
     }
