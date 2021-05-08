@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.lang.Math;
 
-
+0.5 0.21 0.08
 public class Jogo {
     private String equipaCasa;
     private String equipaFora;
@@ -113,27 +113,29 @@ public class Jogo {
         return this.substituicoesFora;
     }
     
-    private void Probs(double overall1, double overall2){
+    private double probs (double overall1, double overall2){
         double dif = (overall1/100) - (overall2/100);
-        double ganhar = Math.exp(dif)/(1+ Math.exp(dif));
-        double perder = 1 - ganhar;
-        double empatar = ganhar * perder;
-        ganhar -=empatar;
-        perder -=empatar;
+        return Math.exp(dif)/(1+ Math.exp(dif));
     }
     
-    public String quemGanha (Equipa e1, Equipa e2){
+    /*public void quemGanha (Equipa e1, Equipa e2){
         String r;
-        double dif = (e1.overallEquipa()/100) - (e2.overallEquipa()/100);
-        double ganhar = Math.exp(dif)/(1+ Math.exp(dif));
-        double empatar = ganhar * (1-ganhar);
-        ganhar -=empatar;
-        double aleatorio = Math.random();
-        if ( aleatorio <= ganhar) r = e1.getClube();
-        else if ( aleatorio <= ganhar + empatar) r = "Empate";
-        else r = e2.getClube();
-        return r;
-    }
+        double dif = probs(e1.overallEquipa(), e2.overallEquipa());
+        for (int i=0; i < 9; i++){
+            double aleatorio = Math.random();
+            double aleatorio2 = Math.random();
+            if ( aleatorio <= ganhar) {
+                //ataque equipa 1
+                //double marcar = probs(e1.overallAtancante, e2.overallDefesa)
+                if (aleatorio2 < marcar) this.golosCasa++;
+            }
+            else {
+                //ataque equipa 2
+                double marcar = probs(e2.overallAtancante, e1.overallDefesa)
+                if (aleatorio2 < marcar) this.golosFora++;
+            }
+        return;
+    }*/
 
     public Jogo clone() {
         return new Jogo(this);
