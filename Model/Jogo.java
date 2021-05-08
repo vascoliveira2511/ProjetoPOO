@@ -142,5 +142,4 @@ public class Jogo {
         str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");
         return str.toString();
     }
-
 }
