@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TestaFM {
     public static void main(String args[]) {
@@ -13,9 +14,14 @@ public class TestaFM {
         } catch (LinhaIncorretaException e) {
             e.printStackTrace();
         }
-        Equipa e1 = new Equipa(equipas.get("Mahler Athletic"));
-        Equipa e2 = new Equipa(equipas.get("Sporting Club Chopin"));
-        System.out.println("Equipa 1: \n" + e1.toString() + "\n" + "Equipa 2: \n" + e2.toString() + "\n" + "Resultado "
-                + Jogo.quemGanha(e1, e2));
+        List<Jogador> jc = equipas.get("Mahler Athletic").getJogadores();
+        List<Jogador> jf = equipas.get("Mozart F. C.").getJogadores();
+        Equipa ec = equipas.get("Mahler Athletic");
+        Equipa ef = equipas.get("Mozart F. C.");
+        Jogo j = new Jogo(ec.getClube(), ef.getClube(),
+                jc.stream().map(e -> e.getNumeroJogador()).collect(Collectors.toList()),
+                jf.stream().map(e -> e.getNumeroJogador()).collect(Collectors.toList()));
+        j.quemGanha(ec, ef);
+        System.out.println(j);
     }
 }
