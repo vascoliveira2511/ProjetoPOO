@@ -145,7 +145,7 @@ public class Jogo {
         } else {
             // ataque equipa 2
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < aleatorio2)
+            if (aleatorio2 < marcar)
                 this.golosFora++;
         }
     }
