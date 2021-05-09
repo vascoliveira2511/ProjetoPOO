@@ -139,7 +139,7 @@ public class Jogo {
         double dif = probs(e1.overallEquipa(), e2.overallEquipa());
         for (int i=0; i < 9; i++){
             double aleatorio = Math.random();
-            situacoesGolos(e1, e2, dif, aleatorio);
+            this.situacoesGolos(e1, e2, dif, aleatorio);
         }
         
     }
