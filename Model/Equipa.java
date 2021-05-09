@@ -144,7 +144,7 @@ public class Equipa {
         this.jogadores.remove(j);
     }
 
-    public List<Jogador> melhoresPosicao(String posicao, int num) {
+    public List<Jogador> melhoresPosicao(String posicao) {
         return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
     }
 

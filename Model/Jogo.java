@@ -111,27 +111,37 @@ public class Jogo {
     public Map<Integer, Integer> getSubstituicoesFora() {
         return this.substituicoesFora;
     }
-    /*
-     * private void probs(double overall1, double overall2) { double dif = (overall1
-     * / 100) - (overall2 / 100); double ganhar = Math.exp(dif) / (1 +
-     * Math.exp(dif)); double perder = 1 - ganhar; double empatar = ganhar * perder;
-     * ganhar -= empatar; perder -= empatar; }
-     */
+    private double probs (double overall1, double overall2){
+        double dif = (overall1/100) - (overall2/100);
+        return Math.exp(dif)/(1+ Math.exp(dif));
+    }
+    
+    public double overallPosicao(Equipa e, String posicao){
+        List<Jogador> pos = e.melhoresPosicao(posicao);
+        return ((pos.stream().mapToDouble(Jogador :: overall).sum())/(e.melhoresPosicao(posicao)).size());
+    }
+    private void situacoesGolos(Equipa e1, Equipa e2, double dif, double aleatorio){
+        double aleatorio2 = Math.random();
+        double marcar;
+        if ( aleatorio <= dif) {
+            //ataque equipa 1
+            marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
+            if (aleatorio2 < marcar) this.golosCasa++;
+        }
+        else {
+            //ataque equipa 2
+            marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
+            if (aleatorio2 < aleatorio2) this.golosFora++;
+        }
+    }
 
-    public static String quemGanha(Equipa e1, Equipa e2) {
-        String r;
-        double dif = (e1.overallEquipa() / 100) - (e2.overallEquipa() / 100);
-        double ganhar = Math.exp(dif) / (1 + Math.exp(dif));
-        double empatar = ganhar * (1 - ganhar);
-        ganhar -= empatar;
-        double aleatorio = Math.random();
-        if (aleatorio <= ganhar)
-            r = e1.getClube();
-        else if (aleatorio <= ganhar + empatar)
-            r = "Empate";
-        else
-            r = e2.getClube();
-        return r;
+    public void quemGanha(Equipa e1, Equipa e2) {
+        double dif = probs(e1.overallEquipa(), e2.overallEquipa());
+        for (int i=0; i < 9; i++){
+            double aleatorio = Math.random();
+            situacoesGolos(e1, e2, dif, aleatorio);
+        }
+        
     }
 
     public Jogo clone() {
