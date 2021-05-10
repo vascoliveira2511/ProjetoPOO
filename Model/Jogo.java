@@ -15,6 +15,13 @@ public class Jogo {
     private List<Integer> jogadoresFora;
     Map<Integer, Integer> substituicoesCasa;
     Map<Integer, Integer> substituicoesFora;
+    
+    public Jogo(String ec, String ef, int gc, int gf){
+        this.equipaCasa = ec;
+        this.equipaFora = ef;
+        this.golosCasa = gc;
+        this.golosFora = gf;
+    }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf) {
@@ -131,7 +138,7 @@ public class Jogo {
         else {
             //ataque equipa 2
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < aleatorio2) this.golosFora++;
+            if (aleatorio2 < marcar) this.golosFora++;
         }
     }
 
@@ -139,7 +146,7 @@ public class Jogo {
         double dif = probs(e1.overallEquipa(), e2.overallEquipa());
         for (int i=0; i < 9; i++){
             double aleatorio = Math.random();
-            situacoesGolos(e1, e2, dif, aleatorio);
+            this.situacoesGolos(e1, e2, dif, aleatorio);
         }
         
     }
@@ -164,15 +171,15 @@ public class Jogo {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Data: " + this.date.toString() + "\n");
+        //str.append("Data: " + this.date.toString() + "\n");
         str.append("Equipa casa: " + this.equipaCasa.toString() + "\n");
         str.append("Equipa fora: " + this.equipaFora.toString() + "\n");
         str.append("Golos casa: " + this.golosCasa + "\n");
         str.append("Golos fora: " + this.golosFora + "\n");
-        str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
+        /*str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
         str.append("Jogadores fora" + this.jogadoresFora.toString() + "\n");
         str.append("Substituições casa" + this.substituicoesCasa.toString() + "\n");
-        str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");
+        str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");*/
         return str.toString();
     }
 }
