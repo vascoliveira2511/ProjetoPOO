@@ -7,25 +7,24 @@ import java.lang.Math;
 
 public class Jogo {
     private String equipaCasa;
+    //private Map <String, Equipa> equipaCasa;
     private String equipaFora;
+    //private Map <String, Equipa> equipaFora;
     private int golosCasa;
     private int golosFora;
     private LocalDate date;
     private List<Integer> jogadoresCasa;
+    //private Map <Integer, Jogador> jogadoresCasa;
     private List<Integer> jogadoresFora;
+    //private Map <Integer, Jogador> jogadoresFora;
     Map<Integer, Integer> substituicoesCasa;
     Map<Integer, Integer> substituicoesFora;
-
-    public Jogo(String equipaCasa, String equipaFora, List<Integer> jc, List<Integer> jf) {
-        this.equipaCasa = equipaCasa;
-        this.equipaFora = equipaFora;
-        this.golosCasa = 0;
-        this.golosFora = 0;
-        this.date = LocalDate.now();
-        this.jogadoresCasa = jc;
-        this.jogadoresFora = jf;
-        this.substituicoesCasa = new HashMap<>();
-        this.substituicoesFora = new HashMap<>();
+    
+    public Jogo(String ec, String ef, int gc, int gf){
+        this.equipaCasa = ec;
+        this.equipaFora = ef;
+        this.golosCasa = gc;
+        this.golosFora = gf;
     }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
@@ -123,41 +122,40 @@ public class Jogo {
     public Map<Integer, Integer> getSubstituicoesFora() {
         return this.substituicoesFora;
     }
-
-    private double probs(double overall1, double overall2) {
-        double dif = (overall1 / 100) - (overall2 / 100);
-        return Math.exp(dif) / (1 + Math.exp(dif));
+    private double probs (double overall1, double overall2){
+        double dif = (overall1/100) - (overall2/100);
+        return Math.exp(dif)/(1+ Math.exp(dif));
     }
-
-    public double overallPosicao(Equipa e, String posicao) {
+    
+    public double overallPosicao(Equipa e, String posicao){
         List<Jogador> pos = e.melhoresPosicao(posicao);
-        return ((pos.stream().mapToDouble(Jogador::overall).sum()) / (e.melhoresPosicao(posicao)).size());
+        return ((pos.stream().mapToDouble(Jogador :: overall).sum())/(e.melhoresPosicao(posicao)).size());
     }
-
-    private void situacoesGolos(Equipa e1, Equipa e2, double dif, double aleatorio) {
+    private void situacoesGolos(Equipa e1, Equipa e2, double dif, double aleatorio){
         double aleatorio2 = Math.random();
         double marcar;
-        if (aleatorio <= dif) {
-            // ataque equipa 1
+        if ( aleatorio <= dif) {
+            //ataque equipa 1
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar)
-                this.golosCasa++;
-        } else {
-            // ataque equipa 2
+            if (aleatorio2 < marcar) this.golosCasa++;
+        }
+        else {
+            //ataque equipa 2
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar)
-                this.golosFora++;
+            if (aleatorio2 < marcar) this.golosFora++;
         }
     }
 
-    public void quemGanha(Equipa e1, Equipa e2) {
+    public void simulacaoJogo(Equipa e1, Equipa e2) {
         double dif = probs(e1.overallEquipa(), e2.overallEquipa());
-        for (int i = 0; i < 9; i++) {
+        for (int i=0; i < 9; i++){
             double aleatorio = Math.random();
             this.situacoesGolos(e1, e2, dif, aleatorio);
         }
-    }
 
+    }
+    
+    
     public Jogo clone() {
         return new Jogo(this);
     }
@@ -178,15 +176,15 @@ public class Jogo {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Data: " + this.date.toString() + "\n");
+        //str.append("Data: " + this.date.toString() + "\n");
         str.append("Equipa casa: " + this.equipaCasa.toString() + "\n");
         str.append("Equipa fora: " + this.equipaFora.toString() + "\n");
         str.append("Golos casa: " + this.golosCasa + "\n");
         str.append("Golos fora: " + this.golosFora + "\n");
-        str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
+        /*str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
         str.append("Jogadores fora" + this.jogadoresFora.toString() + "\n");
         str.append("Substituições casa" + this.substituicoesCasa.toString() + "\n");
-        str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");
+        str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");*/
         return str.toString();
     }
 }
