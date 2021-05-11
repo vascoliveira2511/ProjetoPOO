@@ -142,13 +142,13 @@ public class Jogo {
         }
     }
 
-    public void quemGanha(Equipa e1, Equipa e2) {
+    public void simulacaoJogo(Equipa e1, Equipa e2) {
         double dif = probs(e1.overallEquipa(), e2.overallEquipa());
         for (int i=0; i < 9; i++){
             double aleatorio = Math.random();
             this.situacoesGolos(e1, e2, dif, aleatorio);
         }
-        
+
     }
 
     public Jogo clone() {

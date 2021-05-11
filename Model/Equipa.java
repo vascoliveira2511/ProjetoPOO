@@ -156,6 +156,10 @@ public class Equipa {
         Comparator<Jogador> cmp = (j1,j2)-> j1.getResistencia() - j2.getResistencia();
         return this.jogadores.stream().map(Jogador::clone).sorted(cmp).collect(Collectors.toList());
     }
+    
+    public List<Jogador> habilidadeJogadoresCrescente(Comparator<Jogador> cmp){
+        return this.jogadores.stream().map(Jogador::clone).sorted(cmp).collect(Collectors.toList());
+    }
 
     /**
      * Metodo que calcula o overall da equipa.
