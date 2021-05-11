@@ -2,8 +2,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Comparator;
-
 
 /**
  * Classe Equipa
@@ -48,8 +46,6 @@ public class Equipa {
 
     public Equipa(String nomeE) {
         this.clube = nomeE;
-        this.nTitulares = 11;
-        this.nSuplentes = 3;
         this.jogadores = new ArrayList<>();
     }
 
@@ -140,7 +136,7 @@ public class Equipa {
     }
 
     public void addJogador(Jogador j) {
-        j.addEquipa(this.clube);
+        // j.addEquipa(this.clube);
         this.jogadores.add(j.clone());
     }
 
@@ -149,16 +145,7 @@ public class Equipa {
     }
 
     public List<Jogador> melhoresPosicao(String posicao) {
-        return this.jogadores.stream().filter(j-> j.getClass().getSimpleName().equals(posicao)).map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
-    }
-    
-    public List<Jogador> resistenciaJogadores(){
-        Comparator<Jogador> cmp = (j1,j2)-> j1.getResistencia() - j2.getResistencia();
-        return this.jogadores.stream().map(Jogador::clone).sorted(cmp).collect(Collectors.toList());
-    }
-    
-    public List<Jogador> habilidadeJogadoresCrescente(Comparator<Jogador> cmp){
-        return this.jogadores.stream().map(Jogador::clone).sorted(cmp).collect(Collectors.toList());
+        return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
     }
 
     /**
