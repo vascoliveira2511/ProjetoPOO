@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+//import java.util.List;
+>>>>>>> parent of 71e97a1 (Merge branch 'main' of https://github.com/Suissinho2511/ProjetoPOO into main)
 =======
 //import java.util.List;
 >>>>>>> parent of 71e97a1 (Merge branch 'main' of https://github.com/Suissinho2511/ProjetoPOO into main)
@@ -257,9 +261,15 @@ public abstract class Jogador {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void addEquipa(String nome) {
         this.histEquipas.add(nome);
     }
+=======
+    /*
+     * public void addEquipa(String nome) { this.histEquipas.add(nome); }
+     */
+>>>>>>> parent of 71e97a1 (Merge branch 'main' of https://github.com/Suissinho2511/ProjetoPOO into main)
 =======
     /*
      * public void addEquipa(String nome) { this.histEquipas.add(nome); }
