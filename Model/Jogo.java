@@ -7,12 +7,16 @@ import java.lang.Math;
 
 public class Jogo {
     private String equipaCasa;
+    //private Map <String, Equipa> equipaCasa;
     private String equipaFora;
+    //private Map <String, Equipa> equipaFora;
     private int golosCasa;
     private int golosFora;
     private LocalDate date;
     private List<Integer> jogadoresCasa;
+    //private Map <Integer, Jogador> jogadoresCasa;
     private List<Integer> jogadoresFora;
+    //private Map <Integer, Jogador> jogadoresFora;
     Map<Integer, Integer> substituicoesCasa;
     Map<Integer, Integer> substituicoesFora;
     
