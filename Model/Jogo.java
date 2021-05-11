@@ -178,17 +178,15 @@ public class Jogo {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        // str.append("Data: " + this.date.toString() + "\n");
-        str.append("Equipa casa: " + this.equipaCasa.toString() + "\n");
-        str.append("Equipa fora: " + this.equipaFora.toString() + "\n");
+        str.append("Data: " + this.date.toString() + "\n");
+        str.append("Equipa casa: " + this.equipaCasa + "\n");
+        str.append("Equipa fora: " + this.equipaFora + "\n");
         str.append("Golos casa: " + this.golosCasa + "\n");
         str.append("Golos fora: " + this.golosFora + "\n");
-        /*
-         * str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
-         * str.append("Jogadores fora" + this.jogadoresFora.toString() + "\n");
-         * str.append("Substituições casa" + this.substituicoesCasa.toString() + "\n");
-         * str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");
-         */
+        str.append("Jogadores casa" + this.jogadoresCasa.toString() + "\n");
+        str.append("Jogadores fora" + this.jogadoresFora.toString() + "\n");
+        str.append("Substituições casa" + this.substituicoesCasa.toString() + "\n");
+        str.append("Substituições fora" + this.substituicoesFora.toString() + "\n");
         return str.toString();
     }
 }

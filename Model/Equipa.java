@@ -67,6 +67,7 @@ public class Equipa {
      * @param e
      */
     public Equipa(Equipa e) {
+        this.clube = e.getClube();
         this.nTitulares = e.getnTitulares();
         this.nSuplentes = e.getnSuplentes();
         this.jogadores = e.getJogadores();
