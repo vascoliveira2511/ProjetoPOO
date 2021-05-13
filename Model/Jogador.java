@@ -277,16 +277,16 @@ public abstract class Jogador {
      * @return String
      */
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Nome: " + this.nome);
-        str.append(" Numero: " + this.numero);
-         str.append("Velocidade: " + this.velocidade + "\n");
-         str.append("Resistencia: " + this.resistencia + "\n");
-         str.append("Destreza: " + this.destreza + "\n"); str.append("Impulsao: " +
-         this.impulsao + "\n"); str.append("Jogo de Cabeça: " + this.jogoDeCabeca +
-         "\n"); str.append("Remate: " + this.remate + "\n");
-         str.append("Capacidade de Passe: " + this.capacidadeDePasse + "\n");
-        return str.toString();
+        return "Nome: " + this.nome +
+                " Numero: " + this.numero +
+                "Velocidade: " + this.velocidade + "\n" +
+                "Resistencia: " + this.resistencia + "\n" +
+                "Destreza: " + this.destreza + "\n" + "Impulsao: " +
+                this.impulsao + "\n" +
+                "Jogo de Cabeça: " + this.jogoDeCabeca +
+                "\n" +
+                "Remate: " + this.remate + "\n" +
+                "Capacidade de Passe: " + this.capacidadeDePasse + "\n";
     }
 
     /**

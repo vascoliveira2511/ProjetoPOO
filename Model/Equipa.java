@@ -171,17 +171,15 @@ public class Equipa {
         if (o == null || o.getClass() != this.getClass())
             return false;
         Equipa e = (Equipa) o;
-        return this.clube == e.clube && this.jogadores.equals(e.getJogadores()) && this.nSuplentes == e.getnSuplentes()
+        return this.clube.equals(e.clube) && this.jogadores.equals(e.getJogadores()) && this.nSuplentes == e.getnSuplentes()
                 && this.nTitulares == e.getnTitulares();
     }
 
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Clube: " + this.clube + "\n");
-        str.append("Numero suplentes: " + this.nSuplentes + "\n");
-        str.append("Numero Titulares: " + this.nTitulares + "\n");
-        str.append("Jogadores: " + this.jogadores.toString() + "\n");
-        return str.toString();
+        return "Clube: " + this.clube + "\n" +
+                "Numero suplentes: " + this.nSuplentes + "\n" +
+                "Numero Titulares: " + this.nTitulares + "\n" +
+                "Jogadores: " + this.jogadores.toString() + "\n";
     }
 
 }

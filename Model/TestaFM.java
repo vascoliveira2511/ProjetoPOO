@@ -18,8 +18,8 @@ public class TestaFM {
         Equipa e1 = new Equipa(equipas.get("Bartok F. C."));
         Equipa e2 = new Equipa(equipas.get("Mozart F. C."));
         Jogo jj = new Jogo(e1.getClube(), e2.getClube(), 0, 0, LocalDate.now(),
-                e1.getJogadores().stream().map(e -> e.getNumeroJogador()).collect(Collectors.toList()), new HashMap<>(),
-                e2.getJogadores().stream().map(e -> e.getNumeroJogador()).collect(Collectors.toList()),
+                e1.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()), new HashMap<>(),
+                e2.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()),
                 new HashMap<>());
         jj.simulacaoJogo(e1, e2);
         System.out.println("\nOverall equipa casa: " + e1.overallEquipa());

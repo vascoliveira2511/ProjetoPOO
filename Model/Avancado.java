@@ -62,9 +62,7 @@ public class Avancado extends Jogador {
      * 
      */
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Avancado: " + super.toString());
-        return str.toString();
+        return "Avancado: " + super.toString();
     }
 
     public double overallCentral() {

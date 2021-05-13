@@ -23,7 +23,7 @@ public class Medio extends Jogador {
     public Medio(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao, int jogoDeCabeca,
             int remate, int capacidadeDePasse) {
         super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);
-        this.recuperarBolas = (int) Math.random() * 100;
+        this.recuperarBolas = (int) (Math.random() * 100);
     }
 
     public static Medio parse(String input) {
@@ -91,9 +91,7 @@ public class Medio extends Jogador {
      * 
      */
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Medio: " + super.toString());
-        return str.toString();
+        return "Medio: " + super.toString();
     }
 
     public double overallCentral() {

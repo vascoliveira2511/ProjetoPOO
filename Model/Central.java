@@ -30,7 +30,7 @@ public class Central extends Jogador {
             return true;
         if ((o == null) || (this.getClass() != o.getClass()))
             return false;
-        Lateral l = (Lateral) o;
+        Central l = (Central) o;
         return super.equals(l);
     }
 }

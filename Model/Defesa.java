@@ -62,9 +62,7 @@ public class Defesa extends Jogador {
      * 
      */
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Defesa: " + super.toString());
-        return str.toString();
+        return "Defesa: " + super.toString();
     }
 
     public double overallCentral() {
