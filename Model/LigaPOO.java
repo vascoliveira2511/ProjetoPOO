@@ -12,5 +12,14 @@ public class LigaPOO
     
     private Map<String, Equipa> equipas;
     List<Jogo> jogos;
+    
+    public void transferencia (String equipaPresente, String equipaFuturo, int num){
+        Equipa eP = equipas.get(equipaPresente);
+        Equipa eF = equipas.get(equipaFuturo);
+        Jogador j = eP.existeJogador(num);
+        eP.removeJogador(j);
+        eF.addJogador(j);
+    }
+        
 
 }
