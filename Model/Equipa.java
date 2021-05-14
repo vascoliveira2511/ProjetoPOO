@@ -144,6 +144,10 @@ public class Equipa {
     public void removeJogador(Jogador j) {
         this.jogadores.remove(j);
     }
+    
+    public Jogador existeJogador(int num){
+        return this.jogadores.stream().map(Jogador :: clone).filter(j -> j.getNumeroJogador() == num).collect(Collectors.toList()).get(0);
+    }
 
     public List<Jogador> melhoresPosicao(String posicao) {
         return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
