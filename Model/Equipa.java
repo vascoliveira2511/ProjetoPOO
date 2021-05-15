@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Map;
 
 /**
  * Classe Equipa
@@ -145,23 +144,25 @@ public class Equipa {
     public void removeJogador(Jogador j) {
         this.jogadores.remove(j);
     }
-    
-    public Jogador existeJogador(int num){
-        return this.jogadores.stream().map(Jogador :: clone).filter(j -> j.getNumeroJogador() == num).collect(Collectors.toList()).get(0);
+
+    public Jogador existeJogador(int num) {
+        return this.jogadores.stream().map(Jogador::clone).filter(j -> j.getNumeroJogador() == num)
+                .collect(Collectors.toList()).get(0);
     }
 
     public List<Jogador> melhoresPosicao(String posicao) {
         return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
     }
-    
-    /*public Map<Integer, Jogador> equipaTitular(){
-        List<Jogador> utilizados = this.jogadores;
-        List<Jogador> onzeInicial = new ArrayList<>(this.nTitulares);
-        onzeInicial.add(this.melhoresPosicao("GuardaRedes").get(0));
-        
-        
-        
-    }*/
+
+    /*
+     * public Map<Integer, Jogador> equipaTitular(){ List<Jogador> utilizados =
+     * this.jogadores; List<Jogador> onzeInicial = new ArrayList<>(this.nTitulares);
+     * onzeInicial.add(this.melhoresPosicao("GuardaRedes").get(0));
+     * 
+     * 
+     * 
+     * }
+     */
 
     /**
      * Metodo que calcula o overall da equipa.
@@ -185,15 +186,13 @@ public class Equipa {
         if (o == null || o.getClass() != this.getClass())
             return false;
         Equipa e = (Equipa) o;
-        return this.clube.equals(e.clube) && this.jogadores.equals(e.getJogadores()) && this.nSuplentes == e.getnSuplentes()
-                && this.nTitulares == e.getnTitulares();
+        return this.clube.equals(e.clube) && this.jogadores.equals(e.getJogadores())
+                && this.nSuplentes == e.getnSuplentes() && this.nTitulares == e.getnTitulares();
     }
 
     public String toString() {
-        return "Clube: " + this.clube + "\n" +
-                "Numero suplentes: " + this.nSuplentes + "\n" +
-                "Numero Titulares: " + this.nTitulares + "\n" +
-                "Jogadores: " + this.jogadores.toString() + "\n";
+        return "Clube: " + this.clube + "\n" + "Numero suplentes: " + this.nSuplentes + "\n" + "Numero Titulares: "
+                + this.nTitulares + "\n" + "Jogadores: " + this.jogadores.toString() + "\n";
     }
 
 }

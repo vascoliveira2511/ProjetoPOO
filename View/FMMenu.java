@@ -1,9 +1,7 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class FMMenu {
     public static void main(String[] args) {
@@ -20,10 +18,7 @@ public class FMMenu {
         }
         Equipa e1 = new Equipa(equipas.get("Bartok F. C."));
         Equipa e2 = new Equipa(equipas.get("Mozart F. C."));
-        Jogo jj = new Jogo(e1.getClube(), e2.getClube(), 0, 0, LocalDate.now(),
-                e1.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()), new HashMap<>(),
-                e2.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()),
-                new HashMap<>());
+        Jogo jj = new Jogo(null, null, 0, 0, e2, e2);
         jj.simulacaoJogo(e1, e2);
         int op = m.getOpcao();
         System.out.println("Opção lida: " + op);
