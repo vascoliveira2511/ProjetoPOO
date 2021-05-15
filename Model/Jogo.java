@@ -151,11 +151,13 @@ public class Jogo {
         }
     }
 
-    public void simulacaoJogo(Equipa e1, Equipa e2) {
-        double dif = probs(e1.overallEquipa(), e2.overallEquipa());
+    public void simulacaoJogo() {
+        Equipa ec = this.equipaCasa.getValue();
+        Equipa ef = this.equipaFora.getValue();
+        double dif = probs(ec.overallEquipa(), ef.overallEquipa());
         for (int i = 0; i < 9; i++) {
             double aleatorio = Math.random();
-            this.situacoesGolos(e1, e2, dif, aleatorio);
+            this.situacoesGolos(ec, ef, dif, aleatorio);
         }
 
     }
