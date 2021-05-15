@@ -6,29 +6,42 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 public class Jogo {
-    private String equipaCasa;
-    // private Map <String, Equipa> equipaCasa;
-    private String equipaFora;
-    // private Map <String, Equipa> equipaFora;
+    //private String equipaCasa;
+    private Map <String, Equipa> equipaCasa;
+    //private String equipaFora;
+     private Map <String, Equipa> equipaFora;
     private int golosCasa;
     private int golosFora;
     private LocalDate date;
-    private List<Integer> jogadoresCasa;
-    // private Map <Integer, Jogador> jogadoresCasa;
-    private List<Integer> jogadoresFora;
-    // private Map <Integer, Jogador> jogadoresFora;
+    //private List<Integer> jogadoresCasa;
+    private Map <Integer, Jogador> jogadoresCasa;
+    //private List<Integer> jogadoresFora;
+    private Map <Integer, Jogador> jogadoresFora;
     Map<Integer, Integer> substituicoesCasa;
     Map<Integer, Integer> substituicoesFora;
 
     public Jogo(String ec, String ef, int gc, int gf) {
-        this.equipaCasa = ec;
-        this.equipaFora = ef;
+        this.equipaCasa = new AbstractMap.SimpleEntry(ec, casa);
+        this.equipaFora =  new AbstractMap.SimpleEntry(ec, fora);
         this.golosCasa = gc;
         this.golosFora = gf;
     }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
-            List<Integer> jf, Map<Integer, Integer> sf) {
+            List<Integer> jf, Map<Integer, Integer> sf, Equipa casa, Equipa fora) {
+        this.equipaCasa = new AbstractMap.SimpleEntry(ec, casa);
+        this.equipaFora =  new AbstractMap.SimpleEntry(ec, fora);
+        this.golosCasa = gc;
+        this.golosFora = gf;
+        this.date = d;
+        this.jogadoresCasa = jf.stream().collect(Collectors.toMap(j-> j, j -> casa.existeJogador(j)));
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j-> j, j -> fora.existeJogador(j)));;
+        this.substituicoesCasa = new HashMap<>(sc);
+        this.substituicoesFora = new HashMap<>(sf);
+    }
+
+    /*public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
+                List<Integer> jf, Map<Integer, Integer> sf) {
         this.equipaCasa = ec;
         this.equipaFora = ef;
         this.golosCasa = gc;
@@ -38,7 +51,8 @@ public class Jogo {
         this.jogadoresFora = new ArrayList<>(jf);
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
-    }
+    }*/
+
 
     public Jogo(Jogo jogo) {
         this.equipaCasa = jogo.getEquipaCasa();
@@ -79,12 +93,12 @@ public class Jogo {
                 subsC, jf, subsF);
     }
 
-    public String getEquipaCasa() {
-        return this.equipaCasa;
+    public Map<String, Equipa> getEquipaCasa() {
+        return this.equipaCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
     }
 
-    public String getEquipaFora() {
-        return this.equipaFora;
+    public Map<String, Equipa> getEquipaFora() {
+        return this.equipaFora.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
     }
 
     public int getGolosCasa() {
@@ -99,12 +113,12 @@ public class Jogo {
         return this.date;
     }
 
-    public List<Integer> getJogadoresCasa() {
-        return this.jogadoresCasa;
+    public Map<Integer, Jogador> getJogadoresCasa() {
+        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));;;
     }
 
-    public List<Integer> getJogadoresFora() {
-        return this.jogadoresCasa;
+    public Map<Integer, Jogador> getJogadoresFora() {
+        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));;;
     }
 
     public void setJogadoresFora(List<Integer> jogadoresFora) {
