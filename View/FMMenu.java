@@ -19,7 +19,7 @@ public class FMMenu {
         Equipa e1 = new Equipa(equipas.get("Bartok F. C."));
         Equipa e2 = new Equipa(equipas.get("Mozart F. C."));
         Jogo jj = new Jogo(null, null, 0, 0, e2, e2);
-        jj.simulacaoJogo(e1, e2);
+        jj.simulacaoJogo();
         int op = m.getOpcao();
         System.out.println("Opção lida: " + op);
         switch (op) {
