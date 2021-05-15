@@ -1,12 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Abstract class Jogador - write a description of the class here
- *
- * @author (your name here)
- * @version (version number or date here)
+ * Classe de um jogador.
  */
 public abstract class Jogador {
 
@@ -256,11 +252,9 @@ public abstract class Jogador {
         return this.capacidadeDePasse;
     }
 
-    
-    public void addEquipa(String nome) { 
-        this.histEquipas.add(nome); 
+    public void addEquipa(String nome) {
+        this.histEquipas.add(nome);
     }
-     
 
     /**
      * Metodo que retorna o overall do jogador.
@@ -277,16 +271,10 @@ public abstract class Jogador {
      * @return String
      */
     public String toString() {
-        return "Nome: " + this.nome +
-                " Numero: " + this.numero +
-                "Velocidade: " + this.velocidade + "\n" +
-                "Resistencia: " + this.resistencia + "\n" +
-                "Destreza: " + this.destreza + "\n" + "Impulsao: " +
-                this.impulsao + "\n" +
-                "Jogo de Cabeça: " + this.jogoDeCabeca +
-                "\n" +
-                "Remate: " + this.remate + "\n" +
-                "Capacidade de Passe: " + this.capacidadeDePasse + "\n";
+        return "Nome: " + this.nome + " Numero: " + this.numero + "Velocidade: " + this.velocidade + "\n"
+                + "Resistencia: " + this.resistencia + "\n" + "Destreza: " + this.destreza + "\n" + "Impulsao: "
+                + this.impulsao + "\n" + "Jogo de Cabeça: " + this.jogoDeCabeca + "\n" + "Remate: " + this.remate + "\n"
+                + "Capacidade de Passe: " + this.capacidadeDePasse + "\n";
     }
 
     /**

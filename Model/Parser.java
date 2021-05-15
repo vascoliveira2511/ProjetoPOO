@@ -7,8 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe parser.
+ */
 public class Parser {
-
+    /**
+     * Método que efetua parse de um ficheiro.
+     * 
+     * @param equipas
+     * @param jogadores
+     * @param jogos
+     * @throws LinhaIncorretaException
+     */
     public static void parse(Map<String, Equipa> equipas, Map<Integer, Jogador> jogadores, List<Jogo> jogos)
             throws LinhaIncorretaException {
         List<String> linhas = lerFicheiro("Files/logs.txt");
@@ -62,8 +72,8 @@ public class Parser {
                     ultima.addJogador(j.clone()); // if no team was parsed previously, file is not well-formed
                     break;
                 case "Jogo":
-                    //Jogo jo = Jogo.parse(linhaPartida[1]);
-                    //jogos.add(jo);
+                    // Jogo jo = Jogo.parse(linhaPartida[1]);
+                    // jogos.add(jo);
                     break;
                 default:
                     throw new LinhaIncorretaException();
@@ -72,6 +82,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Método que efetua a leitura de um ficheiro.
+     * 
+     * @param nomeFich
+     * @return
+     */
     public static List<String> lerFicheiro(String nomeFich) {
         List<String> lines;
         try {

@@ -1,6 +1,7 @@
 public class Avancado extends Jogador {
 
     /**
+     * Método que cria um avançado recebvendo os seguintes parâmetros:
      * 
      * @param velocidade
      * @param resistencia
@@ -16,6 +17,7 @@ public class Avancado extends Jogador {
     }
 
     /**
+     * Método que cria um avançado chamando o método super.
      * 
      * @param a
      */
@@ -23,6 +25,12 @@ public class Avancado extends Jogador {
         super(a);
     }
 
+    /**
+     * Método que efetua parse de um avançado.
+     * 
+     * @param input
+     * @return
+     */
     public static Avancado parse(String input) {
         String[] campos = input.split(",");
         return new Avancado(campos[0], Integer.parseInt(campos[1]), Integer.parseInt(campos[2]),
@@ -31,7 +39,7 @@ public class Avancado extends Jogador {
     }
 
     /**
-     * 
+     * Método que efetua o cálculo do overall de um avançado.
      */
     public double overall() {
         return ((super.getVelocidade() * 0.15 + super.getResistencia() * 0.15 + super.getDestreza() * 0.1
@@ -40,14 +48,14 @@ public class Avancado extends Jogador {
     }
 
     /**
-     * 
+     * Método que efetua clone de um avançado.
      */
     public Avancado clone() {
         return new Avancado(this);
     }
 
     /**
-     * 
+     * Método equals de um avançado.
      */
     public boolean equals(Object o) {
         if (this == o)
@@ -59,12 +67,17 @@ public class Avancado extends Jogador {
     }
 
     /**
-     * 
+     * Método toString de um avançado.
      */
     public String toString() {
         return "Avancado: " + super.toString();
     }
 
+    /**
+     * Método que calcula o verall de um central.
+     * 
+     * @return
+     */
     public double overallCentral() {
         return this.overall();
     }

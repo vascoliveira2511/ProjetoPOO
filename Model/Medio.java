@@ -1,6 +1,11 @@
-
+/**
+ * Classe de um médio.
+ */
 public class Medio extends Jogador {
 
+    /**
+     * Capacidade de recuperar bolas de um médio.
+     */
     private int recuperarBolas;
 
     /**

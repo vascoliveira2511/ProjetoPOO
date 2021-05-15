@@ -1,25 +1,42 @@
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.HashMap;
 import java.util.List;
 
 /**
- * Write a description of class LigaPOO here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Classe ligaPOO
  */
-public class LigaPOO
-{
-    
+public class LigaPOO {
+
+    /**
+     * Mapa de equipas.
+     */
     private Map<String, Equipa> equipas;
+
+    /**
+     * Lista de jogos.
+     */
     List<Jogo> jogos;
-    
-    public void transferencia (String equipaPresente, String equipaFuturo, int num){
+
+    public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos) {
+        this.equipas = equipas.entrySet().stream()
+                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().clone(), (a, b) -> b, HashMap::new));
+        this.jogos = jogos.stream().map(Jogo::clone).collect(Collectors.toList());
+    }
+
+    /**
+     * Método que efetua a transferência de jogadores.
+     * 
+     * @param equipaPresente
+     * @param equipaFuturo
+     * @param num
+     */
+    public void transferencia(String equipaPresente, String equipaFuturo, int num) {
         Equipa eP = equipas.get(equipaPresente);
         Equipa eF = equipas.get(equipaFuturo);
         Jogador j = eP.existeJogador(num);
         eP.removeJogador(j);
         eF.addJogador(j);
     }
-        
 
 }

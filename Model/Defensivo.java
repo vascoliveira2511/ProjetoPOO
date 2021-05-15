@@ -1,11 +1,11 @@
-
 /**
- * Write a description of interface Defensivo here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Interface de um jogador defensivo.
  */
-public interface Defensivo
-{
+public interface Defensivo {
+    /**
+     * Método de calculo do overall de um jogador defensivo.
+     * 
+     * @return
+     */
     public double overallDefensivo();
 }

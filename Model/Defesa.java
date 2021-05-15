@@ -1,6 +1,7 @@
 public class Defesa extends Jogador {
 
     /**
+     * Método que cria uma instância de um defesa com os seguintes parâmetros:
      * 
      * @param velocidade
      * @param resistencia
@@ -16,6 +17,7 @@ public class Defesa extends Jogador {
     }
 
     /**
+     * Método que cri auma instância de um defesa através do método super.
      * 
      * @param d
      */
@@ -23,6 +25,12 @@ public class Defesa extends Jogador {
         super(d);
     }
 
+    /**
+     * Método que efetua parse de um defesa.
+     * 
+     * @param input
+     * @return
+     */
     public static Defesa parse(String input) {
         String[] campos = input.split(",");
         return new Defesa(campos[0], Integer.parseInt(campos[1]), Integer.parseInt(campos[2]),
@@ -31,7 +39,7 @@ public class Defesa extends Jogador {
     }
 
     /**
-     * 
+     * Método que calcula o overall de um defesa.
      */
     public double overall() {
         return ((super.getVelocidade() * 0.1 + super.getResistencia() * 0.1 + super.getDestreza() * 0.30
@@ -40,14 +48,14 @@ public class Defesa extends Jogador {
     }
 
     /**
-     * 
+     * Método que clona um defesa.
      */
     public Defesa clone() {
         return new Defesa(this);
     }
 
     /**
-     * 
+     * Método equals de um defesa.
      */
     public boolean equals(Object o) {
         if (this == o)
@@ -59,12 +67,17 @@ public class Defesa extends Jogador {
     }
 
     /**
-     * 
+     * Método toString de um defesa.
      */
     public String toString() {
         return "Defesa: " + super.toString();
     }
 
+    /**
+     * Método que calcula o overall de um central.
+     * 
+     * @return
+     */
     public double overallCentral() {
         return this.overall();
     }

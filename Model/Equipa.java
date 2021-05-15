@@ -5,11 +5,6 @@ import java.util.stream.Collectors;
 
 /**
  * Classe Equipa
- *
- * @author @Skynet-Model101
- * @author @DiogoPereiraMatos
- * @author @MiguelFernandes13
- * @see jogador.java
  */
 public class Equipa {
 

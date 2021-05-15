@@ -1,11 +1,12 @@
-
 /**
- * Write a description of interface Ofensivo here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Interface de jogador ofensivo.
  */
-public interface Ofensivo
-{
+public interface Ofensivo {
+
+    /**
+     * Método que calcula o overall de um ofensivo
+     * 
+     * @return
+     */
     public double overallOfensivo();
 }
