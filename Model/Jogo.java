@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.lang.Math;
 import java.util.stream.Collectors;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 
 public class Jogo {
     // private String equipaCasa;
@@ -37,19 +38,23 @@ public class Jogo {
         this.date = d;
         this.jogadoresCasa = jf.stream().collect(Collectors.toMap(j -> j, j -> casa.existeJogador(j)));
         this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j -> fora.existeJogador(j)));
-        ;
+        this.substituicoesCasa = new HashMap<>(sc);
+        this.substituicoesFora = new HashMap<>(sf);
+    }
+    
+    public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
+            List<Integer> jf, Map<Integer, Integer> sf) {
+        this.equipaCasa = new SimpleEntry<>(ec, null);
+        this.equipaFora = new SimpleEntry<>(ec, null);
+        this.golosCasa = gc;
+        this.golosFora = gf;
+        this.date = d;
+        this.jogadoresCasa = jf.stream().collect(Collectors.toMap(j -> j, null));
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, null));
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }
 
-    /*
-     * public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer>
-     * jc, Map<Integer, Integer> sc, List<Integer> jf, Map<Integer, Integer> sf) {
-     * this.equipaCasa = ec; this.equipaFora = ef; this.golosCasa = gc;
-     * this.golosFora = gf; this.date = d; this.jogadoresCasa = new ArrayList<>(jc);
-     * this.jogadoresFora = new ArrayList<>(jf); this.substituicoesCasa = new
-     * HashMap<>(sc); this.substituicoesFora = new HashMap<>(sf); }
-     */
 
     public Jogo(Jogo jogo) {
         this.equipaCasa = jogo.getEquipaCasa();
@@ -64,22 +69,31 @@ public class Jogo {
 
     }
 
-    /*
-     * public static Jogo parse(String input) { String[] campos = input.split(",");
-     * String[] data = campos[4].split("-"); List<Integer> jc = new ArrayList<>();
-     * List<Integer> jf = new ArrayList<>(); Map<Integer, Integer> subsC = new
-     * HashMap<>(); Map<Integer, Integer> subsF = new HashMap<>(); for (int i = 5; i
-     * < 16; i++) { jc.add(Integer.parseInt(campos[i])); } for (int i = 16; i < 19;
-     * i++) { String[] sub = campos[i].split("->");
-     * subsC.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1])); } for (int i =
-     * 19; i < 30; i++) { jf.add(Integer.parseInt(campos[i])); } for (int i = 30; i
-     * < 33; i++) { String[] sub = campos[i].split("->");
-     * subsF.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1])); } return new
-     * Jogo(campos[0], campos[1], Integer.parseInt(campos[2]),
-     * Integer.parseInt(campos[3]), LocalDate.of(Integer.parseInt(data[0]),
-     * Integer.parseInt(data[1]), Integer.parseInt(data[2])), jc, subsC, jf, subsF);
-     * }
-     */
+    public static Jogo parse(String input){
+        String[] campos = input.split(",");
+        String[] data = campos[4].split("-");
+        List<Integer> jc = new ArrayList<>();
+        List<Integer> jf = new ArrayList<>();
+        Map<Integer, Integer> subsC = new HashMap<>();
+        Map<Integer, Integer> subsF = new HashMap<>();
+        for (int i = 5; i < 16; i++){
+            jc.add(Integer.parseInt(campos[i]));
+        }
+        for (int i = 16; i < 19; i++){
+            String[] sub = campos[i].split("->");
+            subsC.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
+        }
+        for (int i = 19; i < 30; i++){
+            jf.add(Integer.parseInt(campos[i]));
+        }
+        for (int i = 30; i < 33; i++){
+            String[] sub = campos[i].split("->");
+            subsF.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
+        }
+        return new Jogo(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]),
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                        jc, subsC, jf, subsF);
+    }
 
     public SimpleEntry<String, Equipa> getEquipaCasa() {
         return new SimpleEntry<String, Equipa>(this.equipaCasa.getKey(), this.equipaCasa.getValue().clone());
@@ -108,14 +122,25 @@ public class Jogo {
     public Map<Integer, Jogador> getJogadoresFora() {
         return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
     }
+    
+    public void setEquipaCasa(String clube, Equipa e){
+        this.equipaCasa = new SimpleEntry<>(clube, e);
+    }
+    
+    public void setEquipaFora(String clube, Equipa e){
+        this.equipaCasa = new SimpleEntry<>(clube, e);
+    }
 
-    /*
-     * public void setJogadoresFora(List<Integer> jogadoresFora) {
-     * this.jogadoresFora = new ArrayList<>(jogadoresFora); }
-     * 
-     * public void setJogadoresCasa(List<Integer> jogadoresCasa) {
-     * this.jogadoresCasa = new ArrayList<>(jogadoresCasa); }
-     */
+
+    
+    public void setJogadoresFora(Equipa equipa) {
+        this.jogadoresFora = this.jogadoresFora.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey()))); 
+    }
+      
+     public void setJogadoresCasa(Equipa equipa) {
+        this.jogadoresCasa = this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey()))); 
+    }
+     
 
     public Map<Integer, Integer> getSubstituicoesCasa() {
         return this.substituicoesCasa;
