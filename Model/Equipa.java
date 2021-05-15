@@ -251,5 +251,5 @@ public class Equipa {
     public String toString() {
         return "Clube: " + this.clube + "\n" + "Numero suplentes: " + this.nSuplentes + "\n" + "Numero Titulares: "
                 + this.nTitulares + "\n" + "Jogadores: " + this.jogadores.toString() + "\n";
-
+    }
 }
