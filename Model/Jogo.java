@@ -4,12 +4,14 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.stream.Collectors;
+import java.util.AbstractMap.SimpleEntry;
 
 public class Jogo {
     //private String equipaCasa;
-    private Map <String, Equipa> equipaCasa;
+    private SimpleEntry<String, Equipa> equipaCasa;
     //private String equipaFora;
-     private Map <String, Equipa> equipaFora;
+     private SimpleEntry<String, Equipa> equipaFora;
     private int golosCasa;
     private int golosFora;
     private LocalDate date;
@@ -20,17 +22,17 @@ public class Jogo {
     Map<Integer, Integer> substituicoesCasa;
     Map<Integer, Integer> substituicoesFora;
 
-    public Jogo(String ec, String ef, int gc, int gf) {
-        this.equipaCasa = new AbstractMap.SimpleEntry(ec, casa);
-        this.equipaFora =  new AbstractMap.SimpleEntry(ec, fora);
+    public Jogo(String ec, String ef, int gc, int gf, Equipa casa, Equipa fora) {
+        this.equipaCasa = new SimpleEntry(ec, casa);
+        this.equipaFora =  new SimpleEntry(ec, fora);
         this.golosCasa = gc;
         this.golosFora = gf;
     }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf, Equipa casa, Equipa fora) {
-        this.equipaCasa = new AbstractMap.SimpleEntry(ec, casa);
-        this.equipaFora =  new AbstractMap.SimpleEntry(ec, fora);
+        this.equipaCasa = new SimpleEntry(ec, casa);
+        this.equipaFora =  new SimpleEntry(ec, fora);
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
@@ -67,7 +69,7 @@ public class Jogo {
 
     }
 
-    public static Jogo parse(String input) {
+    /*public static Jogo parse(String input) {
         String[] campos = input.split(",");
         String[] data = campos[4].split("-");
         List<Integer> jc = new ArrayList<>();
@@ -91,14 +93,14 @@ public class Jogo {
         return new Jogo(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]),
                 LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])), jc,
                 subsC, jf, subsF);
+    }*/
+
+    public SimpleEntry<String, Equipa> getEquipaCasa() {
+        return new SimpleEntry<String, Equipa>(this.equipaCasa.getKey(), this.equipaCasa.getValue().clone());
     }
 
-    public Map<String, Equipa> getEquipaCasa() {
-        return this.equipaCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
-    }
-
-    public Map<String, Equipa> getEquipaFora() {
-        return this.equipaFora.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
+    public SimpleEntry<String, Equipa> getEquipaFora() {
+        return new SimpleEntry<String, Equipa>(this.equipaFora.getKey(), this.equipaFora.getValue().clone());
     }
 
     public int getGolosCasa() {
@@ -114,20 +116,20 @@ public class Jogo {
     }
 
     public Map<Integer, Jogador> getJogadoresCasa() {
-        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));;;
+        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
     }
 
     public Map<Integer, Jogador> getJogadoresFora() {
-        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));;;
+        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e-> e.getKey(), e -> e.getValue()));
     }
 
-    public void setJogadoresFora(List<Integer> jogadoresFora) {
+    /*public void setJogadoresFora(List<Integer> jogadoresFora) {
         this.jogadoresFora = new ArrayList<>(jogadoresFora);
     }
 
     public void setJogadoresCasa(List<Integer> jogadoresCasa) {
         this.jogadoresCasa = new ArrayList<>(jogadoresCasa);
-    }
+    }*/
 
     public Map<Integer, Integer> getSubstituicoesCasa() {
         return this.substituicoesCasa;

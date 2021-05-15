@@ -20,7 +20,7 @@ public class TestaFM {
         Jogo jj = new Jogo(e1.getClube(), e2.getClube(), 0, 0, LocalDate.now(),
                 e1.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()), new HashMap<>(),
                 e2.getJogadores().stream().map(Jogador::getNumeroJogador).collect(Collectors.toList()),
-                new HashMap<>());
+                new HashMap<>(), e1, e2);
         jj.simulacaoJogo(e1, e2);
         System.out.println("\nOverall equipa casa: " + e1.overallEquipa());
         System.out.println("\nOverall equipa fora: " + e2.overallEquipa());

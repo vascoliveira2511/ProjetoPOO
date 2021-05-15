@@ -1,5 +1,5 @@
 
-public class Lateral extends Jogador {
+public class Lateral extends Jogador implements Ofensivo, Defensivo {
 
     private int cruzamento;
 
@@ -30,9 +30,21 @@ public class Lateral extends Jogador {
     }
 
     public double overall() {
-        return ((super.getVelocidade() * 0.30 + super.getResistencia() * 0.15 + super.getDestreza() * 0.1
-                + super.getImpulsao() * 0.0025 + super.getJogoDeCabeca() * 0.025 + super.getRemate() * 0.1
-                + super.getCapacidadeDePasse() * 0.30));
+        return   (super.getVelocidade() * 0.20 + super.getResistencia() * 0.15 + super.getDestreza() * 0.1
+                + super.getImpulsao() * 0.025 + super.getJogoDeCabeca() * 0.025 + super.getRemate() * 0.1
+                + super.getCapacidadeDePasse() * 0.20 + this.cruzamento * 0.20);
+    }
+    
+    public double overallOfensivo(){
+        return   (super.getVelocidade() * 0.20 + super.getResistencia() * 0.15 + super.getDestreza() * 0.05
+                + super.getImpulsao() * 0.025 + super.getJogoDeCabeca() * 0.025 + super.getRemate() * 0.15
+                + super.getCapacidadeDePasse() * 0.10 + this.cruzamento * 0.30);
+    }
+    
+    public double overallDefensivo(){
+        return   (super.getVelocidade() * 0.15 + super.getResistencia() * 0.15 + super.getDestreza() * 0.2
+                + super.getImpulsao() * 0.05 + super.getJogoDeCabeca() * 0.025 + super.getRemate() * 0.05
+                + super.getCapacidadeDePasse() * 0.25 + this.cruzamento * 0.125);
     }
 
     public Lateral clone() {

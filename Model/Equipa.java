@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 /**
  * Classe Equipa
@@ -152,6 +153,15 @@ public class Equipa {
     public List<Jogador> melhoresPosicao(String posicao) {
         return this.jogadores.stream().map(Jogador::clone).sorted(new JogadorComparator()).collect(Collectors.toList());
     }
+    
+    /*public Map<Integer, Jogador> equipaTitular(){
+        List<Jogador> utilizados = this.jogadores;
+        List<Jogador> onzeInicial = new ArrayList<>(this.nTitulares);
+        onzeInicial.add(this.melhoresPosicao("GuardaRedes").get(0));
+        
+        
+        
+    }*/
 
     /**
      * Metodo que calcula o overall da equipa.

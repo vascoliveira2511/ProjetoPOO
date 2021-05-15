@@ -62,8 +62,8 @@ public class Parser {
                     ultima.addJogador(j.clone()); // if no team was parsed previously, file is not well-formed
                     break;
                 case "Jogo":
-                    Jogo jo = Jogo.parse(linhaPartida[1]);
-                    jogos.add(jo);
+                    //Jogo jo = Jogo.parse(linhaPartida[1]);
+                    //jogos.add(jo);
                     break;
                 default:
                     throw new LinhaIncorretaException();
