@@ -11,17 +11,31 @@ import java.util.concurrent.TimeUnit;
 public class Jogo {
     // private String equipaCasa;
     private SimpleEntry<String, Equipa> equipaCasa;
+
     // private String equipaFora;
     private SimpleEntry<String, Equipa> equipaFora;
+
     private int golosCasa;
+
     private int golosFora;
+
     private LocalDate date;
+
     // private List<Integer> jogadoresCasa;
+
     private Map<Integer, Jogador> jogadoresCasa;
+
     // private List<Integer> jogadoresFora;
+
     private Map<Integer, Jogador> jogadoresFora;
+
     Map<Integer, Integer> substituicoesCasa;
+
     Map<Integer, Integer> substituicoesFora;
+
+    public Jogo() {
+
+    }
 
     public Jogo(String ec, String ef, Equipa casa, Equipa fora, List<Integer> jc, List<Integer> jf) {
         this.equipaCasa = new SimpleEntry<>(ec, casa);
@@ -45,7 +59,7 @@ public class Jogo {
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }
-    
+
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf) {
         this.equipaCasa = new SimpleEntry<>(ec, null);
@@ -58,7 +72,6 @@ public class Jogo {
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }
-
 
     public Jogo(Jogo jogo) {
         this.equipaCasa = jogo.getEquipaCasa();
@@ -73,30 +86,30 @@ public class Jogo {
 
     }
 
-    public static Jogo parse(String input){
+    public static Jogo parse(String input) {
         String[] campos = input.split(",");
         String[] data = campos[4].split("-");
         List<Integer> jc = new ArrayList<>();
         List<Integer> jf = new ArrayList<>();
         Map<Integer, Integer> subsC = new HashMap<>();
         Map<Integer, Integer> subsF = new HashMap<>();
-        for (int i = 5; i < 16; i++){
+        for (int i = 5; i < 16; i++) {
             jc.add(Integer.parseInt(campos[i]));
         }
-        for (int i = 16; i < 19; i++){
+        for (int i = 16; i < 19; i++) {
             String[] sub = campos[i].split("->");
             subsC.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
         }
-        for (int i = 19; i < 30; i++){
+        for (int i = 19; i < 30; i++) {
             jf.add(Integer.parseInt(campos[i]));
         }
-        for (int i = 30; i < 33; i++){
+        for (int i = 30; i < 33; i++) {
             String[] sub = campos[i].split("->");
             subsF.put(Integer.parseInt(sub[0]), Integer.parseInt(sub[1]));
         }
         return new Jogo(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]),
-                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
-                        jc, subsC, jf, subsF);
+                LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])), jc,
+                subsC, jf, subsF);
     }
 
     public SimpleEntry<String, Equipa> getEquipaCasa() {
@@ -126,25 +139,24 @@ public class Jogo {
     public Map<Integer, Jogador> getJogadoresFora() {
         return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
     }
-    
-    public void setEquipaCasa(String clube, Equipa e){
-        this.equipaCasa = new SimpleEntry<>(clube, e);
-    }
-    
-    public void setEquipaFora(String clube, Equipa e){
+
+    public void setEquipaCasa(String clube, Equipa e) {
         this.equipaCasa = new SimpleEntry<>(clube, e);
     }
 
+    public void setEquipaFora(String clube, Equipa e) {
+        this.equipaCasa = new SimpleEntry<>(clube, e);
+    }
 
-    
     public void setJogadoresFora(Equipa equipa) {
-        this.jogadoresFora = this.jogadoresFora.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey()))); 
+        this.jogadoresFora = this.jogadoresFora.entrySet().stream()
+                .collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey())));
     }
-      
-     public void setJogadoresCasa(Equipa equipa) {
-        this.jogadoresCasa = this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey()))); 
+
+    public void setJogadoresCasa(Equipa equipa) {
+        this.jogadoresCasa = this.jogadoresCasa.entrySet().stream()
+                .collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey())));
     }
-     
 
     public Map<Integer, Integer> getSubstituicoesCasa() {
         return this.substituicoesCasa;
@@ -170,14 +182,14 @@ public class Jogo {
         if (aleatorio <= dif) {
             // ataque equipa 1
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar){
+            if (aleatorio2 < marcar) {
                 this.golosCasa++;
                 System.out.println("golo equipa 1!");
             }
         } else {
             // ataque equipa 2
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar){
+            if (aleatorio2 < marcar) {
                 this.golosFora++;
                 System.out.println("golo equipa 2!");
             }
@@ -216,21 +228,24 @@ public class Jogo {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + " - "
-                + this.equipaFora .getKey()+ "\n" + this.golosCasa + "  -  " + this.golosFora + "\n")
-                /*+ "\n" + "Jogadores casa: \n")*/;
-        /*for (Jogador j : this.jogadoresCasa.values()){
-            sb.append(j.toString());
-        }
-        sb.append("Jogadores fora: \n");
-        for (Jogador j : this.jogadoresFora.values()){
-            sb.append(j.toString());
-        }*/
+        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " + this.equipaFora.getKey()
+                + "\n" + this.golosCasa + "  -  " + this.golosFora + "\n")
+        /* + "\n" + "Jogadores casa: \n") */;
+        /*
+         * for (Jogador j : this.jogadoresCasa.values()){ sb.append(j.toString()); }
+         * sb.append("Jogadores fora: \n"); for (Jogador j :
+         * this.jogadoresFora.values()){ sb.append(j.toString()); }
+         */
         return sb.toString();
-        /*return "Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n" + "Equipa fora: "
-                + this.equipaFora .getKey()+ "\n" + "Golos casa: " + this.golosCasa + "\n" + "Golos fora: " + this.golosFora
-                + "\n" + "Jogadores casa" + this.jogadoresCasa.values().stream().map(Jogador :: toString) + "\n" + "Jogadores fora"
-                + this.jogadoresFora.values().stream().map(Jogador :: toString) + "\n"/* + "Substituições casa" + this.substituicoesCasa.toString() + "\n"
-                + "Substituições fora" + this.substituicoesFora.toString() + "\n";*/
+        /*
+         * return "Data: " + this.date.toString() + "\n" + "Equipa casa: " +
+         * this.equipaCasa.getKey() + "\n" + "Equipa fora: " + this.equipaFora
+         * .getKey()+ "\n" + "Golos casa: " + this.golosCasa + "\n" + "Golos fora: " +
+         * this.golosFora + "\n" + "Jogadores casa" +
+         * this.jogadoresCasa.values().stream().map(Jogador :: toString) + "\n" +
+         * "Jogadores fora" + this.jogadoresFora.values().stream().map(Jogador ::
+         * toString) + "\n"/* + "Substituições casa" + this.substituicoesCasa.toString()
+         * + "\n" + "Substituições fora" + this.substituicoesFora.toString() + "\n";
+         */
     }
 }

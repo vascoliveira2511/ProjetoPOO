@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.time.LocalDate;
@@ -18,6 +19,11 @@ public class LigaPOO {
      * Lista de jogos.
      */
     List<Jogo> jogos;
+
+    public LigaPOO() {
+        this.equipas = new HashMap<>();
+        this.jogos = new ArrayList<>();
+    }
 
     public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos) {
         this.equipas = equipas.entrySet().stream()
@@ -39,9 +45,9 @@ public class LigaPOO {
         eP.removeJogador(j);
         eF.addJogador(j);
     }
-    
-    public List<Jogo> jogosDoDia (LocalDate date){
-        return this.jogos.stream().map(Jogo :: clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());
+
+    public List<Jogo> jogosDoDia(LocalDate date) {
+        return this.jogos.stream().map(Jogo::clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());
     }
 
 }
