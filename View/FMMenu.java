@@ -27,7 +27,7 @@ public class FMMenu {
                 String e2 = sc2.next();
                 System.out.println("\nQual número: ");
                 int num = sc2.nextInt();
-                System.out.println("\nTransferindo: ");
+                System.out.println("\nTransferindo... ");
                 l1.transferencia(e1, e2, num);
                 System.out.println("\nConcluído!!");
                 break;
