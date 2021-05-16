@@ -41,15 +41,17 @@ public class TestaFM {
         e1.addJogador(j3);
         e1.addJogador(j4);
         Equipa e2 = new Equipa("E2");
-        Jogador j5 = new Avancado("Miguel", 1, 10, 10, 10, 10, 10, 10, 10);
+        /*Jogador j5 = new Avancado("Miguel", 1, 10, 10, 10, 10, 10, 10, 10);
         Jogador j6 = new Defesa("Vasco", 2, 10, 10, 10, 10, 10, 10, 10);
         Jogador j7 = new Defesa("Diogo", 3, 10, 10, 10, 10, 10, 10, 10);
         Jogador j8 = new Avancado("Ronaldo", 4, 10, 10, 10, 10, 10, 10, 10);
         e2.addJogador(j5);
         e2.addJogador(j6);
         e2.addJogador(j7);
-        e2.addJogador(j8);
+        e2.addJogador(j8);*/
+        e2 = e1.clone();
         Jogo jj = new Jogo("Equipa1", "Equipa2", e1, e2, numeros, numeros);
+        jj.simulacaoJogo();
         System.out.println(jj.toString());
     }
 }
