@@ -1,29 +1,29 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class FMMenu {
-    public static void main(String[] args) {
-        String[] s = {};
+    public static void main(String[] args) throws IOException {
+        Controller c = new Controller();
+        String[] s = { "Ler ficheiro", "Transferir jogador", "Simular jogo" };
         Menu m = new Menu(s);
         m.executa();
-        Map<String, Equipa> equipas = new HashMap<>(); // nome, equipa
-        Map<Integer, Jogador> jogadores = new HashMap<>(); // numero, jogador
-        List<Jogo> jogos = new ArrayList<>();
-        try {
-            Parser.parse(equipas, jogadores, jogos);
-        } catch (LinhaIncorretaException e) {
-            e.printStackTrace();
-        }
-        Equipa e1 = new Equipa(equipas.get("Bartok F. C."));
-        Equipa e2 = new Equipa(equipas.get("Mozart F. C."));
-        Jogo jj = new Jogo(null, null, 0, 0, e2, e2);
-        jj.simulacaoJogo();
         int op = m.getOpcao();
         System.out.println("Opção lida: " + op);
         switch (op) {
-
+            case 1:
+                Scanner sc1 = new Scanner(System.in);
+                System.out.println("\tQual ficheiro: ");
+                String file = sc1.next();
+                c.leFicheiro(file);
+                break;
+            case 2:
+                Scanner sc2 = new Scanner(System.in);
+                System.out.println("\tQuais joagdores: ");
+                // sinceramente nao sei como podemos fazer isto;
+                break;
+            case 3:
+                System.out.println("");
+                break;
         }
 
     }
