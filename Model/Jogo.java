@@ -24,7 +24,7 @@ public class Jogo {
 
     public Jogo(String ec, String ef, Equipa casa, Equipa fora, List<Integer> jc, List<Integer> jf) {
         this.equipaCasa = new SimpleEntry<>(ec, casa);
-        this.equipaFora = new SimpleEntry<>(ec, fora);
+        this.equipaFora = new SimpleEntry<>(ef, fora);
         this.golosCasa = 0;
         this.golosFora = 0;
         this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j -> casa.existeJogador(j)));
@@ -35,7 +35,7 @@ public class Jogo {
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf, Equipa casa, Equipa fora) {
         this.equipaCasa = new SimpleEntry<>(ec, casa);
-        this.equipaFora = new SimpleEntry<>(ec, fora);
+        this.equipaFora = new SimpleEntry<>(ef, fora);
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
@@ -48,11 +48,11 @@ public class Jogo {
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf) {
         this.equipaCasa = new SimpleEntry<>(ec, null);
-        this.equipaFora = new SimpleEntry<>(ec, null);
+        this.equipaFora = new SimpleEntry<>(ef, null);
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
-        this.jogadoresCasa = jf.stream().collect(Collectors.toMap(j -> j, null));
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, null));
         this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, null));
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
@@ -210,8 +210,8 @@ public class Jogo {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n" + "Equipa fora: "
-                + this.equipaFora .getKey()+ "\n" + "Golos casa: " + this.golosCasa + "\n" + "Golos fora: " + this.golosFora
+        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + " - "
+                + this.equipaFora .getKey()+ "\n" + this.golosCasa + "  -  " + this.golosFora
                 + "\n" + "Jogadores casa: \n");
         for (Jogador j : this.jogadoresCasa.values()){
             sb.append(j.toString());

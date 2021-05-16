@@ -50,8 +50,6 @@ public class TestaFM {
         e2.addJogador(j7);
         e2.addJogador(j8);
         Jogo jj = new Jogo("Equipa1", "Equipa2", e1, e2, numeros, numeros);
-        jj.setEquipaCasa("Equipa1", e1);
-        jj.setEquipaFora("Equipa2", e2);
         System.out.println(jj.toString());
     }
 }
