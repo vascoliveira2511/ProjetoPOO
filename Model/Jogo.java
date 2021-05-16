@@ -6,6 +6,7 @@ import java.lang.Math;
 import java.util.stream.Collectors;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Jogo {
     // private String equipaCasa;
@@ -169,21 +170,26 @@ public class Jogo {
         if (aleatorio <= dif) {
             // ataque equipa 1
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar)
+            if (aleatorio2 < marcar){
                 this.golosCasa++;
+                System.out.println("golo equipa 1!");
+            }
         } else {
             // ataque equipa 2
             marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
-            if (aleatorio2 < marcar)
+            if (aleatorio2 < marcar){
                 this.golosFora++;
+                System.out.println("golo equipa 2!");
+            }
         }
     }
 
-    public void simulacaoJogo() {
+    public void simulacaoJogo() throws java.lang.InterruptedException {
         Equipa ec = this.equipaCasa.getValue();
         Equipa ef = this.equipaFora.getValue();
         double dif = probs(ec.overallEquipa(), ef.overallEquipa());
         for (int i = 0; i < 9; i++) {
+            TimeUnit.SECONDS.sleep(1);
             double aleatorio = Math.random();
             this.situacoesGolos(ec, ef, dif, aleatorio);
         }

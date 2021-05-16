@@ -51,7 +51,14 @@ public class TestaFM {
         e2.addJogador(j8);*/
         e2 = e1.clone();
         Jogo jj = new Jogo("Equipa1", "Equipa2", e1, e2, numeros, numeros);
-        jj.simulacaoJogo();
+        try
+        {
+            jj.simulacaoJogo();
+        }
+        catch (java.lang.InterruptedException ie)
+        {
+            ie.printStackTrace();
+        }
         System.out.println(jj.toString());
     }
 }
