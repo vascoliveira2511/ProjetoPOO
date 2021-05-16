@@ -2,6 +2,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 import java.util.List;
+import java.time.LocalDate;
 
 /**
  * Classe ligaPOO
@@ -37,6 +38,10 @@ public class LigaPOO {
         Jogador j = eP.existeJogador(num);
         eP.removeJogador(j);
         eF.addJogador(j);
+    }
+    
+    public List<Jogo> jogosDoDia (LocalDate date){
+        return this.jogos.stream().map(Jogo :: clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());
     }
 
 }

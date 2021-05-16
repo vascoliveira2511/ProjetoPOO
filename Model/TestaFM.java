@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class TestaFM {
     public static void main(String args[]) {
-        Map<String, Equipa> equipas = new HashMap<>(); // nome, equipa
+        /*Map<String, Equipa> equipas = new HashMap<>(); // nome, equipa
         Map<Integer, Jogador> jogadores = new HashMap<>(); // numero, jogador
         List<Jogo> jogos = new ArrayList<>();
         try {
@@ -25,6 +25,33 @@ public class TestaFM {
         LigaPOO lp = new LigaPOO(equipas, jogos);
         System.out.println("\nOverall equipa casa: " + e1.overallEquipa());
         System.out.println("\nOverall equipa fora: " + e2.overallEquipa());
+        System.out.println(jj.toString());*/
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(1);
+        numeros.add(2);
+        numeros.add(3);
+        numeros.add(4);
+        Jogador j1 = new Avancado("Miguel", 1, 100, 100, 100, 100, 100, 100, 100);
+        Jogador j2 = new Defesa("Vasco", 2, 100, 100, 100, 100, 100, 100, 100);
+        Jogador j3 = new Defesa("Diogo", 3, 100, 100, 100, 100, 100, 100, 100);
+        Jogador j4 = new Avancado("Ronaldo", 4, 100, 100, 100, 100, 100, 100, 100);
+        Equipa e1 = new Equipa("E1");
+        e1.addJogador(j1);
+        e1.addJogador(j2);
+        e1.addJogador(j3);
+        e1.addJogador(j4);
+        Equipa e2 = new Equipa("E2");
+        Jogador j5 = new Avancado("Miguel", 1, 10, 10, 10, 10, 10, 10, 10);
+        Jogador j6 = new Defesa("Vasco", 2, 10, 10, 10, 10, 10, 10, 10);
+        Jogador j7 = new Defesa("Diogo", 3, 10, 10, 10, 10, 10, 10, 10);
+        Jogador j8 = new Avancado("Ronaldo", 4, 10, 10, 10, 10, 10, 10, 10);
+        e2.addJogador(j5);
+        e2.addJogador(j6);
+        e2.addJogador(j7);
+        e2.addJogador(j8);
+        Jogo jj = new Jogo("Equipa1", "Equipa2", e1, e2, numeros, numeros);
+        jj.setEquipaCasa("Equipa1", e1);
+        jj.setEquipaFora("Equipa2", e2);
         System.out.println(jj.toString());
     }
 }

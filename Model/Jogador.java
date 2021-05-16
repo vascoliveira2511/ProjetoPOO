@@ -271,10 +271,10 @@ public abstract class Jogador {
      * @return String
      */
     public String toString() {
-        return "Nome: " + this.nome + " Numero: " + this.numero + "Velocidade: " + this.velocidade + "\n"
-                + "Resistencia: " + this.resistencia + "\n" + "Destreza: " + this.destreza + "\n" + "Impulsao: "
-                + this.impulsao + "\n" + "Jogo de Cabeça: " + this.jogoDeCabeca + "\n" + "Remate: " + this.remate + "\n"
-                + "Capacidade de Passe: " + this.capacidadeDePasse + "\n";
+        return this.nome + "; " + this.numero + "; " + this.velocidade + "; "
+                + this.resistencia + "; " + this.destreza + "; "
+                + this.impulsao + "; " + this.jogoDeCabeca + "; " 
+                + this.remate + "; " + this.capacidadeDePasse + "\n";
     }
 
     /**
