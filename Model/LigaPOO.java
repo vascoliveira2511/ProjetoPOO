@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.time.LocalDate;
+import java.io.Serializable;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
 
 /**
  * Classe ligaPOO
  */
-public class LigaPOO {
+public class LigaPOO implements Serializable {
 
     /**
      * Mapa de equipas.
@@ -48,6 +55,19 @@ public class LigaPOO {
 
     public List<Jogo> jogosDoDia(LocalDate date) {
         return this.jogos.stream().map(Jogo::clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());
+    }
+    
+    public void saveToBinary(String fn)throws IOException{
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fn));
+        os.writeObject(this);
+        os.close();
+    }
+    
+    public LigaPOO readFromBinary(String fn)throws IOException, FileNotFoundException, ClassNotFoundException{
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream(fn));
+        LigaPOO liga = (LigaPOO)is.readObject();
+        is.close();
+        return liga;
     }
 
 }

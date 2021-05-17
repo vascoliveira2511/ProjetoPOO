@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class GuardaRedes extends Jogador {
+public class GuardaRedes extends Jogador implements Serializable{
 
     /**
      * 

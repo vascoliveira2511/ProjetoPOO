@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.io.Serializable;
 
-public class Jogo {
+public class Jogo implements Serializable{
     // private String equipaCasa;
     private SimpleEntry<String, Equipa> equipaCasa;
 

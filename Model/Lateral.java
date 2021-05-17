@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Lateral extends Jogador implements Ofensivo, Defensivo {
+public class Lateral extends Jogador implements Ofensivo, Defensivo, Serializable {
 
     private int cruzamento;
 

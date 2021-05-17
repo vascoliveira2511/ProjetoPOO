@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.Serializable;
 
 /**
  * Classe Equipa
  */
-public class Equipa {
+public class Equipa implements Serializable{
 
     private String clube;
     /**

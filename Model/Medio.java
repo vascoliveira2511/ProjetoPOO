@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe de um médio.
  */
-public class Medio extends Jogador {
+public class Medio extends Jogador implements Serializable{
 
     /**
      * Capacidade de recuperar bolas de um médio.
