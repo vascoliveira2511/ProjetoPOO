@@ -25,7 +25,7 @@ public class LigaPOO implements Serializable {
     /**
      * Lista de jogos.
      */
-    List<Jogo> jogos;
+    private List<Jogo> jogos;
 
     public LigaPOO() {
         this.equipas = new HashMap<>();
@@ -37,6 +37,29 @@ public class LigaPOO implements Serializable {
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().clone(), (a, b) -> b, HashMap::new));
         this.jogos = jogos.stream().map(Jogo::clone).collect(Collectors.toList());
     }
+    
+    public LigaPOO(LigaPOO l){
+        this.equipas = l.getEquipas();
+        this.jogos = l.getJogos();
+    }
+    
+    public Map<String, Equipa> getEquipas(){
+        return this.equipas.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().clone()));
+    }
+    
+    public void setEquipas (Map<String, Equipa> e){
+        this.equipas = e.entrySet().stream().collect(Collectors.toMap(eq -> eq.getKey(), eq -> eq.getValue().clone()));
+    }
+    
+    public List<Jogo> getJogos(){
+        return this.jogos.stream().map(Jogo :: clone).collect(Collectors.toList());
+    }
+    
+    public void getJogos(List<Jogo> j){
+        this.jogos = j.stream().map(Jogo :: clone).collect(Collectors.toList());
+    }
+    
+    
 
     /**
      * Método que efetua a transferência de jogadores.
@@ -63,11 +86,15 @@ public class LigaPOO implements Serializable {
         os.close();
     }
     
-    public LigaPOO readFromBinary(String fn)throws IOException, FileNotFoundException, ClassNotFoundException{
+    public static LigaPOO readFromBinary(String fn)throws IOException, FileNotFoundException, ClassNotFoundException{
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fn));
         LigaPOO liga = (LigaPOO)is.readObject();
         is.close();
         return liga;
+    }
+    
+    public LigaPOO clone(){
+        return new LigaPOO(this);
     }
 
 }

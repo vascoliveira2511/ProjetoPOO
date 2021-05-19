@@ -1,5 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 public class TestaFM {
     public static void main(String args[]) {
@@ -26,5 +29,31 @@ public class TestaFM {
             ie.printStackTrace();
         }
         System.out.println(jj.toString());
+        Map <String, Equipa> eq = new HashMap<>();
+        eq.put("Equipa1", e1);
+        eq.put("Equipa2", e2);
+        List<Jogo> jogos = new ArrayList<>();
+        jogos.add(jj);
+        LigaPOO l = new LigaPOO(eq, jogos);
+        try
+        {
+            l.saveToBinary("teste");
+        }
+        catch (java.io.IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        try {
+            LigaPOO l2 = LigaPOO.readFromBinary("teste");
+        }
+        catch (java.io.IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        catch (ClassNotFoundException cnfe)
+        {
+            cnfe.printStackTrace();
+        }
+        
     }
 }

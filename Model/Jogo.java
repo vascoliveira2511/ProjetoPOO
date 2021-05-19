@@ -10,10 +10,9 @@ import java.util.concurrent.TimeUnit;
 import java.io.Serializable;
 
 public class Jogo implements Serializable{
-    // private String equipaCasa;
+    
     private SimpleEntry<String, Equipa> equipaCasa;
-
-    // private String equipaFora;
+    
     private SimpleEntry<String, Equipa> equipaFora;
 
     private int golosCasa;
@@ -22,11 +21,7 @@ public class Jogo implements Serializable{
 
     private LocalDate date;
 
-    // private List<Integer> jogadoresCasa;
-
     private Map<Integer, Jogador> jogadoresCasa;
-
-    // private List<Integer> jogadoresFora;
 
     private Map<Integer, Jogador> jogadoresFora;
 
