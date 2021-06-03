@@ -68,7 +68,7 @@ public class LigaPOO implements Serializable {
      * @param equipaFuturo
      * @param num
      */
-    public void transferencia(String equipaPresente, String equipaFuturo, int num) {
+    public void transferencia(String equipaPresente, String equipaFuturo, int num) throws JogadorException {
         Equipa eP = equipas.get(equipaPresente);
         Equipa eF = equipas.get(equipaFuturo);
         Jogador j = eP.existeJogador(num);

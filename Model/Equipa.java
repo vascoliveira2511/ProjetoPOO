@@ -139,7 +139,9 @@ public class Equipa implements Serializable{
         this.jogadores.add(j.clone());
     }
 
-    public void removeJogador(Jogador j) {
+    public void removeJogador(Jogador j) throws JogadorException {
+        if (!this.jogadores.contains(j)) 
+            throw new JogadorException("Jogador" + j.getNumeroJogador() + "nao existe na equipa " + this.clube + "!\n");
         this.jogadores.remove(j);
     }
     
