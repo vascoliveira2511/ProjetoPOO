@@ -38,9 +38,12 @@ public class Jogo implements Serializable{
         this.equipaFora = new SimpleEntry<>(ef, fora);
         this.golosCasa = 0;
         this.golosFora = 0;
+        this.date = LocalDate.now();
         this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j -> casa.existeJogador(j)));
         this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j -> fora.existeJogador(j)));
-        this.date = LocalDate.now();
+        this.substituicoesCasa = new HashMap<>();
+        this.substituicoesFora = new HashMap<>();
+        
     }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
@@ -167,39 +170,144 @@ public class Jogo implements Serializable{
         return Math.exp(dif) / (1 + Math.exp(dif));
     }
 
-    public double overallPosicao(Equipa e, String posicao) {
-        List<Jogador> pos = e.melhoresPosicao(posicao);
-        return ((pos.stream().mapToDouble(Jogador::overall).sum()) / (e.melhoresPosicao(posicao)).size());
+    public double overallPosicao(String posicao) {
+        return this.jogadoresCasa.values().stream()
+                                          .filter(j -> j.getClass().getSimpleName().equals(posicao))
+                                          .mapToDouble(Jogador :: overall)
+                                          .sum();
     }
 
-    private void situacoesGolos(Equipa e1, Equipa e2, double dif, double aleatorio) {
+    private void situacoesGolos(double dif, double aleatorio) {
         double aleatorio2 = Math.random();
         double marcar;
         if (aleatorio <= dif) {
             // ataque equipa 1
-            marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
+            marcar = probs(overallPosicao("Avancado"), overallPosicao("Defesa"));
             if (aleatorio2 < marcar) {
                 this.golosCasa++;
-                System.out.println("golo equipa 1!");
             }
         } else {
             // ataque equipa 2
-            marcar = probs(overallPosicao(e1, "Avancado"), overallPosicao(e2, "Defesa"));
+            marcar = probs(overallPosicao("Avancado"), overallPosicao("Defesa"));
             if (aleatorio2 < marcar) {
                 this.golosFora++;
-                System.out.println("golo equipa 2!");
             }
         }
     }
+    
+    public void substituicoes(){
+        //equipa casa
+        Jogador s1 = this.jogadoresCasa.values().stream()
+                                               .min((j1,j2)->j1.getResistencia() - j2.getResistencia())
+                                               .get();
+        Jogador e1 = this.jogadoresCasa.values().stream()
+                                               .filter(j -> j.getClass().equals(s1.getClass()))
+                                               .max((j1,j2)-> (int)(j1.overall() - j2.overall()))
+                                               .get();
+        this.jogadoresCasa.remove(s1.getNumeroJogador());
+        this.jogadoresCasa.put(e1.getNumeroJogador(), e1);
+        this.substituicoesCasa.put(s1.getNumeroJogador(), e1.getNumeroJogador());
+        //equipa fora
+        Jogador s2 = this.jogadoresFora.values().stream()
+                                               .min((j1,j2)->j1.getResistencia() - j2.getResistencia())
+                                               .get();
+        Jogador e2 = this.jogadoresCasa.values().stream()
+                                               .filter(j -> j.getClass().equals(s2.getClass()))
+                                               .max((j1,j2)-> (int)(j1.overall() - j2.overall()))
+                                               .get();
+        this.jogadoresFora.remove(s2.getNumeroJogador());
+        this.jogadoresFora.put(e2.getNumeroJogador(), e2);
+        this.substituicoesFora.put(s2.getNumeroJogador(), e2.getNumeroJogador());
+        
+    }
+    
+    public List<Jogador> melhoresPosicao(String posicao) {
+        return this.equipaCasa.getValue().getJogadores()
+                                         .stream().map(Jogador::clone)
+                                         .sorted(new JogadorComparator())
+                                         .collect(Collectors.toList());
+    }
+    
+    public Map <String, List<Jogador>> melhoresTodasPosicoes() {
+        Map<String, List<Jogador>> m = new HashMap<>();
+        m.put("GuardaRedes", this.melhoresPosicao("GuardaRedes"));
+        m.put("Defesa", this.melhoresPosicao("Defesa"));
+        m.put("Lateral", this.melhoresPosicao("Lateral"));
+        m.put("Avancado", this.melhoresPosicao("Avancado"));
+        return m;
+    }
+    
+    public Jogador escolheGuardaRedes(Map<String, List<Jogador>> melhores){
+        List<Jogador> g = melhores.get("GuardaRedes");
+        return g.get(0);
+    }
+    
+    public List<Jogador> escolhePosicao(Map<String, List<Jogador>> melhores, String posicao, int quantos, String opcao2, String opcao3){
+        List<Jogador> r = new ArrayList<>(quantos);
+        int i;
+        
+        //1 OPCAO
+        List<Jogador> m1 = melhores.get(posicao);
+        for (i = 0; i < quantos && i < m1.size(); i++){
+            r.add(m1.get(i));
+        }
+        //2 OPCAO 
+        if ( i < quantos){
+            List<Jogador> m2 = melhores.get(opcao2);
+            int j = 0;
+            for (; i < quantos && i < m2.size(); i++){
+                r.add(m2.get(j++));
+            }
+        }
+        //3 OPCAO
+        if ( i < quantos){
+            List<Jogador> m3 = melhores.get(opcao3);
+            int j = 0;
+            for (; i < quantos && i < m3.size(); i++){
+                r.add(m3.get(j++));
+            }
+        }
+        return r;
+    }
+    
+    public Map<Integer, Jogador> equipaTitular(){
+        List<Jogador> utilizados = this.equipaCasa.getValue().getJogadores();
+        Map<Integer, Jogador> r = new HashMap<>();
+        Map <String, List<Jogador>> melhores = this.melhoresTodasPosicoes();
+        r.put(escolheGuardaRedes(melhores).getNumeroJogador(), escolheGuardaRedes(melhores));
+        for (Jogador j : escolhePosicao(melhores, "Defesa", 2, "Medio", "Lateral")){
+            r.put(j.getNumeroJogador(), j);
+            utilizados.remove(j);
+        }
+        for (Jogador j : escolhePosicao(melhores, "Medio", 2, "Defesa", "Avancado")){
+            r.put(j.getNumeroJogador(), j);
+            utilizados.remove(j);
+        }
+        for (Jogador j : escolhePosicao(melhores, "Avancado", 2, "Medio", "Lateral")){
+            r.put(j.getNumeroJogador(), j);
+            utilizados.remove(j);
+        }
+        for (Jogador j : escolhePosicao(melhores, "Lateral", 2, "Avancado", "Medio")){
+            r.put(j.getNumeroJogador(), j);
+            utilizados.remove(j);
+        }
+        return r;
+    }
 
     public void simulacaoJogo() throws java.lang.InterruptedException {
-        Equipa ec = this.equipaCasa.getValue();
-        Equipa ef = this.equipaFora.getValue();
-        double dif = probs(ec.overallEquipa(), ef.overallEquipa());
+        double overallEC = this.jogadoresCasa.values().stream()
+                                                      .mapToDouble(Jogador :: overall)
+                                                      .sum();
+        double overallEF = this.jogadoresFora.values().stream()
+                                                      .mapToDouble(Jogador :: overall)
+                                                      .sum();
+        double dif = probs(overallEC/11,overallEF/11);
         for (int i = 0; i < 9; i++) {
-            TimeUnit.SECONDS.sleep(1);
+            //TimeUnit.SECONDS.sleep(1);
+            if (i == 6 || i == 7 || i == 8) this.substituicoes();
             double aleatorio = Math.random();
-            this.situacoesGolos(ec, ef, dif, aleatorio);
+            this.situacoesGolos(dif, aleatorio);
+            
         }
 
     }

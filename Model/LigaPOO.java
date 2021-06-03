@@ -88,7 +88,7 @@ public class LigaPOO implements Serializable {
     
     public static LigaPOO readFromBinary(String fn)throws IOException, FileNotFoundException, ClassNotFoundException{
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fn));
-        LigaPOO liga = (LigaPOO)is.readObject();
+        LigaPOO liga = (LigaPOO) is.readObject();
         is.close();
         return liga;
     }
