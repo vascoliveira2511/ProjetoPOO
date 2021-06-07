@@ -215,7 +215,6 @@ public class Jogo implements Serializable {
     public void substituiçoes2()  {
         for (Map.Entry<Integer, Integer> m : this.substituicoesCasa.entrySet()) {
             this.jogadoresCasa.remove(m.getKey());
-            System.out.println(this.equipaCasa.getValue().existeJogador(m.getValue()).toString());
             this.jogadoresCasa.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
         }
         for (Map.Entry<Integer, Integer> m : this.substituicoesFora.entrySet()) {
