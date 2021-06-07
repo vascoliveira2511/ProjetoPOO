@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.io.Serializable;
 
@@ -23,7 +25,7 @@ public class Equipa implements Serializable {
     /**
      * List de jogadores
      */
-    private List<Jogador> jogadores;
+    private Map<Integer, Jogador> jogadores;
 
     /**
      * Metodo que cria uma instancia de equipa com os valores recebidos.
@@ -38,25 +40,25 @@ public class Equipa implements Serializable {
         this.clube = " ";
         this.nTitulares = 0;
         this.nSuplentes = 0;
-        this.jogadores = new ArrayList<>();
+        this.jogadores = new HashMap<>();
     }
     public Equipa(String clube, int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = nTitulares;
         this.nSuplentes = nSuplentes;
-        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
+        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
     }
 
     public Equipa(String nomeE) {
         this.clube = nomeE;
-        this.jogadores = new ArrayList<>();
+        this.jogadores = new HashMap<>();
     }
 
     public Equipa(String clube, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = 11;
         this.nSuplentes = 3;
-        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
+        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
     }
 
     public static Equipa parse(String input) {
@@ -125,8 +127,8 @@ public class Equipa implements Serializable {
      *
      * @return titulares
      */
-    public List<Jogador> getJogadores() {
-        return this.jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
+    public Map<Integer, Jogador> getJogadores() {
+        return this.jogadores.entrySet().stream().collect(Collectors.toMap(Map.Entry :: getKey, j-> j.getValue().clone()));
     }
 
     /**
@@ -136,22 +138,22 @@ public class Equipa implements Serializable {
      * @param nTitulares
      */
     public void setJogadores(ArrayList<Jogador> titulares) {
-        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toList());
+        this.jogadores = titulares.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
     }
 
     public void addJogador(Jogador j) {
-        j.addEquipa(this.clube);
-        this.jogadores.add(j.clone());
+        this.jogadores.put(j.getNumeroJogador(), j.clone());
     }
 
     public void removeJogador(Jogador j) throws JogadorException {
-        if (!this.jogadores.contains(j))
+        j.addEquipa(this.clube);
+        if (this.jogadores.get(j.getNumeroJogador()) == null)
             throw new JogadorException("Jogador" + j.getNumeroJogador() + "nao existe na equipa " + this.clube + "!\n");
         this.jogadores.remove(j);
     }
 
     public Jogador existeJogador(int num) {
-        for (Jogador j : this.jogadores){
+        for (Jogador j : this.jogadores.values()){
             if (j.getNumeroJogador() == num) return j;
         }
         return null;
@@ -164,7 +166,7 @@ public class Equipa implements Serializable {
      */
     public double overallEquipa() {
         double overall = 0;
-        for (Jogador t : this.jogadores)
+        for (Jogador t : this.jogadores.values())
             overall += t.overall();
         return (overall / (this.jogadores.size()));
     }
