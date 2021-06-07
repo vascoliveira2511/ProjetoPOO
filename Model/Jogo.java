@@ -65,8 +65,8 @@ public class Jogo implements Serializable {
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
-        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, null));
-        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, null));
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j->new Avancado())); //temporario
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j->new Avancado())); //temporario
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }

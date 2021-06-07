@@ -64,6 +64,18 @@ public abstract class Jogador {
      * @return void
      */
 
+    public Jogador(){
+        this.nome = " ";
+        this.numero = 0;
+        this.velocidade = 0;
+        this.resistencia = 0;
+        this.destreza = 0;
+        this.impulsao = 0;
+        this.jogoDeCabeca = 0;
+        this.remate = 0;
+        this.capacidadeDePasse = 0;
+    }
+
     public Jogador(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao,
             int jogoDeCabeca, int remate, int capacidadeDePasse) {
         this.nome = nome;
