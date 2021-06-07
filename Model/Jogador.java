@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Classe de um jogador.
@@ -48,7 +49,7 @@ public abstract class Jogador {
     /**
      * 
      */
-    private List<String> histEquipas;
+    private List<String> histEquipas = new ArrayList<>();
 
     /**
      * Metodo de classe que cria uma instancia de jogador com valores fornecidos.
@@ -74,7 +75,6 @@ public abstract class Jogador {
         this.jogoDeCabeca = jogoDeCabeca;
         this.remate = remate;
         this.capacidadeDePasse = capacidadeDePasse;
-        this.histEquipas = new ArrayList<>();
     }
 
     /**
@@ -94,6 +94,7 @@ public abstract class Jogador {
         this.jogoDeCabeca = jogador.getJogoDeCabeca();
         this.remate = jogador.getRemate();
         this.capacidadeDePasse = jogador.getCapacidadeDePasse();
+        this.histEquipas = jogador.getHistEquipas();
     }
 
     public String getNomeJogador() {
@@ -250,6 +251,14 @@ public abstract class Jogador {
      */
     public int getCapacidadeDePasse() {
         return this.capacidadeDePasse;
+    }
+
+    public List<String> getHistEquipas(){
+        return new ArrayList<>(this.histEquipas);
+    }
+
+    public void setHistEquipas (List<String> h){
+        this.histEquipas = new ArrayList<>(h);
     }
 
     public void addEquipa(String nome) {
