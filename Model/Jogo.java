@@ -309,10 +309,10 @@ public class Jogo implements Serializable {
     public void simulacaoJogo() {
         double dif = this.difsEquipas();
         for (int i = 0; i < 9; i++) {
-            if (i == 6) {
+            /*if (i == 6) {
                 this.substituiçoes2();
                 dif = this.difsEquipas();
-            }
+            }*/
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
 
