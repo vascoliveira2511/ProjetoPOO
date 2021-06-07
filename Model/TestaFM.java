@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +7,7 @@ import java.util.List;
 
 public class TestaFM {
     public static void main(String args[]) {
-        ArrayList<Integer> numeros = new ArrayList<>();
+        /*ArrayList<Integer> numeros = new ArrayList<>();
         numeros.add(1);
         numeros.add(2);
         numeros.add(3);
@@ -46,14 +47,10 @@ public class TestaFM {
         try {
             LigaPOO l2 = LigaPOO.readFromBinary("teste");
         }
-        catch (java.io.IOException ioe)
+        catch (IOException | ClassNotFoundException ioe)
         {
             ioe.printStackTrace();
-        }
-        catch (ClassNotFoundException cnfe)
-        {
-            cnfe.printStackTrace();
-        }
-        
+        }*/
+
     }
 }

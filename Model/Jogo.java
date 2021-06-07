@@ -1,11 +1,8 @@
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 import java.lang.Math;
 import java.util.stream.Collectors;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.io.Serializable;
 
@@ -112,11 +109,11 @@ public class Jogo implements Serializable{
     }
 
     public SimpleEntry<String, Equipa> getEquipaCasa() {
-        return new SimpleEntry<String, Equipa>(this.equipaCasa.getKey(), this.equipaCasa.getValue().clone());
+        return new SimpleEntry<>(this.equipaCasa.getKey(), this.equipaCasa.getValue().clone());
     }
 
     public SimpleEntry<String, Equipa> getEquipaFora() {
-        return new SimpleEntry<String, Equipa>(this.equipaFora.getKey(), this.equipaFora.getValue().clone());
+        return new SimpleEntry<>(this.equipaFora.getKey(), this.equipaFora.getValue().clone());
     }
 
     public int getGolosCasa() {
@@ -149,20 +146,20 @@ public class Jogo implements Serializable{
 
     public void setJogadoresFora(Equipa equipa) {
         this.jogadoresFora = this.jogadoresFora.entrySet().stream()
-                .collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey())));
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> equipa.existeJogador(e.getKey())));
     }
 
     public void setJogadoresCasa(Equipa equipa) {
         this.jogadoresCasa = this.jogadoresCasa.entrySet().stream()
-                .collect(Collectors.toMap(e -> e.getKey(), e -> equipa.existeJogador(e.getKey())));
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> equipa.existeJogador(e.getKey())));
     }
 
     public Map<Integer, Integer> getSubstituicoesCasa() {
-        return this.substituicoesCasa;
+        return this.substituicoesCasa.entrySet().stream().collect(Collectors.toMap(Map.Entry :: getKey, Map.Entry :: getValue));
     }
 
     public Map<Integer, Integer> getSubstituicoesFora() {
-        return this.substituicoesFora;
+        return this.substituicoesFora.entrySet().stream().collect(Collectors.toMap(Map.Entry :: getKey, Map.Entry :: getValue));
     }
 
     private double probs(double overall1, double overall2) {
@@ -198,7 +195,7 @@ public class Jogo implements Serializable{
     public void substituicoes(){
         //equipa casa
         Jogador s1 = this.jogadoresCasa.values().stream()
-                                               .min((j1,j2)->j1.getResistencia() - j2.getResistencia())
+                                               .min(Comparator.comparingInt(Jogador::getResistencia))
                                                .get();
         Jogador e1 = this.jogadoresCasa.values().stream()
                                                .filter(j -> j.getClass().equals(s1.getClass()))
@@ -209,11 +206,11 @@ public class Jogo implements Serializable{
         this.substituicoesCasa.put(s1.getNumeroJogador(), e1.getNumeroJogador());
         //equipa fora
         Jogador s2 = this.jogadoresFora.values().stream()
-                                               .min((j1,j2)->j1.getResistencia() - j2.getResistencia())
+                                               .min(Comparator.comparingInt(Jogador::getResistencia))
                                                .get();
-        Jogador e2 = this.jogadoresCasa.values().stream()
+        Jogador e2 = this.jogadoresFora.values().stream()
                                                .filter(j -> j.getClass().equals(s2.getClass()))
-                                               .max((j1,j2)-> (int)(j1.overall() - j2.overall()))
+                                               .max(Comparator.comparingDouble(Jogador::overall))
                                                .get();
         this.jogadoresFora.remove(s2.getNumeroJogador());
         this.jogadoresFora.put(e2.getNumeroJogador(), e2);
@@ -221,19 +218,19 @@ public class Jogo implements Serializable{
         
     }
     
-    public List<Jogador> melhoresPosicao(String posicao) {
-        return this.equipaCasa.getValue().getJogadores()
-                                         .stream().map(Jogador::clone)
-                                         .sorted(new JogadorComparator())
-                                         .collect(Collectors.toList());
+    public List<Jogador> melhoresPosicao(List<Jogador> listaJ, String posicao) {
+        return listaJ.stream().filter(j-> j.getClass().getSimpleName().equals(posicao))
+                              .map(Jogador::clone)
+                              .sorted(new JogadorComparator())
+                              .collect(Collectors.toList());
     }
     
-    public Map <String, List<Jogador>> melhoresTodasPosicoes() {
+    public Map <String, List<Jogador>> melhoresTodasPosicoes(List<Jogador> listaJ) {
         Map<String, List<Jogador>> m = new HashMap<>();
-        m.put("GuardaRedes", this.melhoresPosicao("GuardaRedes"));
-        m.put("Defesa", this.melhoresPosicao("Defesa"));
-        m.put("Lateral", this.melhoresPosicao("Lateral"));
-        m.put("Avancado", this.melhoresPosicao("Avancado"));
+        m.put("GuardaRedes", this.melhoresPosicao( listaJ,"GuardaRedes"));
+        m.put("Defesa", this.melhoresPosicao( listaJ,"Defesa"));
+        m.put("Lateral", this.melhoresPosicao(listaJ,"Lateral"));
+        m.put("Avancado", this.melhoresPosicao(listaJ,"Avancado"));
         return m;
     }
     
@@ -270,10 +267,10 @@ public class Jogo implements Serializable{
         return r;
     }
     
-    public Map<Integer, Jogador> equipaTitular(){
-        List<Jogador> utilizados = this.equipaCasa.getValue().getJogadores();
+    public Map<Integer, Jogador> equipaTitular(List<Jogador> jogadores){
+        List<Jogador> utilizados = new ArrayList<>(jogadores);
         Map<Integer, Jogador> r = new HashMap<>();
-        Map <String, List<Jogador>> melhores = this.melhoresTodasPosicoes();
+        Map <String, List<Jogador>> melhores = this.melhoresTodasPosicoes(jogadores);
         r.put(escolheGuardaRedes(melhores).getNumeroJogador(), escolheGuardaRedes(melhores));
         for (Jogador j : escolhePosicao(melhores, "Defesa", 2, "Medio", "Lateral")){
             r.put(j.getNumeroJogador(), j);

@@ -9,7 +9,7 @@ import java.util.Comparator;
 public class JogadorComparator implements Comparator<Jogador>
 {
     public int compare(Jogador j1, Jogador j2){
-        return (int)(j2.overall() - j1.overall());
+        return Double.compare(j2.overall(), j1.overall());
     }
 }
 
