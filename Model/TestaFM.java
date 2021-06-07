@@ -14,7 +14,7 @@ public class TestaFM {
         } catch (LinhaIncorretaException e) {
             e.printStackTrace();
         }
-        Jogo j1 = jogos.get(0);
+        Jogo j1 = jogos.get(1);
         j1.simulacaoJogo();
         System.out.println(j1.toString());
     }
