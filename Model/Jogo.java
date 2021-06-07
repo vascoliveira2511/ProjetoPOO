@@ -38,8 +38,8 @@ public class Jogo implements Serializable {
         this.golosCasa = 0;
         this.golosFora = 0;
         this.date = LocalDate.now();
-        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j -> casa.existeJogador(j)));
-        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j -> fora.existeJogador(j)));
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, casa::existeJogador));
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, fora::existeJogador));
         this.substituicoesCasa = new HashMap<>();
         this.substituicoesFora = new HashMap<>();
 
@@ -212,7 +212,7 @@ public class Jogo implements Serializable {
 
     }
 
-    public void substituiçoes2() {
+    public void substituiçoes2()  {
         for (Map.Entry<Integer, Integer> m : this.substituicoesCasa.entrySet()) {
             this.jogadoresCasa.remove(m.getKey());
             System.out.println(this.equipaCasa.getValue().existeJogador(m.getValue()).toString());

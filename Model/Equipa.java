@@ -151,8 +151,10 @@ public class Equipa implements Serializable {
     }
 
     public Jogador existeJogador(int num) {
-        return this.jogadores.stream().map(Jogador::clone).filter(j -> j.getNumeroJogador() == num)
-                .collect(Collectors.toList()).get(0);
+        for (Jogador j : this.jogadores){
+            if (j.getNumeroJogador() == num) return j;
+        }
+        return null;
     }
 
     /**
