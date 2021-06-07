@@ -24,9 +24,9 @@ public class Jogo implements Serializable {
 
     private Map<Integer, Jogador> jogadoresFora;
 
-    Map<Integer, Integer> substituicoesCasa;
+    private Map<Integer, Integer> substituicoesCasa;
 
-    Map<Integer, Integer> substituicoesFora;
+    private Map<Integer, Integer> substituicoesFora;
 
     public Jogo() {
 
@@ -220,6 +220,7 @@ public class Jogo implements Serializable {
         }
         for (Map.Entry<Integer, Integer> m : this.substituicoesFora.entrySet()) {
             this.jogadoresFora.remove(m.getKey());
+            System.out.println((this.equipaFora.getValue().existeJogador(m.getValue())).toString());
             this.jogadoresFora.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
         }
     }
