@@ -2,14 +2,12 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Map;
-import java.util.HashMap;
 import java.io.Serializable;
 
 /**
  * Classe Equipa
  */
-public class Equipa implements Serializable{
+public class Equipa implements Serializable {
 
     private String clube;
     /**
@@ -140,16 +138,15 @@ public class Equipa implements Serializable{
     }
 
     public void removeJogador(Jogador j) throws JogadorException {
-        if (!this.jogadores.contains(j)) 
+        if (!this.jogadores.contains(j))
             throw new JogadorException("Jogador" + j.getNumeroJogador() + "nao existe na equipa " + this.clube + "!\n");
         this.jogadores.remove(j);
     }
-    
+
     public Jogador existeJogador(int num) {
         return this.jogadores.stream().map(Jogador::clone).filter(j -> j.getNumeroJogador() == num)
                 .collect(Collectors.toList()).get(0);
     }
-
 
     /**
      * Metodo que calcula o overall da equipa.

@@ -1,5 +1,4 @@
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,5 +14,8 @@ public class TestaFM {
         } catch (LinhaIncorretaException e) {
             e.printStackTrace();
         }
+        Jogo j1 = jogos.get(0);
+        j1.simulacaoJogo();
+        System.out.println(j1.toString());
     }
 }
