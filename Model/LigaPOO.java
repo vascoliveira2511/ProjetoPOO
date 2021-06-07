@@ -34,7 +34,7 @@ public class LigaPOO implements Serializable {
 
     public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos) {
         this.equipas = equipas.entrySet().stream()
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().clone(), (a, b) -> b, HashMap::new));
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().clone(), (a, b) -> b, HashMap::new));
         this.jogos = jogos.stream().map(Jogo::clone).collect(Collectors.toList());
     }
     
@@ -44,7 +44,7 @@ public class LigaPOO implements Serializable {
     }
     
     public Map<String, Equipa> getEquipas(){
-        return this.equipas.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().clone()));
+        return this.equipas.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().clone()));
     }
     
     public void setEquipas (Map<String, Equipa> e){
