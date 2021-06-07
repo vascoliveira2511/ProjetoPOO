@@ -181,13 +181,13 @@ public class Jogo implements Serializable {
         double marcar;
         if (aleatorio <= dif) {
             // ataque equipa 1
-            marcar = probs(overallPosicao("Avancado"), overallPosicao("Defesa"));
+            marcar = probs(overallPosicao("Avancado"), (0.6 * overallPosicao("Defesa") + (0.4 * overallPosicao("GuardaRedes"))));
             if (aleatorio2 < marcar) {
                 this.golosCasa++;
             }
         } else {
             // ataque equipa 2
-            marcar = probs(overallPosicao("Avancado"), overallPosicao("Defesa"));
+            marcar = probs(overallPosicao("Avancado"), (0.6 * overallPosicao("Defesa") + (0.4 * overallPosicao("GuardaRedes"))));
             if (aleatorio2 < marcar) {
                 this.golosFora++;
             }
