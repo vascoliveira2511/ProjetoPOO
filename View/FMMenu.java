@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FMMenu {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, JogadorException {
         Controller c = new Controller(); // Solucao temporaria.
         String[] s = { "Ler ficheiro", "Transferir jogador", "Simular jogo" };
         Menu m = new Menu(s);
@@ -28,7 +28,11 @@ public class FMMenu {
                 System.out.println("\nQual número: ");
                 int num = sc2.nextInt();
                 System.out.println("\nTransferindo... ");
-                l1.transferencia(e1, e2, num);
+                try {
+                    l1.transferencia(e1, e2, num);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("\nConcluído!!");
                 break;
             case 3:
