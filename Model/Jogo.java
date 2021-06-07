@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.lang.Math;
@@ -217,6 +218,17 @@ public class Jogo implements Serializable{
         this.substituicoesFora.put(s2.getNumeroJogador(), e2.getNumeroJogador());
         
     }
+
+    public void substituiçoes2(){
+        for (Map.Entry<Integer, Integer> m : this.substituicoesCasa.entrySet()){
+            this.jogadoresCasa.remove(m.getKey());
+            this.jogadoresCasa.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
+        }
+        for (Map.Entry<Integer, Integer> m : this.substituicoesFora.entrySet()){
+            this.jogadoresFora.remove(m.getKey());
+            this.jogadoresFora.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
+        }
+    }
     
     public List<Jogador> melhoresPosicao(List<Jogador> listaJ, String posicao) {
         return listaJ.stream().filter(j-> j.getClass().getSimpleName().equals(posicao))
@@ -291,17 +303,21 @@ public class Jogo implements Serializable{
         return r;
     }
 
-    public void simulacaoJogo() throws java.lang.InterruptedException {
-        double overallEC = this.jogadoresCasa.values().stream()
-                                                      .mapToDouble(Jogador :: overall)
-                                                      .sum();
+    public double overallTitulares(List<Jogador> titulares){
+        double r = titulares.stream()
+                            .mapToDouble(Jogador :: overall)
+                            .sum();
+        return r/11;
+    }
+
+    public void simulacaoJogo() {
+        double overallEC = this.overallTitulares(this.jogadoresCasa.values().stream().collect(Collectors.toList()));
         double overallEF = this.jogadoresFora.values().stream()
                                                       .mapToDouble(Jogador :: overall)
                                                       .sum();
         double dif = probs(overallEC/11,overallEF/11);
         for (int i = 0; i < 9; i++) {
-            //TimeUnit.SECONDS.sleep(1);
-            if (i == 6 || i == 7 || i == 8) this.substituicoes();
+            if (i == 6) this.substituicoes();
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
             
