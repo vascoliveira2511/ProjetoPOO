@@ -342,14 +342,9 @@ public class Jogo implements Serializable {
           this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
           this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora +
           "\n");
-          sb.append("Equipa casa \n");
-          for (Jogador j: this.jogadoresCasa.values()){
-              sb.append(j.toString() + "\n");
-          }
-          sb.append("Equipa Fora\n");
-            for (Jogador j: this.jogadoresFora.values()) {
-                sb.append(j.toString() + "\n");
-            }
+          sb.append("Equipa casa" + overallTitulares(new ArrayList<>(this.jogadoresCasa.values())) + "\n");
+
+          sb.append("Equipa Fora" + overallTitulares(new ArrayList<>(this.jogadoresFora.values())) + "\n");
 
           return sb.toString();
 
