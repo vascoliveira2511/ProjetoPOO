@@ -60,4 +60,8 @@ public class Lateral extends Jogador implements Ofensivo, Defensivo, Serializabl
         Lateral l = (Lateral) o;
         return super.equals(l);
     }
+
+    public String toString(){
+        return "Lateral: " + super.toString();
+    }
 }

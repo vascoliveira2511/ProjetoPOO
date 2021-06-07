@@ -52,8 +52,8 @@ public class Jogo implements Serializable {
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
-        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j -> casa.existeJogador(j)));
-        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j -> fora.existeJogador(j)));
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, casa::existeJogador));
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, fora::existeJogador));
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }
@@ -131,11 +131,11 @@ public class Jogo implements Serializable {
     }
 
     public Map<Integer, Jogador> getJogadoresCasa() {
-        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, j->j.getValue().clone()));
     }
 
     public Map<Integer, Jogador> getJogadoresFora() {
-        return this.jogadoresCasa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+        return this.jogadoresFora.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, j->j.getValue().clone()));
     }
 
     public void setEquipaCasa(String clube, Equipa e) {
@@ -143,7 +143,7 @@ public class Jogo implements Serializable {
     }
 
     public void setEquipaFora(String clube, Equipa e) {
-        this.equipaCasa = new SimpleEntry<>(clube, e);
+        this.equipaFora = new SimpleEntry<>(clube, e);
     }
 
     public void setJogadoresFora(Equipa equipa) {
@@ -171,8 +171,10 @@ public class Jogo implements Serializable {
         return Math.exp(dif) / (1 + Math.exp(dif));
     }
 
-    public double overallPosicao(String posicao) {
-        return this.jogadoresCasa.values().stream().filter(j -> j.getClass().getSimpleName().equals(posicao))
+    public double overallPosicao(String posicao, int x) {
+        if (x==0) return this.jogadoresCasa.values().stream().filter(j -> j.getClass().getSimpleName().equals(posicao))
+                                                             .mapToDouble(Jogador::overall).sum();
+        else return this.jogadoresFora.values().stream().filter(j -> j.getClass().getSimpleName().equals(posicao))
                 .mapToDouble(Jogador::overall).sum();
     }
 
@@ -181,13 +183,13 @@ public class Jogo implements Serializable {
         double marcar;
         if (aleatorio <= dif) {
             // ataque equipa 1
-            marcar = probs(overallPosicao("Avancado"), (0.6 * overallPosicao("Defesa") + (0.4 * overallPosicao("GuardaRedes"))));
+            marcar = probs(overallPosicao("Avancado", 0), (0.6 * overallPosicao("Defesa",1) + (0.4 * overallPosicao("GuardaRedes",1))));
             if (aleatorio2 < marcar) {
                 this.golosCasa++;
             }
         } else {
             // ataque equipa 2
-            marcar = probs(overallPosicao("Avancado"), (0.6 * overallPosicao("Defesa") + (0.4 * overallPosicao("GuardaRedes"))));
+            marcar = probs(overallPosicao("Avancado",1), (0.6 * overallPosicao("Defesa",0) + (0.4 * overallPosicao("GuardaRedes",0))));
             if (aleatorio2 < marcar) {
                 this.golosFora++;
             }
@@ -215,13 +217,11 @@ public class Jogo implements Serializable {
     public void substituiçoes2()  {
         for (Map.Entry<Integer, Integer> m : this.substituicoesCasa.entrySet()) {
             this.jogadoresCasa.remove(m.getKey());
-            System.out.println((this.equipaCasa.getValue().existeJogador(m.getValue())).toString());
             this.jogadoresCasa.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
         }
         for (Map.Entry<Integer, Integer> m : this.substituicoesFora.entrySet()) {
             this.jogadoresFora.remove(m.getKey());
-            System.out.println((this.equipaFora.getValue().existeJogador(m.getValue())).toString());
-            this.jogadoresFora.put(m.getValue(), this.equipaCasa.getValue().existeJogador(m.getValue()));
+            this.jogadoresFora.put(m.getValue(), this.equipaFora.getValue().existeJogador(m.getValue()));
         }
     }
 
@@ -311,7 +311,7 @@ public class Jogo implements Serializable {
     public void simulacaoJogo() {
         double dif = this.difsEquipas();
         for (int i = 0; i < 9; i++) {
-             if (i == 6) {
+             if (i == 5) {
                  this.substituiçoes2();
                  dif = this.difsEquipas();
              }
@@ -332,7 +332,7 @@ public class Jogo implements Serializable {
             return false;
         Jogo j = (Jogo) o;
         return this.date.equals(j.getData()) && this.equipaCasa.equals(j.getEquipaCasa())
-                && this.equipaFora.equals(j.getEquipaFora()) && this.golosCasa == j.getGolosFora()
+                && this.equipaFora.equals(j.getEquipaFora()) && this.golosCasa == j.getGolosCasa()
                 && this.golosFora == j.getGolosFora() && this.jogadoresCasa.equals(j.getJogadoresCasa())
                 && this.jogadoresFora.equals(j.getJogadoresFora())
                 && this.substituicoesCasa.equals(j.getSubstituicoesCasa())

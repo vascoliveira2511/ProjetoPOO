@@ -76,7 +76,7 @@ public class Parser {
                     Equipa casa = equipas.get(jo.getEquipaCasa().getKey());
                     Equipa fora = equipas.get(jo.getEquipaFora().getKey());
                     jo.setEquipaCasa(jo.getEquipaCasa().getKey(), casa);
-                    jo.setEquipaFora(jo.getEquipaCasa().getKey(), fora);
+                    jo.setEquipaFora(jo.getEquipaFora().getKey(), fora);
                     jo.setJogadoresCasa(casa);
                     jo.setJogadoresFora(fora);
                     jogos.add(jo);
