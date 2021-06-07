@@ -310,19 +310,23 @@ public class Jogo implements Serializable{
         return r/11;
     }
 
+    public double difsEquipas(){
+        double overallEC = this.overallTitulares(new ArrayList<>(this.jogadoresCasa.values()));
+        double overallEF = this.overallTitulares(new ArrayList<>(this.jogadoresFora.values()));
+        return probs(overallEC/11,overallEF/11);
+    }
+
     public void simulacaoJogo() {
-        double overallEC = this.overallTitulares(this.jogadoresCasa.values().stream().collect(Collectors.toList()));
-        double overallEF = this.jogadoresFora.values().stream()
-                                                      .mapToDouble(Jogador :: overall)
-                                                      .sum();
-        double dif = probs(overallEC/11,overallEF/11);
+        double dif = this.difsEquipas();
         for (int i = 0; i < 9; i++) {
-            if (i == 6) this.substituicoes();
+            if (i == 6) {
+                this.substituiçoes2();
+                dif = this.difsEquipas();
+            }
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
             
         }
-
     }
 
     public Jogo clone() {
