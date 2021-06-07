@@ -337,18 +337,29 @@ public class Jogo implements Serializable {
     }
 
     public String toString() {
-        /*
-         * StringBuilder sb = new StringBuilder(); sb.append("Data: " +
-         * this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
-         * this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora +
-         * "\n"); return sb.toString();
-         */
 
-        return ("Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n"
+          StringBuilder sb = new StringBuilder(); sb.append("Data: " +
+          this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
+          this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora +
+          "\n");
+          sb.append("Equipa casa \n");
+          for (Jogador j: this.jogadoresCasa.values()){
+              sb.append(j.toString() + "\n");
+          }
+          sb.append("Equipa Fora\n");
+            for (Jogador j: this.jogadoresFora.values()) {
+                sb.append(j.toString() + "\n");
+            }
+
+          return sb.toString();
+
+
+        /*return ("Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n"
                 + "Equipa fora: " + this.equipaFora.getKey() + "\n" + "Golos casa: " + this.golosCasa + "\n"
                 + "Golos fora: " + this.golosFora + "\n" + "Jogadores casa"
                 + this.jogadoresCasa.values().stream().map(Jogador::toString) + "\n" + "Jogadores fora"
                 + this.jogadoresFora.values().stream().map(Jogador::toString) + "\n");
+                */
         /*
          * + "Substituições casa" + this.substituicoesCasa.toString() + "\n" +
          * "Substituições fora" + this.substituicoesFora.toString() + "\n";
