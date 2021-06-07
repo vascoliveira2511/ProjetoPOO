@@ -65,8 +65,8 @@ public class Jogo implements Serializable {
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;
-        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j->new Avancado())); //temporario
-        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j->new Avancado())); //temporario
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, j -> new Avancado())); // temporario
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, j -> new Avancado())); // temporario
         this.substituicoesCasa = new HashMap<>(sc);
         this.substituicoesFora = new HashMap<>(sf);
     }
@@ -309,10 +309,9 @@ public class Jogo implements Serializable {
     public void simulacaoJogo() {
         double dif = this.difsEquipas();
         for (int i = 0; i < 9; i++) {
-            /*if (i == 6) {
-                this.substituiçoes2();
-                dif = this.difsEquipas();
-            }*/
+            /*
+             * if (i == 6) { this.substituiçoes2(); dif = this.difsEquipas(); }
+             */
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
 
@@ -338,19 +337,21 @@ public class Jogo implements Serializable {
     }
 
     public String toString() {
-        /*StringBuilder sb = new StringBuilder();
-        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " + this.equipaFora.getKey()
-                + "\n" + this.golosCasa + "  -  " + this.golosFora + "\n");
-        return sb.toString();*/
+        /*
+         * StringBuilder sb = new StringBuilder(); sb.append("Data: " +
+         * this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
+         * this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora +
+         * "\n"); return sb.toString();
+         */
 
-          return ("Data: " + this.date.toString() + "\n" + "Equipa casa: " +
-          this.equipaCasa.getKey() + "\n" + "Equipa fora: " + this.equipaFora
-          .getKey()+ "\n" + "Golos casa: " + this.golosCasa + "\n" + "Golos fora: " +
-          this.golosFora + "\n" + "Jogadores casa" +
-          this.jogadoresCasa.values().stream().map(Jogador :: toString) + "\n" +
-          "Jogadores fora" + this.jogadoresFora.values().stream().map(Jogador ::
-          toString) + "\n");/* + "Substituições casa" + this.substituicoesCasa.toString()
-          + "\n" + "Substituições fora" + this.substituicoesFora.toString() + "\n";
-
+        return ("Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n"
+                + "Equipa fora: " + this.equipaFora.getKey() + "\n" + "Golos casa: " + this.golosCasa + "\n"
+                + "Golos fora: " + this.golosFora + "\n" + "Jogadores casa"
+                + this.jogadoresCasa.values().stream().map(Jogador::toString) + "\n" + "Jogadores fora"
+                + this.jogadoresFora.values().stream().map(Jogador::toString) + "\n");
+        /*
+         * + "Substituições casa" + this.substituicoesCasa.toString() + "\n" +
+         * "Substituições fora" + this.substituicoesFora.toString() + "\n";
+         */
     }
 }
