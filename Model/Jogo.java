@@ -60,8 +60,8 @@ public class Jogo implements Serializable {
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
             List<Integer> jf, Map<Integer, Integer> sf) {
-        this.equipaCasa = new SimpleEntry<>(ec, null);
-        this.equipaFora = new SimpleEntry<>(ef, null);
+        this.equipaCasa = new SimpleEntry<>(ec, new Equipa());
+        this.equipaFora = new SimpleEntry<>(ef, new Equipa());
         this.golosCasa = gc;
         this.golosFora = gf;
         this.date = d;

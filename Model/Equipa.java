@@ -33,6 +33,13 @@ public class Equipa implements Serializable {
      * @param titulares
      * @param suplentes
      */
+
+    public Equipa(){
+        this.clube = " ";
+        this.nTitulares = 0;
+        this.nSuplentes = 0;
+        this.jogadores = new ArrayList<>();
+    }
     public Equipa(String clube, int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = nTitulares;
