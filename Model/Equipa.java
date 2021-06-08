@@ -149,7 +149,7 @@ public class Equipa implements Serializable {
         j.addEquipa(this.clube);
         if (this.jogadores.get(j.getNumeroJogador()) == null)
             throw new JogadorException("Jogador" + j.getNumeroJogador() + "nao existe na equipa " + this.clube + "!\n");
-        this.jogadores.remove(j);
+        this.jogadores.remove(j.getNumeroJogador());
     }
 
     public Jogador existeJogador(int num) {
