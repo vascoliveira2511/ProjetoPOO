@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.io.Serializable;
@@ -36,17 +35,19 @@ public class Equipa implements Serializable {
      * @param suplentes
      */
 
-    public Equipa(){
+    public Equipa() {
         this.clube = " ";
         this.nTitulares = 0;
         this.nSuplentes = 0;
         this.jogadores = new HashMap<>();
     }
+
     public Equipa(String clube, int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.clube = clube;
         this.nTitulares = nTitulares;
         this.nSuplentes = nSuplentes;
-        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
+        this.jogadores = jogadores.stream().map(Jogador::clone)
+                .collect(Collectors.toMap(Jogador::getNumeroJogador, j -> j));
     }
 
     public Equipa(String nomeE) {
@@ -58,7 +59,8 @@ public class Equipa implements Serializable {
         this.clube = clube;
         this.nTitulares = 11;
         this.nSuplentes = 3;
-        this.jogadores = jogadores.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
+        this.jogadores = jogadores.stream().map(Jogador::clone)
+                .collect(Collectors.toMap(Jogador::getNumeroJogador, j -> j));
     }
 
     public static Equipa parse(String input) {
@@ -128,7 +130,8 @@ public class Equipa implements Serializable {
      * @return titulares
      */
     public Map<Integer, Jogador> getJogadores() {
-        return this.jogadores.entrySet().stream().collect(Collectors.toMap(Map.Entry :: getKey, j-> j.getValue().clone()));
+        return this.jogadores.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, j -> j.getValue().clone()));
     }
 
     /**
@@ -138,7 +141,8 @@ public class Equipa implements Serializable {
      * @param nTitulares
      */
     public void setJogadores(ArrayList<Jogador> titulares) {
-        this.jogadores = titulares.stream().map(Jogador::clone).collect(Collectors.toMap(Jogador::getNumeroJogador, j-> j));
+        this.jogadores = titulares.stream().map(Jogador::clone)
+                .collect(Collectors.toMap(Jogador::getNumeroJogador, j -> j));
     }
 
     public void addJogador(Jogador j) {
@@ -153,8 +157,9 @@ public class Equipa implements Serializable {
     }
 
     public Jogador existeJogador(int num) {
-        for (Jogador j : this.jogadores.values()){
-            if (j.getNumeroJogador() == num) return j;
+        for (Jogador j : this.jogadores.values()) {
+            if (j.getNumeroJogador() == num)
+                return j;
         }
         return null;
     }

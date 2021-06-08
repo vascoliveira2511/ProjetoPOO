@@ -1,8 +1,8 @@
 import java.io.IOException;
-import java.util.*;
 
 public class Controller {
-    public static void run() throws LinhaIncorretaException, IOException, ClassNotFoundException, EquipaException, JogadorException {
+    public static void run()
+            throws LinhaIncorretaException, IOException, ClassNotFoundException, EquipaException, JogadorException {
         String[] s = { "Ler Jogo anterior", "Jogar FM-POO EDITION" };
         Menu m = new Menu(s);
         LigaPOO l = null;

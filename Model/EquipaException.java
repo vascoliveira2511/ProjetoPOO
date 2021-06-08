@@ -1,6 +1,5 @@
-public class EquipaException extends Exception
-{
-    public EquipaException(String msg){
+public class EquipaException extends Exception {
+    public EquipaException(String msg) {
         super(msg);
     }
 }

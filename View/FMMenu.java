@@ -8,12 +8,9 @@ public class FMMenu {
             Controller.run();
         } catch (LinhaIncorretaException | ClassNotFoundException | EquipaException e) {
             e.printStackTrace();
-        }/*
-        LigaPOO l = null;
-        try {
-            ControllerFM.run(l);
-        } catch (LinhaIncorretaException | EquipaException e) {
-            e.printStackTrace();
-        }*/
+        } /*
+           * LigaPOO l = null; try { ControllerFM.run(l); } catch (LinhaIncorretaException
+           * | EquipaException e) { e.printStackTrace(); }
+           */
     }
 }
