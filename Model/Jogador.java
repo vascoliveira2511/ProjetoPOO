@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Classe de um jogador.
@@ -64,7 +63,7 @@ public abstract class Jogador {
      * @return void
      */
 
-    public Jogador(){
+    public Jogador() {
         this.nome = " ";
         this.numero = 0;
         this.velocidade = 0;
@@ -265,11 +264,11 @@ public abstract class Jogador {
         return this.capacidadeDePasse;
     }
 
-    public List<String> getHistEquipas(){
+    public List<String> getHistEquipas() {
         return new ArrayList<>(this.histEquipas);
     }
 
-    public void setHistEquipas (List<String> h){
+    public void setHistEquipas(List<String> h) {
         this.histEquipas = new ArrayList<>(h);
     }
 
@@ -292,10 +291,9 @@ public abstract class Jogador {
      * @return String
      */
     public String toString() {
-        return this.nome + "; " + this.numero + "; " + this.velocidade + "; "
-                + this.resistencia + "; " + this.destreza + "; "
-                + this.impulsao + "; " + this.jogoDeCabeca + "; " 
-                + this.remate + "; " + this.capacidadeDePasse + "\n";
+        return this.nome + "; " + this.numero + "; " + this.velocidade + "; " + this.resistencia + "; " + this.destreza
+                + "; " + this.impulsao + "; " + this.jogoDeCabeca + "; " + this.remate + "; " + this.capacidadeDePasse
+                + "\n";
     }
 
     /**
