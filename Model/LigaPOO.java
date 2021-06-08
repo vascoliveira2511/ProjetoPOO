@@ -71,6 +71,14 @@ public class LigaPOO implements Serializable {
         Equipa e = this.existeEquipa(clube);
         return e.existeJogador(num);
     }
+
+    public Jogo simulaJogo(String e1, String e2, List<Integer> jc, List<Integer> jf, Map<Integer,Integer> sc, Map<Integer,Integer> sf) throws EquipaException {
+        Equipa eq1 = this.existeEquipa(e1);
+        Equipa eq2 = this.existeEquipa(e2);
+        Jogo j = new Jogo(eq1, eq2, jc, jf, sc, sf);
+        this.jogos.add(j);
+        return j;
+    }
     
     
 
