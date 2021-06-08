@@ -6,7 +6,7 @@ public class Controller {
         String[] s = { "Ler Jogo anterior", "Jogar FM-POO EDITION" };
         Menu m = new Menu(s);
         boolean cont = true;
-        while (cont == true) {
+        while (cont) {
             m.executa();
             LigaPOO l = null;
             int op = m.getOpcao();
@@ -14,7 +14,6 @@ public class Controller {
                 case 1:
                     String r = m.menuLerFicheiro();
                     l = LigaPOO.readFromBinary(r);
-                    System.out.println("\nLeitura executada com sucesso!!");
                     ControllerFM.run(l);
                     break;
                 case 2:

@@ -11,7 +11,7 @@ public class ControllerFM {
         String[] s = {"Simular Jogo", "Consultar Jogador", "Consultar Equipa","Transferir Jogador", "Guardar Jogo"};
         Menu m2 = new Menu(s);
         boolean cont = true;
-        while (cont == true) {
+        while (cont) {
             m2.executa();
             int op = m2.getOpcao();
             switch (op) {
@@ -23,7 +23,6 @@ public class ControllerFM {
                     AbstractMap.SimpleEntry<Map<Integer, Integer>, Map<Integer, Integer>> subs = m2.menuEscolheSubstituicoes(e1, eqT.getKey(), e2, eqT.getValue());
                     Jogo jogo1 = l.simulaJogo(eqps.getKey(), eqps.getValue(), eqT.getKey(), eqT.getValue(), subs.getKey(), subs.getValue());
                     m2.imprimeJogo(jogo1);
-
                 case 2:
                     AbstractMap.SimpleEntry<Integer, String> jog1 = m2.menuEscolherJogador();
                     Jogador j1 = l.procuraJogador(jog1.getValue(), jog1.getKey());
