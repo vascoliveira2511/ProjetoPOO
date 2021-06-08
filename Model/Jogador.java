@@ -293,7 +293,7 @@ public abstract class Jogador {
     public String toString() {
         return this.nome + "; " + this.numero + "; " + this.velocidade + "; " + this.resistencia + "; " + this.destreza
                 + "; " + this.impulsao + "; " + this.jogoDeCabeca + "; " + this.remate + "; " + this.capacidadeDePasse
-                + "\n";
+                + ";  Antigos clubes:" + this.histEquipas + "\n";
     }
 
     /**

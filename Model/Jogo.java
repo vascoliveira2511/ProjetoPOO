@@ -168,7 +168,7 @@ public class Jogo implements Serializable {
     public void setGolosCasa(int x){
         this.golosCasa = x;
     }
-    public void setEquipaFora(int x){
+    public void setGolosFora(int x){
         this.golosFora = x;
     }
 

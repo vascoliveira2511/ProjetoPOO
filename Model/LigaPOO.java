@@ -84,7 +84,7 @@ public class LigaPOO implements Serializable {
     public Jogo simulaJogo(Jogo j){
         Jogo novo = j.clone();
         novo.setGolosCasa(0);
-        novo.setGolosCasa(0);
+        novo.setGolosFora(0);
         novo.setDate(LocalDate.now());
         novo.simulacaoJogo();
         this.jogos.add(novo);
