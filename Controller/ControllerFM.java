@@ -8,7 +8,7 @@ public class ControllerFM {
         if (l == null){
             l = new LigaPOO();
         }
-        String[] s = {"Simular Jogo", "Consultar Jogador", "Consultar Equipa","Transferir Jogador", "Guardar Jogo"};
+        String[] s = {"Simular Jogo", "Simular reecontro", "Consultar Jogador", "Consultar Equipa","Transferir Jogador", "Guardar Jogo"};
         Menu m2 = new Menu(s);
         boolean cont = true;
         while (cont) {
@@ -23,23 +23,33 @@ public class ControllerFM {
                     AbstractMap.SimpleEntry<Map<Integer, Integer>, Map<Integer, Integer>> subs = m2.menuEscolheSubstituicoes(e1, eqT.getKey(), e2, eqT.getValue());
                     Jogo jogo1 = l.simulaJogo(eqps.getKey(), eqps.getValue(), eqT.getKey(), eqT.getValue(), subs.getKey(), subs.getValue());
                     m2.imprimeJogo(jogo1);
+                    break;
                 case 2:
+                    Jogo reencontro = l.simulaJogo(l.getJogos().get(m2.escolheJogo(l.getJogos())));
+                    m2.imprimeJogo(reencontro);
+                    break;
+                case 3:
                     AbstractMap.SimpleEntry<Integer, String> jog1 = m2.menuEscolherJogador();
                     Jogador j1 = l.procuraJogador(jog1.getValue(), jog1.getKey());
                     m2.imprimeJogador(j1);
-                case 3:
+                    break;
+                case 4:
                     Equipa e3 = l.existeEquipa(m2.menuEscolherEquipa());
                     m2.imprimeEquipa(e3);
-                case 4:
+                    break;
+                case 5:
                     AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> eqps2 = m2.menuTransferencia();
                     l.transferencia(eqps2.getValue().getKey(), eqps2.getValue().getValue(), eqps2.getKey());
-                case 5:
+                    break;
+                case 6:
                     String g = m2.menuGuardarFicheiro();
                     l.saveToBinary(g);
+                    break;
                 default:
+                    l = null;
+                    //m2.closeScanner();
                     cont = false;
-
-
+                    break;
             }
         }
     }

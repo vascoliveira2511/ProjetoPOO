@@ -4,10 +4,12 @@ import java.util.stream.Collectors;
 public class Menu {
     private List<String> opcoes;
     private int op;
+    private Scanner stdin;
 
     public Menu(String[] opcoes) {
         this.opcoes = Arrays.asList(opcoes);
         this.op = 0;
+        stdin = new Scanner(System.in);
     }
 
     public void executa() {
@@ -29,11 +31,11 @@ public class Menu {
 
     private int lerOpcao() {
         int op;
-        Scanner is = new Scanner(System.in);
+        //Scanner is = new Scanner(System.in);
 
         System.out.print("Opção: ");
         try {
-            op = is.nextInt();
+            op = Integer.parseInt(stdin.nextLine());
         } catch (InputMismatchException e) {
             op = -1;
         }
@@ -41,7 +43,7 @@ public class Menu {
             System.out.println("Opção Invâlida!!!");
             op = -1;
         }
-        is.close();
+        //is.close();
         return op;
     }
 
@@ -50,18 +52,18 @@ public class Menu {
     }
 
     public String menuLerFicheiro() {
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a ler:");
-        String c = in.nextLine();
-        in.close();
+        String c = stdin.nextLine();
+        //in.close();
         return c;
     }
 
     public String menuGuardarFicheiro() {
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a guardar:");
-        String c = in.nextLine();
-        in.close();
+        String c = stdin.nextLine();
+        //in.close();
         return c;
     }
 
@@ -75,46 +77,43 @@ public class Menu {
     }
 
     public String menuEscolherEquipa() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Nome da equipa:");
-        return in.nextLine();
+        return stdin.nextLine();
 
     }
 
     public AbstractMap.SimpleEntry<Integer, String> menuEscolherJogador() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Nome da Equipa do Jogador:");
-        String e1 = in.next();
+        String e1 = stdin.nextLine();
         System.out.println("Numero do Jogador");
-        int e2 = in.nextInt();
-        in.close();
+        int e2 = Integer.parseInt(stdin.nextLine());
         return new AbstractMap.SimpleEntry<>(e2, e1);
     }
 
     public AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> menuTransferencia() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Equipa atual:");
-        String e1 = in.nextLine();
+        String e1 = stdin.nextLine();
         System.out.println("Numero do Jogador");
-        int e2 = in.nextInt();
+        int e2 = Integer.parseInt(stdin.nextLine());
         System.out.println("Equipa futura:");
-        String e3 = in.nextLine();
-        in.close();
+        String e3 = stdin.nextLine();
         return new AbstractMap.SimpleEntry<>(e2, new AbstractMap.SimpleEntry<>(e1, e3));
     }
 
     public AbstractMap.SimpleEntry<List<Integer>, List<Integer>> menuEscolheTitulares(Equipa e1, Equipa e2) {
-        Scanner in = new Scanner(System.in);
         imprimeEquipa(e1);
         List<Integer> numE1 = new ArrayList<>();
         Set<Integer> utilE1 = new HashSet<>(e1.getJogadores().keySet());
         System.out.println("Jogador 1 - Escolha o seu onze inicial(Por numero separado por -enter-)");
         int i = 0, num;
         while (i < 11) {
-            num = in.nextInt();
+            num = Integer.parseInt(stdin.nextLine());
             if (utilE1.contains(num) && (!numE1.contains(num))) {
                 numE1.add(num);
                 i++;
+            }
+            else {
+                System.out.println("Numero invalido");
             }
         }
         imprimeEquipa(e2);
@@ -123,40 +122,47 @@ public class Menu {
         i = 0;
         System.out.println("Jogador 2 - Escolha o seu onze inicial(Por numero separado por -enter-)");
         while (i < 11) {
-            num = in.nextInt();
+            num = Integer.parseInt(stdin.nextLine());
             if (utilE2.contains(num) && (!numE2.contains(num))) {
                 numE2.add(num);
                 i++;
             }
+            else {
+                System.out.println("Numero invalido");
+            }
         }
-        in.close();
         return new AbstractMap.SimpleEntry<>(numE1, numE2);
     }
 
     public AbstractMap.SimpleEntry<Map<Integer, Integer>, Map<Integer, Integer>> menuEscolheSubstituicoes(Equipa eq1,
             List<Integer> e1, Equipa eq2, List<Integer> e2) {
-        Scanner in = new Scanner(System.in);
         List<Integer> ent1 = new ArrayList<>();
         System.out.println("Jogador 1 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
         System.out.println(e1);
         int i = 0, num;
         while (i < 3) {
-            num = in.nextInt();
+            num = Integer.parseInt(stdin.nextLine());
             if (e1.contains(num)) {
                 ent1.add(num);
                 i++;
             }
+            else {
+                System.out.println("Numero invalido");
+            }
         }
         List<Integer> sai1 = new ArrayList<>();
+        List<Integer> sub1 = eq1.getJogadores().keySet().stream().filter(n -> !e1.contains(n)).collect(Collectors.toList());
         System.out.println("Jogador 1 - Escolha 3 jogadores para entrar(Por numero separado por -enter-)");
-        System.out.println(
-                eq1.getJogadores().keySet().stream().filter(n -> !e1.contains(n)).collect(Collectors.toList()));
+        System.out.println(sub1);
         i = 0;
         while (i < 3) {
-            num = in.nextInt();
-            if (e1.contains(num)) {
+            num = Integer.parseInt(stdin.nextLine());
+            if (sub1.contains(num)){
                 sai1.add(num);
                 i++;
+            }
+            else {
+                System.out.println("Numero invalido");
             }
         }
         Map<Integer, Integer> s1 = new HashMap<>();
@@ -165,32 +171,46 @@ public class Menu {
 
         List<Integer> ent2 = new ArrayList<>();
         System.out.println("Jogador 2 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
-        System.out.println(e1);
+        System.out.println(e2);
         i = 0;
         while (i < 3) {
-            num = in.nextInt();
+            num = Integer.parseInt(stdin.nextLine());
             if (e2.contains(num)) {
                 ent2.add(num);
                 i++;
             }
+            else {
+                System.out.println("Numero invalido");
+            }
         }
         List<Integer> sai2 = new ArrayList<>();
+        List<Integer> sub2 = eq2.getJogadores().keySet().stream().filter(n -> !e2.contains(n)).collect(Collectors.toList());
         System.out.println("Jogador 2 - Escolha 3 jogadores para entrar(Por numero separado por -enter-)");
-        System.out.println(
-                eq2.getJogadores().keySet().stream().filter(n -> !e2.contains(n)).collect(Collectors.toList()));
+        System.out.println(sub2);
         i = 0;
         while (i < 3) {
-            num = in.nextInt();
-            if (e2.contains(num)) {
+            num = Integer.parseInt(stdin.nextLine());
+            if (sub2.contains(num)) {
                 sai2.add(num);
                 i++;
+            }
+            else {
+                System.out.println("Numero invalido");
             }
         }
         Map<Integer, Integer> s2 = new HashMap<>();
         for (i = 0; i < 3; i++)
             s2.put(ent2.get(i), sai2.get(i));
-        in.close();
+        //in.close();
         return new AbstractMap.SimpleEntry<>(s1, s2);
+    }
+
+    public int escolheJogo(List<Jogo> jogos){
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i < jogos.size(); i++) sb.append(i + " - " + jogos.get(i).toString2());
+        System.out.println(sb.toString());
+        System.out.println("Numero do jogo para um reencontro:");
+        return Integer.parseInt(stdin.nextLine());
     }
 
     public void imprimeJogador(Jogador j) {
@@ -203,5 +223,9 @@ public class Menu {
 
     public void imprimeJogo(Jogo j) {
         System.out.println(j.toString());
+    }
+
+    public void closeScanner(){
+        this.stdin.close();
     }
 }

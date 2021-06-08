@@ -165,6 +165,17 @@ public class Jogo implements Serializable {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
+    public void setGolosCasa(int x){
+        this.golosCasa = x;
+    }
+    public void setEquipaFora(int x){
+        this.golosFora = x;
+    }
+
+    public void setDate(LocalDate x){
+        this.date = x;
+    }
+
     private double probs(double overall1, double overall2) {
         double dif = (overall1 / 100) - (overall2 / 100);
         return Math.exp(dif) / (1 + Math.exp(dif));
@@ -340,26 +351,26 @@ public class Jogo implements Serializable {
 
     public String toString() {
 
-          StringBuilder sb = new StringBuilder(); sb.append("Data: " +
-          this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
-          this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora +
-          "\n");
-          sb.append("Equipa casa" + overallTitulares(new ArrayList<>(this.jogadoresCasa.values())) + "\n");
+          StringBuilder sb = new StringBuilder();
+          sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + " - " +
+                    this.equipaFora.getKey() + "\n" + this.golosCasa + "  -  " + this.golosFora + "\n");
+          sb.append("Equipa Casa" + this.jogadoresCasa.keySet() + "\n");
+          sb.append("Equipa Fora" + this.jogadoresFora.keySet() + "\n");
+          sb.append("Substituições casa: {");
+          for (Map.Entry<Integer, Integer> m: this.substituicoesCasa.entrySet()){
+              sb.append(m.getKey() + " -> " + m.getValue() + "; ");
+          }
+        sb.append("}\nSubstituições Fora: {");
+        for (Map.Entry<Integer, Integer> m: this.substituicoesFora.entrySet()){
+            sb.append(m.getKey() + " -> " + m.getValue() + "; ");
+        }
+        sb.append("}\n");
+        return sb.toString();
+    }
 
-          sb.append("Equipa Fora" + overallTitulares(new ArrayList<>(this.jogadoresFora.values())) + "\n");
+    public String toString2() {
 
-          return sb.toString();
-
-
-        /*return ("Data: " + this.date.toString() + "\n" + "Equipa casa: " + this.equipaCasa.getKey() + "\n"
-                + "Equipa fora: " + this.equipaFora.getKey() + "\n" + "Golos casa: " + this.golosCasa + "\n"
-                + "Golos fora: " + this.golosFora + "\n" + "Jogadores casa"
-                + this.jogadoresCasa.values().stream().map(Jogador::toString) + "\n" + "Jogadores fora"
-                + this.jogadoresFora.values().stream().map(Jogador::toString) + "\n");
-                */
-        /*
-         * + "Substituições casa" + this.substituicoesCasa.toString() + "\n" +
-         * "Substituições fora" + this.substituicoesFora.toString() + "\n";
-         */
+        return  this.equipaCasa.getKey() + "  " +  this.golosCasa +
+                " - " + this.golosFora + " " + this.equipaFora.getKey() + "     -->Data: " + this.date.toString() + "\n";
     }
 }

@@ -76,8 +76,19 @@ public class LigaPOO implements Serializable {
         Equipa eq1 = this.existeEquipa(e1);
         Equipa eq2 = this.existeEquipa(e2);
         Jogo j = new Jogo(eq1, eq2, jc, jf, sc, sf);
+        j.simulacaoJogo();
         this.jogos.add(j);
         return j;
+    }
+
+    public Jogo simulaJogo(Jogo j){
+        Jogo novo = j.clone();
+        novo.setGolosCasa(0);
+        novo.setGolosCasa(0);
+        novo.setDate(LocalDate.now());
+        novo.simulacaoJogo();
+        this.jogos.add(novo);
+        return novo;
     }
     
     
@@ -110,7 +121,7 @@ public class LigaPOO implements Serializable {
     
     public static LigaPOO readFromBinary(String fn)throws IOException, FileNotFoundException, ClassNotFoundException{
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fn));
-        LigaPOO liga = (LigaPOO) is.readObject();
+        LigaPOO liga = new LigaPOO((LigaPOO)is.readObject());
         is.close();
         return liga;
     }
