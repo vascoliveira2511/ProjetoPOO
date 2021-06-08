@@ -52,13 +52,15 @@ public class Menu {
     public String menuLerFicheiro() {
         Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a ler:");
-        return in.next();
+        return in.nextLine();
     }
 
     public String menuGuardarFicheiro() {
         Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a guardar:");
-        return in.next();
+        String c = in.nextLine();
+        in.close();
+        return c;
     }
 
     public AbstractMap.SimpleEntry<String, String> menuEscolherEquipas() {
@@ -73,7 +75,7 @@ public class Menu {
     public String menuEscolherEquipa() {
         Scanner in = new Scanner(System.in);
         System.out.println("Nome da equipa:");
-        return in.next();
+        return in.nextLine();
 
     }
 
@@ -83,17 +85,19 @@ public class Menu {
         String e1 = in.next();
         System.out.println("Numero do Jogador");
         int e2 = in.nextInt();
+        in.close();
         return new AbstractMap.SimpleEntry<>(e2, e1);
     }
 
     public AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> menuTransferencia() {
         Scanner in = new Scanner(System.in);
         System.out.println("Equipa atual:");
-        String e1 = in.next();
+        String e1 = in.nextLine();
         System.out.println("Numero do Jogador");
         int e2 = in.nextInt();
         System.out.println("Equipa futura:");
-        String e3 = in.next();
+        String e3 = in.nextLine();
+        in.close();
         return new AbstractMap.SimpleEntry<>(e2, new AbstractMap.SimpleEntry<>(e1, e3));
     }
 
@@ -123,6 +127,7 @@ public class Menu {
                 i++;
             }
         }
+        in.close();
         return new AbstractMap.SimpleEntry<>(numE1, numE2);
     }
 
@@ -182,6 +187,7 @@ public class Menu {
         Map<Integer, Integer> s2 = new HashMap<>();
         for (i = 0; i < 3; i++)
             s2.put(ent2.get(i), sai2.get(i));
+        in.close();
         return new AbstractMap.SimpleEntry<>(s1, s2);
     }
 
