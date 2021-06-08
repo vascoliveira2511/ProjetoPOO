@@ -52,7 +52,9 @@ public class Menu {
     public String menuLerFicheiro() {
         Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a ler:");
-        return in.nextLine();
+        String c = in.nextLine();
+        in.close();
+        return c;
     }
 
     public String menuGuardarFicheiro() {
