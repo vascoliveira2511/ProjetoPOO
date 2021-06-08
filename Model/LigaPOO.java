@@ -27,9 +27,11 @@ public class LigaPOO implements Serializable {
      */
     private List<Jogo> jogos;
 
-    public LigaPOO() {
+    public LigaPOO() throws LinhaIncorretaException {
         this.equipas = new HashMap<>();
         this.jogos = new ArrayList<>();
+        Map<Integer, Jogador> jogadores = new HashMap<>();
+        Parser.parse(this.equipas, jogadores, this.jogos);
     }
 
     public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos) {

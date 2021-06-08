@@ -4,7 +4,12 @@ import java.util.Scanner;
 
 public class FMMenu {
     public static void main(String[] args) throws IOException, InterruptedException, JogadorException {
-        Controller c = new Controller(); // Solucao temporaria.
+        try {
+            Controller.run();
+        } catch (LinhaIncorretaException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        /*Controller c = new Controller(); // Solucao temporaria.
         String[] s = { "Ler ficheiro", "Transferir jogador", "Simular jogo" };
         Menu m = new Menu(s);
         m.executa();
@@ -50,7 +55,7 @@ public class FMMenu {
                 System.out.println("\nConcluído!!Imprimindo...");
                 System.out.println(j.toString());
                 break;
-        }
+        }*/
 
     }
 }

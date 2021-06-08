@@ -32,17 +32,12 @@ public class Jogo implements Serializable {
 
     }
 
-    public Jogo(String ec, String ef, Equipa casa, Equipa fora, List<Integer> jc, List<Integer> jf) {
-        this.equipaCasa = new SimpleEntry<>(ec, casa);
-        this.equipaFora = new SimpleEntry<>(ef, fora);
+    public Jogo(Equipa e1, Equipa e2) {
+        this.equipaCasa = new SimpleEntry<>(e1.getClube(), e1.clone());
+        this.equipaFora = new SimpleEntry<>(e2.getClube(), e2.clone());
         this.golosCasa = 0;
         this.golosFora = 0;
         this.date = LocalDate.now();
-        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, casa::existeJogador));
-        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, fora::existeJogador));
-        this.substituicoesCasa = new HashMap<>();
-        this.substituicoesFora = new HashMap<>();
-
     }
 
     public Jogo(String ec, String ef, int gc, int gf, LocalDate d, List<Integer> jc, Map<Integer, Integer> sc,
@@ -232,7 +227,7 @@ public class Jogo implements Serializable {
 
     public Map<String, List<Jogador>> melhoresTodasPosicoes(List<Jogador> listaJ) {
         Map<String, List<Jogador>> m = new HashMap<>();
-        m.put("GuardaRedes", this.melhoresPosicao(listaJ, "GuardaRedes"));
+        m.put("Guarda-Redes", this.melhoresPosicao(listaJ, "Guarda-Redes"));
         m.put("Defesa", this.melhoresPosicao(listaJ, "Defesa"));
         m.put("Lateral", this.melhoresPosicao(listaJ, "Lateral"));
         m.put("Avancado", this.melhoresPosicao(listaJ, "Avancado"));
@@ -240,7 +235,7 @@ public class Jogo implements Serializable {
     }
 
     public Jogador escolheGuardaRedes(Map<String, List<Jogador>> melhores) {
-        List<Jogador> g = melhores.get("GuardaRedes");
+        List<Jogador> g = melhores.get("Guarda-Redes");
         return g.get(0);
     }
 
@@ -315,6 +310,20 @@ public class Jogo implements Serializable {
                  this.substituiçoes2();
                  dif = this.difsEquipas();
              }
+            double aleatorio = Math.random();
+            this.situacoesGolos(dif, aleatorio);
+
+        }
+    }
+
+    public void simulacaoJogo2() {
+
+        double dif = this.difsEquipas();
+        for (int i = 0; i < 9; i++) {
+            if (i == 5) {
+                this.substituiçoes2();
+                dif = this.difsEquipas();
+            }
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
 

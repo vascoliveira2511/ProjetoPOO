@@ -50,4 +50,16 @@ public class Menu {
     public int getOpcao() {
         return this.op;
     }
+
+    public String menuLerFicheiro(){
+        System.out.println("Nome do ficheiro a ler:");
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
+    }
+
+    public String menuGuardarFicheiro(){
+        System.out.println("Nome do ficheiro a guardar:");
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
+    }
 }
