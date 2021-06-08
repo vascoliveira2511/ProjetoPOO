@@ -32,11 +32,15 @@ public class Jogo implements Serializable {
 
     }
 
-    public Jogo(Equipa e1, Equipa e2) {
+    public Jogo(Equipa e1, Equipa e2, List<Integer> jc, List<Integer> jf, Map<Integer, Integer> sc, Map<Integer, Integer> sf) {
         this.equipaCasa = new SimpleEntry<>(e1.getClube(), e1.clone());
         this.equipaFora = new SimpleEntry<>(e2.getClube(), e2.clone());
+        this.jogadoresCasa = jc.stream().collect(Collectors.toMap(j -> j, e1::existeJogador));
+        this.jogadoresFora = jf.stream().collect(Collectors.toMap(j -> j, e2::existeJogador));
         this.golosCasa = 0;
         this.golosFora = 0;
+        this.substituicoesCasa = new HashMap<>(sc);
+        this.substituicoesFora = new HashMap<>(sf);
         this.date = LocalDate.now();
     }
 
@@ -310,20 +314,6 @@ public class Jogo implements Serializable {
                  this.substituiçoes2();
                  dif = this.difsEquipas();
              }
-            double aleatorio = Math.random();
-            this.situacoesGolos(dif, aleatorio);
-
-        }
-    }
-
-    public void simulacaoJogo2() {
-
-        double dif = this.difsEquipas();
-        for (int i = 0; i < 9; i++) {
-            if (i == 5) {
-                this.substituiçoes2();
-                dif = this.difsEquipas();
-            }
             double aleatorio = Math.random();
             this.situacoesGolos(dif, aleatorio);
 

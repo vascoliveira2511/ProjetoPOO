@@ -6,7 +6,7 @@ public class FMMenu {
     public static void main(String[] args) throws IOException, InterruptedException, JogadorException {
         try {
             Controller.run();
-        } catch (LinhaIncorretaException | ClassNotFoundException e) {
+        } catch (LinhaIncorretaException | ClassNotFoundException | EquipaException e) {
             e.printStackTrace();
         }
         /*Controller c = new Controller(); // Solucao temporaria.

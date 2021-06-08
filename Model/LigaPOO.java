@@ -60,6 +60,17 @@ public class LigaPOO implements Serializable {
     public void getJogos(List<Jogo> j){
         this.jogos = j.stream().map(Jogo :: clone).collect(Collectors.toList());
     }
+
+    public Equipa existeEquipa(String clube) throws EquipaException {
+        Equipa e = this.equipas.get(clube);
+        if (e == null) throw new EquipaException("Equipa" + clube +"nao existe!\n");
+        return e;
+    }
+
+    public Jogador procuraJogador(String clube, int num) throws EquipaException {
+        Equipa e = this.existeEquipa(clube);
+        return e.existeJogador(num);
+    }
     
     
 
@@ -70,13 +81,14 @@ public class LigaPOO implements Serializable {
      * @param equipaFuturo
      * @param num
      */
-    public void transferencia(String equipaPresente, String equipaFuturo, int num) throws JogadorException {
-        Equipa eP = equipas.get(equipaPresente);
-        Equipa eF = equipas.get(equipaFuturo);
+    public void transferencia(String equipaPresente, String equipaFuturo, int num) throws JogadorException, EquipaException {
+        Equipa eP = this.existeEquipa(equipaPresente);
+        Equipa eF = this.existeEquipa(equipaFuturo);
         Jogador j = eP.existeJogador(num);
         eP.removeJogador(j);
         eF.addJogador(j);
     }
+
 
     public List<Jogo> jogosDoDia(LocalDate date) {
         return this.jogos.stream().map(Jogo::clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());

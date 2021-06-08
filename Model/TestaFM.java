@@ -15,13 +15,5 @@ public class TestaFM {
         } catch (LinhaIncorretaException e) {
             e.printStackTrace();
         }
-        /*Jogo j1 = jogos.get(0);
-        System.out.println(j1.toString());
-        j1.simulacaoJogo();
-        System.out.println(j1.toString());*/
-        Equipa e1 = equipas.get("Bartok F. C.");
-        Equipa e2 = equipas.get("Sporting Club Dvorak");
-        Jogo j2 = new Jogo(e1, e2);
-        System.out.println(j2.equipaTitular(new ArrayList<>(j2.getEquipaFora().getValue().getJogadores().values())));
     }
 }

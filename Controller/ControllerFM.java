@@ -1,0 +1,35 @@
+import java.io.IOException;
+import java.util.AbstractMap;
+
+public class ControllerFM {
+    public static void run(LigaPOO l) throws LinhaIncorretaException, EquipaException, JogadorException, IOException {
+        if (l == null){
+            l = new LigaPOO();
+        }
+        String[] s = {"Simular Jogo", "Consultar Jogador", "Consultar Equipa","Transferir Jogador", "Guardar Jogo"};
+        Menu m2 = new Menu(s);
+        m2.executa();
+        int op = m2.getOpcao();
+        switch (op) {
+            case 1:
+                AbstractMap.SimpleEntry<String,String> eqps = m2.menuEscolherEquipas();
+                Equipa e1 = l.existeEquipa(eqps.getKey());
+                Equipa e2 = l.existeEquipa(eqps.getValue());
+            case 2:
+                AbstractMap.SimpleEntry<Integer,String> jog1 = m2.menuEscolherJogador();
+                Jogador j1 = l.procuraJogador(jog1.getValue(), jog1.getKey());
+                m2.imprimeJogador(j1);
+            case 3:
+                Equipa e3 = l.existeEquipa(m2.menuEscolherEquipa());
+                m2.imprimeEquipa(e3);
+            case 4:
+                AbstractMap.SimpleEntry<Integer,AbstractMap.SimpleEntry<String,String>> eqps2 = m2.menuTransferencia();
+                l.transferencia(eqps2.getValue().getKey(), eqps2.getValue().getValue(), eqps2.getKey());
+            case 5:
+                String g = m2.menuGuardarFicheiro();
+                l.saveToBinary(g);
+
+
+        }
+    }
+}
