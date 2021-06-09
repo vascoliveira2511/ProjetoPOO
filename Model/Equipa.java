@@ -193,9 +193,11 @@ public class Equipa implements Serializable {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Clube: " + this.clube + " (Overall: " + String.format("%.2f", this.overallEquipa()) + ")\n");
+        sb.append("Clube: " + this.clube + " (Overall: " + String.format("%.2f", this.overallEquipa())
+                 + ")\n");
         for (Jogador j : this.jogadores.values().stream()
-                .sorted(Comparator.comparing(j -> j.getClass().getSimpleName())).collect(Collectors.toList())) {
+                                                .sorted(Comparator.comparing(j -> j.getClass().getSimpleName()))
+                                                .collect(Collectors.toList())){
             sb.append(j);
         }
         return sb.toString();

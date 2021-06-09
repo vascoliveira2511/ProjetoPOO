@@ -266,10 +266,8 @@ public abstract class Jogador implements Serializable {
     }
 
     public List<String> getHistEquipas() {
-        if (this.histEquipas == null)
-            return new ArrayList<>();
-        else
-            return new ArrayList<>(this.histEquipas);
+        if (this.histEquipas == null) return new ArrayList<>();
+        else return new ArrayList<>(this.histEquipas);
     }
 
     public void setHistEquipas(List<String> h) {
@@ -295,10 +293,9 @@ public abstract class Jogador implements Serializable {
      * @return String
      */
     public String toString() {
-        return this.numero + " -> " + this.nome + "; " + this.velocidade + "; " + this.resistencia + "; "
-                + this.destreza + "; " + this.impulsao + "; " + this.jogoDeCabeca + "; " + this.remate + "; "
-                + this.capacidadeDePasse + "; (Overall:" + String.format("%.2f", this.overall()) + ");  Antigos clubes:"
-                + this.histEquipas + "\n";
+        return  this.numero + " -> " + this.nome + "; " + this.velocidade + "; " + this.resistencia + "; " + this.destreza
+                + "; " + this.impulsao + "; " + this.jogoDeCabeca + "; " + this.remate + "; " + this.capacidadeDePasse
+                + "; (Overall:" + String.format("%.2f", this.overall()) + ");  Antigos clubes:" + this.histEquipas + "\n";
     }
 
     /**
