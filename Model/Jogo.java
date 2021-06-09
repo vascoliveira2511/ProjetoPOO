@@ -360,8 +360,8 @@ public class Jogo implements Serializable {
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + "  "
-                + this.golosCasa + "  -  " + this.golosFora + "  " + this.equipaFora.getKey() + "\n");
+        sb.append("Data: " + this.date.toString() + "\n" + this.equipaCasa.getKey() + "  " + this.golosCasa + "  -  "
+                + this.golosFora + "  " + this.equipaFora.getKey() + "\n");
         sb.append("Equipa Casa: " + this.jogadoresCasa.keySet() + "\n");
         sb.append("Equipa Fora: " + this.jogadoresFora.keySet() + "\n");
         sb.append("Substituições casa: {");

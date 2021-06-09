@@ -108,8 +108,10 @@ public class LigaPOO implements Serializable {
         eP.removeJogador(j);
         int numero = j.getNumeroJogador();
         while (eF.getJogadores().containsKey(numero)) {
-            if (numero == 99) numero = 0;
-            else numero++;
+            if (numero == 99)
+                numero = 0;
+            else
+                numero++;
         }
         j.setNumeroJogador(numero);
         eF.addJogador(j);
