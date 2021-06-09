@@ -1,8 +1,7 @@
 {
     "java.project.sourcePaths": [
-        "View",
         "Model",
         "Controller",
-        ""
+        "View"
     ]
 }
