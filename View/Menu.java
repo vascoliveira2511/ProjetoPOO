@@ -31,7 +31,6 @@ public class Menu {
 
     private int lerOpcao() {
         int op;
-        // Scanner is = new Scanner(System.in);
 
         System.out.print("Opção: ");
         try {
@@ -43,7 +42,6 @@ public class Menu {
             System.out.println("Opção Invâlida!!!");
             op = -1;
         }
-        // is.close();
         return op;
     }
 
@@ -52,25 +50,21 @@ public class Menu {
     }
 
     public String menuLerFicheiro() {
-        // Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a ler:");
         String c = stdin.nextLine();
-        // in.close();
         return c;
     }
 
     public String menuGuardarFicheiro() {
-        // Scanner in = new Scanner(System.in);
         System.out.println("Nome do ficheiro a guardar:");
         String c = stdin.nextLine();
-        // in.close();
         return c;
     }
 
     public AbstractMap.SimpleEntry<String, String> menuEscolherEquipas() {
-        System.out.println("1:");
+        System.out.println("Jogador 1:");
         String e1 = this.menuEscolherEquipa();
-        System.out.println("2");
+        System.out.println("Jogador 2");
         String e2 = this.menuEscolherEquipa();
         return new AbstractMap.SimpleEntry<>(e1, e2);
 
@@ -134,7 +128,7 @@ public class Menu {
 
     public AbstractMap.SimpleEntry<Map<Integer, Integer>, Map<Integer, Integer>> menuEscolheSubstituicoes(Equipa eq1,
             List<Integer> e1, Equipa eq2, List<Integer> e2) {
-        imprimeObj(e1);
+        imprimeObj(eq1);
         List<Integer> ent1 = new ArrayList<>();
         System.out.println("Jogador 1 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
         System.out.println(e1);
@@ -167,7 +161,7 @@ public class Menu {
         for (i = 0; i < 3; i++)
             s1.put(ent1.get(i), sai1.get(i));
 
-        imprimeObj(e2);
+        imprimeObj(eq2);
         List<Integer> ent2 = new ArrayList<>();
         System.out.println("Jogador 2 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
         System.out.println(e2);
