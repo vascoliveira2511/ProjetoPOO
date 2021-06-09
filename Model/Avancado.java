@@ -1,6 +1,5 @@
-import java.io.Serializable;
 
-public class Avancado extends Jogador implements Serializable {
+public class Avancado extends Jogador {
 
     /**
      * Método que cria um avançado recebvendo os seguintes parâmetros:
