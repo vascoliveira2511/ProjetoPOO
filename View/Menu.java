@@ -101,7 +101,7 @@ public class Menu {
     }
 
     public AbstractMap.SimpleEntry<List<Integer>, List<Integer>> menuEscolheTitulares(Equipa e1, Equipa e2) {
-        imprimeEquipa(e1);
+        imprimeObj(e1);
         List<Integer> numE1 = new ArrayList<>();
         Set<Integer> utilE1 = new HashSet<>(e1.getJogadores().keySet());
         System.out.println("Jogador 1 - Escolha o seu onze inicial(Por numero separado por -enter-)");
@@ -115,7 +115,7 @@ public class Menu {
                 System.out.println("Numero invalido");
             }
         }
-        imprimeEquipa(e2);
+        imprimeObj(e2);
         List<Integer> numE2 = new ArrayList<>();
         Set<Integer> utilE2 = new HashSet<>(e2.getJogadores().keySet());
         i = 0;
@@ -134,6 +134,7 @@ public class Menu {
 
     public AbstractMap.SimpleEntry<Map<Integer, Integer>, Map<Integer, Integer>> menuEscolheSubstituicoes(Equipa eq1,
             List<Integer> e1, Equipa eq2, List<Integer> e2) {
+        imprimeObj(e1);
         List<Integer> ent1 = new ArrayList<>();
         System.out.println("Jogador 1 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
         System.out.println(e1);
@@ -166,6 +167,7 @@ public class Menu {
         for (i = 0; i < 3; i++)
             s1.put(ent1.get(i), sai1.get(i));
 
+        imprimeObj(e2);
         List<Integer> ent2 = new ArrayList<>();
         System.out.println("Jogador 2 - Escolha 3 jogadores para sair(Por numero separado por -enter-)");
         System.out.println(e2);
@@ -210,16 +212,22 @@ public class Menu {
         return Integer.parseInt(stdin.nextLine());
     }
 
-    public void imprimeJogador(Jogador j) {
-        System.out.println(j.toString());
+    public void continuar(){
+        System.out.println("Pressione qualquer tecla para continuar");
+        stdin.nextLine();
+        this.clearScreen();
     }
 
-    public void imprimeEquipa(Equipa e) {
-        System.out.println(e.toString());
+    private void clearScreen() {
+        for (int i = 0; i < 100; i++) System.out.println("\n");
     }
 
-    public void imprimeJogo(Jogo j) {
-        System.out.println(j.toString());
+    public  void imprimeObj (Object o){
+        System.out.println(o.toString());
+    }
+
+    public void imprimeMsg(String s){
+        System.out.println(s);
     }
 
     public void closeScanner() {

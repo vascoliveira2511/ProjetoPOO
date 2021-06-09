@@ -4,6 +4,11 @@ public class Lateral extends Jogador implements Ofensivo, Defensivo, Serializabl
 
     private int cruzamento;
 
+    public Lateral(){
+        super();
+        this.cruzamento=0;
+    }
+
     public Lateral(String nomeJ, int numeroJ, int vel, int res, int des, int imp, int cab, int rem, int p, int cruz) {
         super(nomeJ, numeroJ, vel, res, des, imp, cab, rem, p);
         cruzamento = cruz;

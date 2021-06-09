@@ -10,6 +10,11 @@ public class Medio extends Jogador implements Serializable {
      */
     private int recuperarBolas;
 
+    public Medio(){
+        super();
+        this.recuperarBolas=0;
+    }
+
     /**
      * 
      * @param velocidade

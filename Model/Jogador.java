@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Classe de um jogador.
  */
-public abstract class Jogador {
+public abstract class Jogador implements Serializable {
 
     /**
      * 
@@ -265,7 +266,8 @@ public abstract class Jogador {
     }
 
     public List<String> getHistEquipas() {
-        return new ArrayList<>(this.histEquipas);
+        if (this.histEquipas == null) return new ArrayList<>();
+        else return new ArrayList<>(this.histEquipas);
     }
 
     public void setHistEquipas(List<String> h) {
@@ -291,9 +293,9 @@ public abstract class Jogador {
      * @return String
      */
     public String toString() {
-        return this.nome + "; " + this.numero + "; " + this.velocidade + "; " + this.resistencia + "; " + this.destreza
+        return  this.numero + " -> " + this.nome + "; " + this.velocidade + "; " + this.resistencia + "; " + this.destreza
                 + "; " + this.impulsao + "; " + this.jogoDeCabeca + "; " + this.remate + "; " + this.capacidadeDePasse
-                + ";  Antigos clubes:" + this.histEquipas + "\n";
+                + "; (Overall:" + String.format("%.2f", this.overall()) + ");  Antigos clubes:" + this.histEquipas + "\n";
     }
 
     /**

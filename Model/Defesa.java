@@ -13,6 +13,11 @@ public class Defesa extends Jogador implements Serializable {
      * @param remate
      * @param capacidadeDePasse
      */
+
+    public  Defesa(){
+        super();
+    }
+
     public Defesa(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao,
             int jogoDeCabeca, int remate, int capacidadeDePasse) {
         super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);

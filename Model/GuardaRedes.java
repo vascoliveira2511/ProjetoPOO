@@ -7,6 +7,11 @@ public class GuardaRedes extends Jogador implements Serializable {
      */
     private int elastecidade;
 
+    public GuardaRedes(){
+        super();
+        this.elastecidade = 0;
+    }
+
     /**
      * 
      * @param velocidade
@@ -18,6 +23,7 @@ public class GuardaRedes extends Jogador implements Serializable {
      * @param capacidadeDePasse
      * @param elastecidade
      */
+
     public GuardaRedes(String nome, int numero, int velocidade, int resistencia, int destreza, int impulsao,
             int jogoDeCabeca, int remate, int capacidadeDePasse, int elastecidade) {
         super(nome, numero, velocidade, resistencia, destreza, impulsao, jogoDeCabeca, remate, capacidadeDePasse);

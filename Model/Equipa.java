@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -191,7 +192,14 @@ public class Equipa implements Serializable {
     }
 
     public String toString() {
-        return "Clube: " + this.clube + "\n" + "Numero suplentes: " + this.nSuplentes + "\n" + "Numero Titulares: "
-                + this.nTitulares + "\n" + "Jogadores: " + this.jogadores.toString() + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Clube: " + this.clube + " (Overall: " + String.format("%.2f", this.overallEquipa())
+                 + ")\n");
+        for (Jogador j : this.jogadores.values().stream()
+                                                .sorted(Comparator.comparing(j -> j.getClass().getSimpleName()))
+                                                .collect(Collectors.toList())){
+            sb.append(j);
+        }
+        return sb.toString();
     }
 }

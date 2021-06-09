@@ -14,7 +14,6 @@ public class Controller {
                 case 1:
                     String r = m.menuLerFicheiro();
                     l = LigaPOO.readFromBinary(r);
-                    System.out.println(l.getJogos());
                     ControllerFM.run(l);
                     break;
                 case 2:

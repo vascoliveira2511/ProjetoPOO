@@ -25,29 +25,36 @@ public class ControllerFM {
                             .menuEscolheSubstituicoes(e1, eqT.getKey(), e2, eqT.getValue());
                     Jogo jogo1 = l.simulaJogo(eqps.getKey(), eqps.getValue(), eqT.getKey(), eqT.getValue(),
                             subs.getKey(), subs.getValue());
-                    m2.imprimeJogo(jogo1);
+                    m2.imprimeObj(jogo1);
+                    m2.continuar();
                     break;
                 case 2:
                     Jogo reencontro = l.simulaJogo(l.getJogos().get(m2.escolheJogo(l.getJogos())));
-                    m2.imprimeJogo(reencontro);
+                    m2.imprimeObj(reencontro);
+                    m2.continuar();
                     break;
                 case 3:
                     AbstractMap.SimpleEntry<Integer, String> jog1 = m2.menuEscolherJogador();
                     Jogador j1 = l.procuraJogador(jog1.getValue(), jog1.getKey());
-                    m2.imprimeJogador(j1);
+                    m2.imprimeObj(j1);
+                    m2.continuar();
                     break;
                 case 4:
                     Equipa e3 = l.existeEquipa(m2.menuEscolherEquipa());
-                    m2.imprimeEquipa(e3);
+                    m2.imprimeObj(e3);
+                    m2.continuar();
                     break;
                 case 5:
                     AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> eqps2 = m2
                             .menuTransferencia();
                     l.transferencia(eqps2.getValue().getKey(), eqps2.getValue().getValue(), eqps2.getKey());
+                    m2.imprimeMsg("Transferência concluida com sucesso");
+                    m2.continuar();
                     break;
                 case 6:
                     String g = m2.menuGuardarFicheiro();
                     l.saveToBinary(g);
+                    m2.continuar();
                     break;
                 default:
                     l = null;
