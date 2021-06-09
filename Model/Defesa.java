@@ -1,7 +1,5 @@
-import java.io.Serializable;
 
-public class Defesa extends Jogador implements Serializable {
-
+public class Defesa extends Jogador {
     /**
      * Método que cria uma instância de um defesa com os seguintes parâmetros:
      * 
@@ -14,7 +12,7 @@ public class Defesa extends Jogador implements Serializable {
      * @param capacidadeDePasse
      */
 
-    public  Defesa(){
+    public Defesa() {
         super();
     }
 

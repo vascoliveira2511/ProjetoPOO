@@ -1,13 +1,12 @@
-import java.io.Serializable;
 
-public class GuardaRedes extends Jogador implements Serializable {
+public class GuardaRedes extends Jogador {
 
     /**
      * 
      */
     private int elastecidade;
 
-    public GuardaRedes(){
+    public GuardaRedes() {
         super();
         this.elastecidade = 0;
     }
