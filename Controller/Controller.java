@@ -21,7 +21,6 @@ public class Controller {
                     break;
                 default:
                     cont = false;
-                    m.closeScanner();
                     break;
 
             }

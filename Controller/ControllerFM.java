@@ -58,7 +58,6 @@ public class ControllerFM {
                     break;
                 default:
                     l = null;
-                    // m2.closeScanner();
                     cont = false;
                     break;
             }
