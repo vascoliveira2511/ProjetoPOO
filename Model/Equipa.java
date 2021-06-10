@@ -112,7 +112,7 @@ public class Equipa implements Serializable {
         double overall = 0;
         for (Jogador t : this.jogadores.values())
             overall += t.overall();
-        return (overall / (this.jogadores.size()));
+        return (overall / ((this.jogadores.size() == 0) ? 1 : this.jogadores.size()));
     }
 
     public Equipa clone() {

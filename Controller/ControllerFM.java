@@ -71,7 +71,9 @@ public class ControllerFM {
                     AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> eqps2 = m2
                             .menuTransferencia();
                     l.transferencia(eqps2.getValue().getKey(), eqps2.getValue().getValue(), eqps2.getKey());
-                    m2.imprimeMsg("Transferência concluida com sucesso");
+                    m2.imprimeMsg("Transferência do jogador num " + eqps2.getKey() +
+                                    " do "+ eqps2.getValue().getKey() +
+                                    " para o " + eqps2.getValue().getValue() + " concluida com sucesso!");
                     m2.continuar();
                     break;
                 case 10:
