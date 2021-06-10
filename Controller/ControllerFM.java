@@ -65,7 +65,7 @@ public class ControllerFM {
                     AbstractMap.SimpleEntry<Integer, String> ns = m2.menuAdiconaJogador();
                     l.transferencia(ns.getValue(), ns.getKey());
                     m2.imprimeMsg("Jogador com numero " + ns.getKey() + " adicionado à equipa " +
-                            ns.getValue() + " com sucesso");
+                            ns.getValue() + " com sucesso!");
                     break;
                 case 9:
                     AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> eqps2 = m2
