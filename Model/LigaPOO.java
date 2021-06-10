@@ -140,6 +140,20 @@ public class LigaPOO implements Serializable {
         eF.addJogador(j);
     }
 
+    public void transferencia(String equipaFuturo, int num)
+            throws JogadorException, EquipaException {
+        Equipa eF = this.existeEquipa(equipaFuturo);
+        Jogador j = this.jogSemEquipa.get(num);
+        this.removeJogSemEquipa(num);
+        int numero = j.getNumeroJogador();
+        while (eF.getJogadores().containsKey(numero)) {
+            if (numero == 99) numero = 0;
+            else numero++;
+        }
+        j.setNumeroJogador(numero);
+        eF.addJogador(j);
+    }
+
     public List<Jogo> jogosDoDia(LocalDate date) {
         return this.jogos.stream().map(Jogo::clone).filter(j -> j.getData().isEqual(date)).collect(Collectors.toList());
     }

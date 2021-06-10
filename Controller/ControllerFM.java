@@ -63,8 +63,7 @@ public class ControllerFM {
                     break;
                 case 8:
                     AbstractMap.SimpleEntry<Integer, String> ns = m2.menuAdiconaJogador();
-                    l.existeEquipa(ns.getValue()).addJogador(l.getJogSemEquipa().get(ns.getKey()));
-                    l.removeJogSemEquipa(ns.getKey());
+                    l.transferencia(ns.getValue(), ns.getKey());
                     m2.imprimeMsg("Jogador com numero " + ns.getKey() + " adicionado à equipa " +
                             ns.getValue() + " com sucesso");
                     break;
