@@ -3,7 +3,7 @@ import java.io.IOException;
 public class Controller {
     public static void run()
             throws LinhaIncorretaException, IOException, ClassNotFoundException, EquipaException, JogadorException {
-        String[] s = { "Ler Jogo anterior", "Jogar FM-POO EDITION" };
+        String[] s = { "Carregar Jogo", "Iniciar novo Jogo" };
         Menu m = new Menu(s);
         LigaPOO l = null;
         boolean cont = true;

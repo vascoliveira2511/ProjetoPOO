@@ -8,8 +8,8 @@ public class ControllerFM {
         if (l == null) {
             l = new LigaPOO();
         }
-        String[] s = { "Simular Jogo", "Simular reecontro", "Consultar Jogador", "Consultar Equipa",
-                "Transferir Jogador", "Guardar Jogo" };
+        String[] s = { "Simular Jogo", "Simular reecontro", "Consultar Jogador", "Consultar Equipa", "Consultar Jogadores sem Clube",
+                "Criar Jogador", "Criar Equipa", "Adicionar jogador a Equipa", "Transferir Jogador", "Guardar Jogo" };
         Menu m2 = new Menu(s);
         boolean cont = true;
         while (cont) {
@@ -45,13 +45,37 @@ public class ControllerFM {
                     m2.continuar();
                     break;
                 case 5:
+                    m2.imprimeObj(l.getJogSemEquipa().values());
+                    m2.continuar();
+                    break;
+                case 6:
+                    Jogador jc = m2.menuCriarJogador();
+                    l.adicionaJogSemEquipa(jc);
+                    m2.imprimeObj(jc);
+                    m2.continuar();
+                    break;
+                case 7:
+                    String nEquipa = m2.menuEscolherEquipa();
+                    Equipa eNova = new Equipa(nEquipa);
+                    m2.imprimeObj(eNova);
+                    l.adicionaEquipa(eNova);
+                    m2.continuar();
+                    break;
+                case 8:
+                    AbstractMap.SimpleEntry<Integer, String> ns = m2.menuAdiconaJogador();
+                    l.existeEquipa(ns.getValue()).addJogador(l.getJogSemEquipa().get(ns.getKey()));
+                    l.removeJogSemEquipa(ns.getKey());
+                    m2.imprimeMsg("Jogador com numero " + ns.getKey() + " adicionado à equipa " +
+                            ns.getValue() + " com sucesso");
+                    break;
+                case 9:
                     AbstractMap.SimpleEntry<Integer, AbstractMap.SimpleEntry<String, String>> eqps2 = m2
                             .menuTransferencia();
                     l.transferencia(eqps2.getValue().getKey(), eqps2.getValue().getValue(), eqps2.getKey());
                     m2.imprimeMsg("Transferência concluida com sucesso");
                     m2.continuar();
                     break;
-                case 6:
+                case 10:
                     String g = m2.menuGuardarFicheiro();
                     l.saveToBinary(g);
                     m2.continuar();

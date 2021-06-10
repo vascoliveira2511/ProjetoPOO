@@ -17,6 +17,7 @@ import java.io.FileInputStream;
  */
 public class LigaPOO implements Serializable {
 
+    private Map<Integer, Jogador> jogSemEquipa;
     /**
      * Mapa de equipas.
      */
@@ -30,19 +31,23 @@ public class LigaPOO implements Serializable {
     public LigaPOO() throws LinhaIncorretaException {
         this.equipas = new HashMap<>();
         this.jogos = new ArrayList<>();
+        this.jogSemEquipa = new HashMap<>();
         Map<Integer, Jogador> jogadores = new HashMap<>();
         Parser.parse(this.equipas, jogadores, this.jogos);
     }
 
-    public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos) {
+    public LigaPOO(Map<String, Equipa> equipas, List<Jogo> jogos, Map<Integer, Jogador> jogSemEquipa) {
         this.equipas = equipas.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().clone()));
         this.jogos = jogos.stream().map(Jogo::clone).collect(Collectors.toList());
+        this.jogSemEquipa = jogSemEquipa.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().clone()));
     }
 
     public LigaPOO(LigaPOO l) {
         this.equipas = l.getEquipas();
         this.jogos = l.getJogos();
+        this.jogSemEquipa = l.getJogSemEquipa();
     }
 
     public Map<String, Equipa> getEquipas() {
@@ -57,8 +62,28 @@ public class LigaPOO implements Serializable {
         return this.jogos.stream().map(Jogo::clone).collect(Collectors.toList());
     }
 
-    public void getJogos(List<Jogo> j) {
+    public void setJogos(List<Jogo> j) {
         this.jogos = j.stream().map(Jogo::clone).collect(Collectors.toList());
+    }
+
+    public Map<Integer, Jogador> getJogSemEquipa(){
+        return this.jogSemEquipa.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().clone()));
+    }
+
+    public void setJogSemEquipa(Map<Integer, Jogador> jogSemEquipa){
+        this.jogSemEquipa = jogSemEquipa.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, eq -> eq.getValue().clone()));
+    }
+
+    public void removeJogSemEquipa(int num){
+        this.jogSemEquipa.remove(num);
+    }
+
+    public void adicionaJogSemEquipa(Jogador j){
+        this.jogSemEquipa.put(j.getNumeroJogador(), j.clone());
+    }
+
+    public void adicionaEquipa(Equipa e){
+        this.equipas.put(e.getClube(), e.clone());
     }
 
     public Equipa existeEquipa(String clube) throws EquipaException {

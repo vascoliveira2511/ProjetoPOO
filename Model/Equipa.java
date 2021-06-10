@@ -13,40 +13,17 @@ public class Equipa implements Serializable {
 
     private String clube;
     /**
-     * Numero de titulares na equipa.
-     */
-    private int nTitulares;
-
-    /**
-     * Numero de suplentes na equipa.
-     */
-    private int nSuplentes;
-
-    /**
      * List de jogadores
      */
     private Map<Integer, Jogador> jogadores;
 
-    /**
-     * Metodo que cria uma instancia de equipa com os valores recebidos.
-     *
-     * @param nTitulares
-     * @param nSuplentes
-     * @param titulares
-     * @param suplentes
-     */
-
     public Equipa() {
         this.clube = " ";
-        this.nTitulares = 0;
-        this.nSuplentes = 0;
         this.jogadores = new HashMap<>();
     }
 
     public Equipa(String clube, int nTitulares, int nSuplentes, ArrayList<Jogador> jogadores) {
         this.clube = clube;
-        this.nTitulares = nTitulares;
-        this.nSuplentes = nSuplentes;
         this.jogadores = jogadores.stream().map(Jogador::clone)
                 .collect(Collectors.toMap(Jogador::getNumeroJogador, j -> j));
     }
@@ -58,8 +35,6 @@ public class Equipa implements Serializable {
 
     public Equipa(String clube, ArrayList<Jogador> jogadores) {
         this.clube = clube;
-        this.nTitulares = 11;
-        this.nSuplentes = 3;
         this.jogadores = jogadores.stream().map(Jogador::clone)
                 .collect(Collectors.toMap(Jogador::getNumeroJogador, j -> j));
     }
@@ -76,8 +51,6 @@ public class Equipa implements Serializable {
      */
     public Equipa(Equipa e) {
         this.clube = e.getClube();
-        this.nTitulares = e.getnTitulares();
-        this.nSuplentes = e.getnSuplentes();
         this.jogadores = e.getJogadores();
     }
 
@@ -89,41 +62,6 @@ public class Equipa implements Serializable {
         this.clube = clube;
     }
 
-    /**
-     * Metodo que debolve o numero de titulares na equipa.
-     *
-     * @return nTitulares
-     */
-    public int getnTitulares() {
-        return this.nTitulares;
-    }
-
-    /**
-     * Metodo que altera o numero de suplentes na equipa
-     *
-     * @param nTitulares
-     */
-    public void setnTitulares(int nTitulares) {
-        this.nTitulares = nTitulares;
-    }
-
-    /**
-     * Metodo que debolve o numero de suplentes na equipa.
-     *
-     * @return nSuplentes
-     */
-    public int getnSuplentes() {
-        return this.nSuplentes;
-    }
-
-    /**
-     * Metodo que altera o numero de suplentes na equipa
-     *
-     * @param nSuplentes
-     */
-    public void setnSuplentes(int nSuplentes) {
-        this.nSuplentes = nSuplentes;
-    }
 
     /**
      * Metodo que devolve a lista de titulares da equipa.
@@ -187,8 +125,7 @@ public class Equipa implements Serializable {
         if (o == null || o.getClass() != this.getClass())
             return false;
         Equipa e = (Equipa) o;
-        return this.clube.equals(e.clube) && this.jogadores.equals(e.getJogadores())
-                && this.nSuplentes == e.getnSuplentes() && this.nTitulares == e.getnTitulares();
+        return this.clube.equals(e.clube) && this.jogadores.equals(e.getJogadores());
     }
 
     public String toString() {

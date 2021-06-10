@@ -20,7 +20,7 @@ public class Menu {
     }
 
     private void showMenu() {
-        System.out.println("\n *** Menu *** ");
+        System.out.println("\n *** FM - POO EDITION *** ");
         for (int i = 0; i < this.opcoes.size(); i++) {
             System.out.print(i + 1);
             System.out.print(" - ");
@@ -39,7 +39,7 @@ public class Menu {
             op = -1;
         }
         if (op < 0 || op > this.opcoes.size()) {
-            System.out.println("Opção Invâlida!!!");
+            System.out.println("Opção Inválida!!!");
             op = -1;
         }
         return op;
@@ -197,6 +197,73 @@ public class Menu {
         return new AbstractMap.SimpleEntry<>(s1, s2);
     }
 
+    public Jogador menuCriarJogador(){
+        System.out.println("Nome do Jogador:");
+        String nome = stdin.nextLine();
+        System.out.println("Numero do Jogador:");
+        int numero = Integer.parseInt(stdin.nextLine());
+        System.out.println("Posicao do Jogador:");
+        String posicao = stdin.nextLine();
+        String[] s = { "velocidade:", "resistencia:", "destreza:", "impulsao", "jogo de cabeça:", "remate:","capacidade de passe:" };
+        List<Integer> habilidades = new ArrayList<>();
+        int i = 0;
+        System.out.println("Escolha as habilidades do Jogaodr compreendidas entre 0 e 100");
+        while (i < 7) {
+            System.out.println(s[i]);
+            int hab = Integer.parseInt(stdin.nextLine());
+            if (hab >= 0 && hab <= 100) {
+                habilidades.add(hab);
+                i++;
+            } else {
+                System.out.println("Numero invalido");
+            }
+        }
+        Jogador j = null;
+        switch (posicao){
+            case "Guarda-Redes":
+                System.out.println("elastecidade:");
+                int elas = Integer.parseInt(stdin.nextLine());
+                j = new GuardaRedes(nome, numero, habilidades.get(0), habilidades.get(1),
+                        habilidades.get(2),habilidades.get(3), habilidades.get(4), habilidades.get(5),
+                        habilidades.get(6), elas);
+                break;
+            case "Defesa":
+                j = new Defesa(nome, numero, habilidades.get(0), habilidades.get(1),
+                        habilidades.get(2),habilidades.get(3), habilidades.get(4), habilidades.get(5),
+                        habilidades.get(6));
+                break;
+            case "Lateral":
+                System.out.println("cruzamento:");
+                int cruz = Integer.parseInt(stdin.nextLine());
+                j = new Lateral(nome, numero, habilidades.get(0), habilidades.get(1),
+                        habilidades.get(2),habilidades.get(3), habilidades.get(4), habilidades.get(5),
+                        habilidades.get(6), cruz);
+                break;
+            case "Medio":
+                System.out.println("Recuperar bolas:");
+                int rec = Integer.parseInt(stdin.nextLine());
+                j = new Medio(nome, numero, habilidades.get(0), habilidades.get(1),
+                        habilidades.get(2),habilidades.get(3), habilidades.get(4), habilidades.get(5),
+                        habilidades.get(6), rec);
+                break;
+            case "Avancado":
+                j = new Avancado(nome, numero, habilidades.get(0), habilidades.get(1),
+                        habilidades.get(2),habilidades.get(3), habilidades.get(4), habilidades.get(5),
+                        habilidades.get(6));
+                break;
+
+        }
+        return j;
+    }
+
+    public AbstractMap.SimpleEntry<Integer, String> menuAdiconaJogador(){
+        System.out.println("Numero do jogador:");
+        int num = Integer.parseInt(stdin.nextLine());
+        System.out.println("Equipa para irá ser transferido:");
+        String eqF = stdin.nextLine();
+        return new AbstractMap.SimpleEntry<>(num, eqF);
+    }
+
     public int escolheJogo(List<Jogo> jogos) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < jogos.size(); i++)
@@ -211,6 +278,7 @@ public class Menu {
         stdin.nextLine();
         this.clearScreen();
     }
+
 
     private void clearScreen() {
         for (int i = 0; i < 100; i++) System.out.println("\n");
