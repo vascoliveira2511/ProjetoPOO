@@ -14,9 +14,11 @@ public class Controller {
                 case 1:
                     String r = m.menuLerFicheiro();
                     l = LigaPOO.readFromBinary(r);
+                    m.clearScreen();
                     ControllerFM.run(l);
                     break;
                 case 2:
+                    m.clearScreen();
                     ControllerFM.run(l);
                     break;
                 default:

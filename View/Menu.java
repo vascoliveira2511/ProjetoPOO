@@ -207,7 +207,7 @@ public class Menu {
         String[] s = { "velocidade:", "resistencia:", "destreza:", "impulsao", "jogo de cabeça:", "remate:","capacidade de passe:" };
         List<Integer> habilidades = new ArrayList<>();
         int i = 0;
-        System.out.println("Escolha as habilidades do Jogaodr compreendidas entre 0 e 100");
+        System.out.println("Escolha as habilidades do Jogador compreendidas entre 0 e 100");
         while (i < 7) {
             System.out.println(s[i]);
             int hab = Integer.parseInt(stdin.nextLine());
@@ -280,7 +280,7 @@ public class Menu {
     }
 
 
-    private void clearScreen() {
+    public void clearScreen() {
         for (int i = 0; i < 100; i++) System.out.println("\n");
     }
 

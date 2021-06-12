@@ -82,6 +82,7 @@ public class ControllerFM {
                     m2.continuar();
                     break;
                 default:
+                    m2.clearScreen();
                     l = null;
                     cont = false;
                     break;
